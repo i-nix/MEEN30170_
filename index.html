@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MutateX Installation & Run Guide</title>
+</head>
+<body>
+<pre>
+1. Install Homebrew & Python 3.11
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" # download and install Homebrew (Mac package manager)
+
+brew install python@3.11 # uses Homebrew to install Python 3.11
+
+
+2. Clone MutateX & create virtual environment
+git clone https://github.com/ELELAB/mutatex.git # download the MutateX repository into a new mutatex folder
+
+python3.11 -m venv mutatex-env # creates isolate python environmental called mutate-env so packages installed don’t affect rest of system
+
+source mutatex-env/bin/activate # activates virtual environment
+**Run source mutatex-env/bin/activate each time open a new terminal.
+
+
+3. Install MutateX & dependencies
+cd mutatex # enter mutatex folder
+
+pip install --upgrade pip # update pip (python package installer)
+
+pip install biopython six pandas matplotlib scipy pyyaml openpyxl logomaker adjustText # install python packages that MutateX uses
+
+python setup.py install # install mutateX so mutatex command is usable in terminal
+
+cd .. # go to working directory (foldx5_Mac_0)
+
+
+4. Set up FoldX binary
+chmod +x foldx_20270131  # make FoldX binary executable
+
+echo 'export FOLDX_BINARY=/Users/YOUR_USERNAME/Downloads/foldx5_Mac_0/foldx_20270131' >> ~/.zshrc # saves path to FoldX in shell config file so every terminal session knows where it is
+
+source ~/.zshrc # reloads shell config so change takes effect
+
+echo $FOLDX_BINARY # verify - should print full path to foldx_20270131
+
+
+5. Copy required runfile templates
+cp mutatex/tests/foldxsuite5/interaction_skip_repair/mutate_runfile_template.txt . # copies mutation runfile template into working directory
+
+cp mutatex/tests/foldxsuite5/interaction_skip_repair/interface_runfile_template.txt . # copies interface/binding energy runfile template into working directory
+
+cp mutatex/tests/foldxsuite5/interaction_nomultimers/repair_runfile_template.txt . $ copies repair runfile template into working directory
+
+
+6. Download & clean PDB file
+curl -O https://files.rcsb.org/download/2M32.pdb # downloads PDB structure file for 2M32 from the RCSB database 
+
+grep "^ATOM" 2M32.pdb | grep -v "HYP\|ACE\|NH2\| MG " > 2M32_clean.pdb # keeps just the ATOM lines and removes non-standard resides, saves to clean file
+
+
+7. Check chains and residue numbering
+grep "^ATOM" 2M32_clean.pdb | awk '{print $5}' | sort -u # prints the unique chain IDs in the structure
+
+grep "^ATOM" 2M32_clean.pdb | awk '$5 == "C" && $3 == "CA" {print $6, $4}' # check residues in chain C
+
+
+8. Run the mutagenesis scan
+echo "NC213" > poslist.txt # creates file telling MutateX to scan position 213 in chain C
+
+printf "G\nA\nV\nL\nI\nM\nF\nW\nP\nS\nT\nC\nY\nQ\nD\nE\nK\nR\nH" > mutlist.txt # # creates a file listing all 19 amino acids to mutate to at that position
+
+mutatex 2M32_clean.pdb \
+  -S \ # skip the repair step 
+  -B \ # calculate binding energy
+  -f suite5 \ # use FoldX version 5
+  -x ./foldx_20270131 \ # path to the FoldX binary
+  -n 1 \  # run each mutation once
+  -p 4 \  # run 4 mutations in parallel
+  -m mutlist.txt \ # mutation list file 
+  -q poslist.txt \  # position list file
+  -v # prints progress to terminal
+
+
+9. Results — Interface ΔΔG at NC213 (chain A–C)
+cat results/interface_ddgs/final_averages/A-C/NC213 | awk 'NR==1 {print "# aa   name        avg   min   max"} NR>1 {aa[NR]=$1; val[NR]=$1" "$3" "$4" "$5} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}' # prints table of results
+
+
+Negative ΔΔG = mutation improves binding.
+</pre>
+</body>
+</html>
