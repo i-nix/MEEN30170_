@@ -1,90 +1,318 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MutateX Installation & Run Guide</title>
+<meta charset="UTF-8">
+<title>MutateX + FoldX Interface Scan</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 40px;
+    max-width: 900px;
+    line-height: 1.6;
+    color: #222;
+}
+h1, h2, h3 {
+    margin-top: 40px;
+}
+code, pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+.section {
+    margin-bottom: 50px;
+}
+.results-block {
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    margin-top: 15px;
+}
+.image-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #eaeaea;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+</style>
 </head>
 <body>
+
+<h1>Process</h1>
+
+<div class="section">
+<h2>UniProt</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px;">
+  <img src="images/uniprot_1.png" alt="UniProt Image 1" style="width:48%; border-radius:8px;">
+  <img src="images/uniprot_2.png" alt="UniProt Image 2" style="width:48%; border-radius:8px;">
+</div>
+
+</div>
+
+
+<p><strong>Link to AlphaFold Results Page:</strong> 
+<a href="https://alphafold.ebi.ac.uk/entry/AF-P56199-F1" target="_blank">View Structure</a>
+</p>
+
+<p><strong>AlphaFold Database:</strong> 
+<a href="https://alphafold.ebi.ac.uk/" target="_blank">AlphaFold Protein Structure Database</a>
+</p>
+
+<p>
+Used AlphaFold predicted structure — confidence scores were high and/or very high for selected amino acids.
+</p>
+
+
+<div class="section">
+<h2>PSIPRED</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px;">
+  <img src="images/psipred_1.png" alt="PSIPRED Image 1" style="width:48%; border-radius:8px;">
+  <img src="images/psipred_2.png" alt="PSIPRED Image 2" style="width:48%; border-radius:8px;">
+</div>
+
+</div>
+
+
+<div class="section">
+<h2>RCSB PDB</h2>
+
+<div style="margin-top:20px;">
+  <img src="images/rcsb_pdb_1.png" alt="RCSB PDB Image" style="width:70%; border-radius:8px;">
+</div>
+
+</div>
+
+
+<div class="section">
+<h2>PDBe PISA Interface Analysis</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px;">
+  <img src="images/pisa_1.png" alt="PISA Image 1" style="width:48%; border-radius:8px;">
+  <img src="images/pisa_2.png" alt="PISA Image 2" style="width:48%; border-radius:8px;">
+</div>
+
+<div style="margin-top:20px;">
+  <img src="images/pisa_3.png" alt="PISA Image 3" style="width:70%; border-radius:8px;">
+</div>
+
+</div>
+
+
+<div class="section">
+<h2>1. Install Homebrew & Python 3.11</h2>
+
 <pre>
-1. Install Homebrew & Python 3.11
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" # download and install Homebrew (Mac package manager)
+cd /Users/inesnix/Downloads/foldx5_Mac_0
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew install python@3.11 # uses Homebrew to install Python 3.11
+brew install python@3.11
+</pre>
+</div>
 
+<div class="section">
+<h2>2. Clone MutateX & Create Virtual Environment</h2>
 
-2. Clone MutateX & create virtual environment
-git clone https://github.com/ELELAB/mutatex.git # download the MutateX repository into a new mutatex folder
+<pre>
+git clone https://github.com/ELELAB/mutatex.git
 
-python3.11 -m venv mutatex-env # creates isolate python environmental called mutate-env so packages installed don’t affect rest of system
+python3.11 -m venv mutatex-env
 
-source mutatex-env/bin/activate # activates virtual environment
-**Run source mutatex-env/bin/activate each time open a new terminal.
+source mutatex-env/bin/activate
+</pre>
+</div>
 
+<div class="section">
+<h2>3. Install MutateX & Dependencies</h2>
 
-3. Install MutateX & dependencies
-cd mutatex # enter mutatex folder
+<pre>
+cd mutatex
 
-pip install --upgrade pip # update pip (python package installer)
+pip install --upgrade pip
 
-pip install biopython six pandas matplotlib scipy pyyaml openpyxl logomaker adjustText # install python packages that MutateX uses
+pip install biopython six pandas matplotlib scipy pyyaml openpyxl logomaker adjustText
 
-python setup.py install # install mutateX so mutatex command is usable in terminal
+python setup.py install
 
-cd .. # go to working directory (foldx5_Mac_0)
+cd ..
+</pre>
+</div>
 
+<div class="section">
+<h2>4. Set Up FoldX Binary</h2>
 
-4. Set up FoldX binary
-chmod +x foldx_20270131  # make FoldX binary executable
+<pre>
+chmod +x foldx_20270131
 
-echo 'export FOLDX_BINARY=/Users/YOUR_USERNAME/Downloads/foldx5_Mac_0/foldx_20270131' >> ~/.zshrc # saves path to FoldX in shell config file so every terminal session knows where it is
+echo 'export FOLDX_BINARY=/Users/inesnix/Downloads/foldx5_Mac_0/foldx_20270131' >> ~/.zshrc
 
-source ~/.zshrc # reloads shell config so change takes effect
+source ~/.zshrc
 
-echo $FOLDX_BINARY # verify - should print full path to foldx_20270131
+echo $FOLDX_BINARY
+</pre>
+</div>
 
+<div class="section">
+<h2>5. Copy Required Runfile Templates</h2>
 
-5. Copy required runfile templates
-cp mutatex/tests/foldxsuite5/interaction_skip_repair/mutate_runfile_template.txt . # copies mutation runfile template into working directory
+<pre>
+cp mutatex/tests/foldxsuite5/interaction_skip_repair/mutate_runfile_template.txt .
 
-cp mutatex/tests/foldxsuite5/interaction_skip_repair/interface_runfile_template.txt . # copies interface/binding energy runfile template into working directory
+cp mutatex/tests/foldxsuite5/interaction_skip_repair/interface_runfile_template.txt .
 
-cp mutatex/tests/foldxsuite5/interaction_nomultimers/repair_runfile_template.txt . $ copies repair runfile template into working directory
+cp mutatex/tests/foldxsuite5/interaction_nomultimers/repair_runfile_template.txt .
+</pre>
+</div>
 
+<div class="section">
+<h2>6. Download & Clean PDB File</h2>
 
-6. Download & clean PDB file
-curl -O https://files.rcsb.org/download/2M32.pdb # downloads PDB structure file for 2M32 from the RCSB database 
+<pre>
+curl -O https://files.rcsb.org/download/2M32.pdb
 
-grep "^ATOM" 2M32.pdb | grep -v "HYP\|ACE\|NH2\| MG " > 2M32_clean.pdb # keeps just the ATOM lines and removes non-standard resides, saves to clean file
+grep "^ATOM" 2M32.pdb | grep -v "HYP\|ACE\|NH2\| MG " > 2M32_clean.pdb
+</pre>
+</div>
 
+<div class="section">
+<h2>7. Check Chains and Residue Numbering</h2>
 
-7. Check chains and residue numbering
-grep "^ATOM" 2M32_clean.pdb | awk '{print $5}' | sort -u # prints the unique chain IDs in the structure
+<pre>
+grep "^ATOM" 2M32_clean.pdb | awk '{print $5}' | sort -u
 
-grep "^ATOM" 2M32_clean.pdb | awk '$5 == "C" && $3 == "CA" {print $6, $4}' # check residues in chain C
+grep "^ATOM" 2M32_clean.pdb | awk '$5 == "A" && $3 == "CA" {print $6, $4}' | grep "^14 \|^17 \|^18 "
+</pre>
+</div>
 
+<div class="section">
+<h2>8. Run</h2>
 
-8. Run the mutagenesis scan
-echo "NC213" > poslist.txt # creates file telling MutateX to scan position 213 in chain C
+<pre>
+echo -e "NA14\nYA17\nPA18" > poslist.txt
 
-printf "G\nA\nV\nL\nI\nM\nF\nW\nP\nS\nT\nC\nY\nQ\nD\nE\nK\nR\nH" > mutlist.txt # # creates a file listing all 19 amino acids to mutate to at that position
+printf "G\nA\nV\nL\nI\nM\nF\nW\nP\nS\nT\nC\nY\nQ\nD\nE\nK\nR\nH" > mutlist.txt
 
 mutatex 2M32_clean.pdb \
-  -S \ # skip the repair step 
-  -B \ # calculate binding energy
-  -f suite5 \ # use FoldX version 5
-  -x ./foldx_20270131 \ # path to the FoldX binary
-  -n 1 \  # run each mutation once
-  -p 4 \  # run 4 mutations in parallel
-  -m mutlist.txt \ # mutation list file 
-  -q poslist.txt \  # position list file
-  -v # prints progress to terminal
-
-
-9. Results — Interface ΔΔG at NC213 (chain A–C)
-cat results/interface_ddgs/final_averages/A-C/NC213 | awk 'NR==1 {print "# aa   name        avg   min   max"} NR>1 {aa[NR]=$1; val[NR]=$1" "$3" "$4" "$5} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}' # prints table of results
-
-
-Negative ΔΔG = mutation improves binding.
+-S \
+-B \
+-f suite5 \
+-x ./foldx_20270131 \
+-b ./mutatex/tests/foldxsuite5/basic_custom_rotabase/rotabase.txt \
+-n 1 \
+-p 4 \
+-m mutlist.txt \
+-q poslist.txt \
+-v
 </pre>
+</div>
+
+<div class="section">
+<h2>9. Extract Interface ΔΔG Results</h2>
+
+<pre>
+ls results/interface_ddgs/final_averages/
+
+cat results/interface_ddgs/final_averages/A-C/NA14 | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
+
+cat results/interface_ddgs/final_averages/A-C/YA17 | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
+
+cat results/interface_ddgs/final_averages/A-C/PA18 | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
+</pre>
+</div>
+
+<div class="section">
+<h2>Results</h2>
+
+<h3>N181</h3>
+<div class="results-block">
+<pre>
+G Gly -0.77660
+A Ala -0.79931
+V Val 0.46602
+L Leu -0.76641
+I Ile -0.18853
+M Met -0.56065
+F Phe -1.71869
+W Trp -1.20386
+P Pro -0.38054
+S Ser 0.49579
+T Thr 2.08986
+C Cys -0.47472
+Y Tyr -2.21862
+Q Gln 0.02286
+D Asp 2.13224
+E Glu 1.47580
+K Lys -0.19313
+R Arg -1.78019
+H His -0.32747
+
+</pre>
+</div>
+
+<h3>Y184</h3>
+<div class="results-block">
+<pre>
+G Gly 0.06040
+A Ala 0.06506
+V Val 0.04902
+L Leu 0.04847
+I Ile 0.03706
+M Met 0.00961
+F Phe 0.06086
+W Trp 0.04298
+P Pro 0.03880
+S Ser 0.06339
+T Thr -0.00614
+C Cys 0.06573
+Y Tyr 0.00001
+Q Gln 0.05250
+D Asp 0.16551
+E Glu 0.12808
+K Lys 0.04925
+R Arg 0.04495
+H His -0.01633
+
+</pre>
+</div>
+
+<h3>P185</h3>
+<div class="results-block">
+<pre>
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu -0.00001
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys -0.00048
+Y Tyr 0.00000
+Q Gln 0.00129
+D Asp 0.00037
+E Glu 0.02346
+K Lys -0.00101
+R Arg -0.00739
+H His 0.00000
+
+</pre>
+</div>
+
+</div>
+
 </body>
 </html>
