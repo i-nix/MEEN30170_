@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>MutateX + FoldX Interface Scan</title>
+
 <style>
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     margin: 40px;
@@ -11,18 +13,22 @@ body {
     line-height: 1.6;
     color: #222;
 }
+
 h1, h2, h3 {
     margin-top: 40px;
 }
+
 code, pre {
     background-color: #f4f4f4;
     padding: 10px;
     border-radius: 6px;
     overflow-x: auto;
 }
+
 .section {
     margin-bottom: 50px;
 }
+
 .results-block {
     background-color: #fafafa;
     padding: 20px;
@@ -30,6 +36,7 @@ code, pre {
     border: 1px solid #eee;
     margin-top: 15px;
 }
+
 .image-placeholder {
     width: 100%;
     height: 300px;
@@ -37,70 +44,119 @@ code, pre {
     border-radius: 8px;
     margin: 20px 0;
 }
+
 a {
     color: #0066cc;
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
 }
+
+
+.img-large {
+    width: 85%;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.img-row {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.img-row img {
+    width: 48%;
+    border-radius: 8px;
+}
+
 </style>
+
 </head>
 <body>
 
-<h1>Process</h1>
+<h1>Integrin Binding Energy Optimization Through Site-Directed Mutagenesis</h1>
+    <p>
+The following outlines the computational workflow used to identify 
+candidate amino acid residues for mutation and evaluate the resulting binding energy changes using MutateX and FoldX.
+</p>
 
 <div class="section">
-<h2>UniProt</h2>
+<h2>1. UniProt Sequence Information</h2>
 
-<div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px;">
-  <img src="images/uniprot_1.png" alt="UniProt Image 1" style="width:48%; border-radius:8px;">
+<p>
+I used UniProt to obtain the Integrin Alpha 1 Sequence.
+</p>
+
+<img src="images/uniprot_1.png" class="img-large">
+
+<p><strong>AlphaFold Structure:</strong>
+<a href="https://alphafold.ebi.ac.uk/entry/AF-P56199-F1" target="_blank">View AlphaFold Model</a>
+</p>
+
+<p>
+I used AlphaFold to examine the predicted protein structure and confidence scores for the residues of interest. The ones selected had confidence scores of either "high" or "very high".</p>
+</div>
+
+
+<div class="section">
+<h2>2. Secondary Structure Prediction (PSIPRED)</h2>
+
+<p>
+PSIPRED was used to predict the protein’s secondary structure, including features such as alpha helices and beta strands. The selected residues were located in coiled regions rather than disordered regions.
+</p>
+
+<div class="img-row">
+  <img src="images/psipred_1.png">
+  <img src="images/psipred_2.png">
 </div>
 
 </div>
 
 
-<p><strong>Link to AlphaFold Results Page:</strong> 
-<a href="https://alphafold.ebi.ac.uk/entry/AF-P56199-F1" target="_blank">View Structure</a>
+<div class="section">
+<h2>3. Structural Data from RCSB PDB</h2>
+
+<p>
+The protein structure file was obtained from the RCSB Protein Data Bank (PDB). 
+This served as the input model for the subsequent interface analysis 
+performed using PDBe PISA.
+</p>
+
+<img src="images/rcsb_pdb_1.png" class="img-large">
+
+</div>
+
+
+<div class="section">
+<h2>4. Interface Analysis with PDBe PISA</h2>
+
+<p>
+PDBe PISA was used to analyze the protein–protein interface. In particular, I looked at
+accessible surface area (ASA) and buried surface area (BSA) values to identify residues
+likely involved in interface interactions. Among the previously identified high-confidence
+residues located in coiled regions, I chose three with relatively high ASA and low BSA values as candidates for mutation.
 </p>
 
 
 <p>
-Used AlphaFold predicted structure — confidence scores were high and/or very high for selected amino acids.
+The workflow using MutateX and FoldX for the site-directed mutagenesis is outlined below, 
+followed by the resulting predicted changes in binding energy for one NMR model 
+of the protein.
 </p>
 
-
-<div class="section">
-<h2>PSIPRED</h2>
-
-<div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px;">
-  <img src="images/psipred_1.png" alt="PSIPRED Image 1" style="width:48%; border-radius:8px;">
-  <img src="images/psipred_2.png" alt="PSIPRED Image 2" style="width:48%; border-radius:8px;">
+<p>
+Over the next several weeks, work will include repeating the analysis across the remaining NMR models 
+in the structure and calculating the average binding energy changes. Additionally, I will try 
+runs using high-performance computing (HPC) resources.
+</p>
+<div class="img-row">
+  <img src="images/pisa_1.png">
 </div>
 
-</div>
-
-
-<div class="section">
-<h2>RCSB PDB</h2>
-
-<div style="margin-top:20px;">
-  <img src="images/rcsb_pdb_1.png" alt="RCSB PDB Image" style="width:70%; border-radius:8px;">
-</div>
-
-</div>
-
-
-<div class="section">
-<h2>PDBe PISA Interface Analysis</h2>
-
-<div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:20px;">
-  <img src="images/pisa_1.png" alt="PISA Image 1" style="width:48%; border-radius:8px;">
-</div>
-
-<div style="margin-top:20px;">
-  <img src="images/pisa_3.png" alt="PISA Image 3" style="width:70%; border-radius:8px;">
-</div>
+<img src="images/pisa_3.png" class="img-large">
 
 </div>
 
@@ -213,7 +269,7 @@ mutatex 2M32_clean.pdb \
 </div>
 
 <div class="section">
-<h2>9.Results</h2>
+<h2>9. Results</h2>
 
 <pre>
 ls results/interface_ddgs/final_averages/
