@@ -2,74 +2,87 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MutateX + FoldX Interface Scan</title>
+<title>Binding Energy Optimization in Integrin Through Site-Directed Mutagenesis</title>
 
 <style>
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    margin: 40px;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    background-color: #0b1e3d;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
     max-width: 900px;
-    line-height: 1.6;
-    color: #222;
+    padding: 50px;
 }
 
 h1, h2, h3 {
-    margin-top: 40px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
 }
 
 code, pre {
-    background-color: #f4f4f4;
-    padding: 10px;
+    background-color: #132b57;
+    padding: 12px;
     border-radius: 6px;
+    color: #ffffff;
     overflow-x: auto;
+    white-space: pre-wrap;
 }
 
 .section {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 .results-block {
-    background-color: #fafafa;
+    background-color: #132b57;
     padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid #1f3b73;
+    margin-top: 20px;
 }
-
-.image-placeholder {
-    width: 100%;
-    height: 300px;
-    background-color: #eaeaea;
-    border-radius: 8px;
-    margin: 20px 0;
-}
-
-a {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 
 .img-large {
     width: 85%;
-    border-radius: 8px;
-    margin: 20px 0;
+    display: block;
+    margin: 25px auto;
+    border-radius: 10px;
 }
 
 .img-row {
     display: flex;
+    justify-content: center;
     gap: 25px;
     flex-wrap: wrap;
 }
 
 .img-row img {
-    width: 48%;
+    width: 45%;
     border-radius: 8px;
+}
+
+details {
+    margin-top: 15px;
+    background-color: #132b57;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #7fb3ff;
+}
+
+a {
+    color: #7fb3ff;
 }
 
 </style>
@@ -77,86 +90,64 @@ a:hover {
 </head>
 <body>
 
-<h1>Integrin Binding Energy Optimization Through Site-Directed Mutagenesis</h1>
-    <p>
-The following outlines the computational workflow used to identify 
-candidate amino acid residues for mutation and evaluate the resulting binding energy changes using MutateX and FoldX.
-</p>
+<div class="container">
+
+<h1>Binding Energy Optimization in Integrin Through Site-Directed Mutagenesis</h1>
 
 <div class="section">
-<h2>1. UniProt Sequence Information</h2>
+<h2>1. Sequence Acquisition</h2>
 
 <p>
-I used UniProt to obtain the Integrin Alpha 1 Sequence.
+The Integrin Alpha-1 sequence was obtained from UniProt.
 </p>
 
 <img src="images/uniprot_1.png" class="img-large">
 
-<p><strong>AlphaFold Structure:</strong>
+<p>
+The protein structure and confidence scores were assessed using AlphaFold. 
+Residues surrounding the magnesium-binding site were examined, including G179, N181, I183, M249, Q247, G282, and S284. 
+All of the selected residues showed either “high” or “very high” confidence scores.
+<br><br>
 <a href="https://alphafold.ebi.ac.uk/entry/AF-P56199-F1" target="_blank">View AlphaFold Model</a>
 </p>
-
-<p>
-I used AlphaFold to examine the predicted protein structure and confidence scores for the residues of interest. The ones selected had confidence scores of either "high" or "very high".</p>
 </div>
 
-
 <div class="section">
-<h2>2. Secondary Structure Prediction (PSIPRED)</h2>
+<h2>2. Secondary Structure Prediction</h2>
 
 <p>
-PSIPRED was used to predict the protein’s secondary structure, including features such as alpha helices and beta strands. The selected residues were located in coiled regions rather than disordered regions.
+PSIPRED was used to identify secondary structural features such as alpha helices, beta strands, and disordered regions. 
+Mutations were avoided in beta-strand regions. The selected residues were located primarily in coil regions, making them more suitable for mutagenesis.
 </p>
 
 <div class="img-row">
   <img src="images/psipred_1.png">
   <img src="images/psipred_2.png">
 </div>
-
 </div>
 
-
 <div class="section">
-<h2>3. Structural Data from RCSB PDB</h2>
+<h2>3. Surface Area and Interface Analysis</h2>
 
 <p>
-The protein structure file was obtained from the RCSB Protein Data Bank (PDB). 
-This served as the input model for the subsequent interface analysis 
-performed using PDBe PISA.
+The structure was obtained from the Protein Data Bank (PDB ID: 2M32), representing the Alpha-1 integrin I-domain in complex with a collagen-like peptide.
 </p>
 
 <img src="images/rcsb_pdb_1.png" class="img-large">
 
+<p>
+PDBe PISA was used to evaluate accessible surface area (ASA) and buried surface area (BSA). 
+Residues with relatively high ASA and low BSA were selected as mutation targets, as these are more likely to influence binding interactions. The selected residues were N181, Y184, and P185.
+</p>
+
+<img src="images/pisa_3.png" class="img-large">
 </div>
 
-
-<h2>4. Interface Analysis with PDBe PISA</h2>
-
-<p>
-PDBe PISA was used to analyze the protein–protein interface. In particular, I looked at
-accessible surface area (ASA) and buried surface area (BSA) values to identify residues
-likely involved in interface interactions. Among the previously identified high-confidence
-residues located in coiled regions, I chose three with relatively high ASA and low BSA values as candidates for mutation.
-</p>
-
-<div class="img-row">
-  <img src="images/pisa_1.png">
-</div>
-
-<img src="images/pisa_3.png">
+<div class="section">
+<h2>4. Mutagenesis Workflow</h2>
 
 <p>
-The workflow using MutateX and FoldX for the site-directed mutagenesis is outlined below, 
-followed by the resulting predicted changes in binding energy for one NMR model 
-of the protein.
-</p>
-
-<p>
-Over the next several weeks, work will include repeating the analysis across the remaining NMR models 
-in the structure and calculating the average binding energy changes. Additionally, I will try 
-runs using high-performance computing (HPC) resources.
-</p>
-
+MutateX with FoldX was used to systematically introduce mutations and calculate changes in binding free energy (ΔΔG). The workflow is outlined below, followed by the resulting predicted changes in binding energy.
 </div>
 <div class="section">
 <h2>1. Install Homebrew & Python 3.11</h2>
@@ -224,27 +215,37 @@ cp mutatex/tests/foldxsuite5/interaction_nomultimers/repair_runfile_template.txt
 </div>
 
 <div class="section">
+
+<div class="section">
 <h2>6. Download & Clean PDB File</h2>
 
 <pre>
 curl -O https://files.rcsb.org/download/2M32.pdb
 
-grep "^ATOM" 2M32.pdb | grep -v "HYP\|ACE\|NH2\| MG " > 2M32_clean.pdb
+grep "^ATOM" 2M32.pdb | grep -v "HYP\|ACE\|NH2" > 2M32_clean.pdb
 </pre>
 </div>
 
 <div class="section">
 <h2>7. Check Chains and Residue Numbering</h2>
 
+<p>
+Residue numbering differs between the UniProt/AlphaFold sequence and the PDB structure (2M32). 
+For example, residue N181 in the UniProt sequence corresponds to position 14 in the PDB file, 
+while Y184 corresponds to position 17 and P185 corresponds to position 18. 
+
+</p>
+
+
 <pre>
 grep "^ATOM" 2M32_clean.pdb | awk '{print $5}' | sort -u
 
-grep "^ATOM" 2M32_clean.pdb | awk '$5 == "A" && $3 == "CA" {print $6, $4}' | grep "^14 \|^17 \|^18 "
+grep "^ATOM" 2M32_clean.pdb | awk '$5 == "A" && $3 == "CA" {print $6, $4}' | grep -E "^(14|17|18) "
 </pre>
 </div>
 
 <div class="section">
-<h2>8. Run</h2>
+<h2>8. Run Mutagenesis</h2>
 
 <pre>
 echo -e "NA14\nYA17\nPA18" > poslist.txt
@@ -255,8 +256,7 @@ mutatex 2M32_clean.pdb \
 -S \
 -B \
 -f suite5 \
--x ./foldx_20270131 \
--b ./mutatex/tests/foldxsuite5/basic_custom_rotabase/rotabase.txt \
+-x ./foldx \
 -n 1 \
 -p 4 \
 -m mutlist.txt \
@@ -266,25 +266,147 @@ mutatex 2M32_clean.pdb \
 </div>
 
 <div class="section">
-<h2>9. Results</h2>
+<h2>9. Run Across All NMR Models</h2>
 
 <pre>
-ls results/interface_ddgs/final_averages/
+for i in 0 1 2 3 4 5 6 7 8 9; do
 
-cat results/interface_ddgs/final_averages/A-C/NA14 | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
+echo "MODEL $i"
+mutatex 2M32_clean_model${i}_checked.pdb \
+-S -B -f suite5 \
+-x ./foldx \
+-n 1 -p 4 \
+-m mutlist.txt \
+-q poslist.txt \
+-v
 
-cat results/interface_ddgs/final_averages/A-C/YA17 | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
+for pos in NA14 YA17 PA18; do
+echo "$pos"
+cat results/interface_ddgs/final_averages/A-C/$pos | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
+done
+done
 
-cat results/interface_ddgs/final_averages/A-C/PA18 | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
+<div class="section">
+<h2>10. Compute Average ΔΔG Across All Models</h2>
+
+<p>
+The following command shows the average binding energy changes for each mutation at positions NA14, YA17, and PA18.
+</p>
+
+<pre>
+for pos in NA14 YA17 PA18; do
+  echo "$pos"
+  cat results/interface_ddgs/final_averages/A-C/$pos | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
+done
+</pre>
+
+</div>
+
+
+<h2>Results Across NMR Models</h2>
+
+<p>
+Binding free energy changes (ΔΔG) were computed across 10 NMR models. 
+Negative values indicate stabilizing mutations, while positive values indicate destabilization.
+</p>
+
+<h3>Average ΔΔG Across All Models</h3>
+
+<div class="results-block">
+<pre>
+NA14
+G Gly -0.45996
+A Ala -0.44081
+V Val -0.59865
+L Leu -0.78349
+I Ile -0.98153
+M Met -0.67259
+F Phe -1.01273
+W Trp -0.76145
+P Pro 0.88998
+S Ser -0.02299
+T Thr 0.28142
+C Cys -0.44385
+Y Tyr -0.40266
+Q Gln 0.07395
+D Asp 0.95498
+E Glu 0.97908
+K Lys -0.14312
+R Arg -0.24048
+H His -0.23976
+
+YA17 
+G Gly 0.02526
+A Ala 0.02150
+V Val 0.00860
+L Leu 0.00680
+I Ile -0.00091
+M Met 0.00771
+F Phe 0.00307
+W Trp -0.01862
+P Pro -0.01591
+S Ser 0.01758
+T Thr 0.00614
+C Cys 0.01901
+Y Tyr 0.00008
+Q Gln -0.00900
+D Asp 0.11188
+E Glu 0.07459
+K Lys -0.03102
+R Arg -0.06451
+H His -0.00757
+
+PA18 
+G Gly 0.00798
+A Ala 0.01145
+V Val 0.01147
+L Leu 0.00127
+I Ile 0.00285
+M Met 0.00110
+F Phe 0.01130
+W Trp -0.00039
+P Pro 0.00002
+S Ser -0.00075
+T Thr 0.01032
+C Cys -0.00100
+Y Tyr 0.01280
+Q Gln 0.01107
+D Asp 0.01615
+E Glu 0.04047
+K Lys -0.00112
+R Arg -0.00273
+H His 0.00628
 </pre>
 </div>
 
-<div class="section">
-<h2>Results</h2>
+<h3>Heatmap Visualization</h3>
 
-<h3>N181</h3>
-<div class="results-block">
+<img src="images/heatmap.png" class="img-large">
+
+<h3>NA14 Mutation Distribution</h3>
+
+<img src="images/NA_histo.png" class="img-large">
+
+<h3>YA17 Mutation Distribution</h3>
+
+<img src="images/YA17_histo.png" class="img-large">
+
+
+<h3>PA18 Mutation Distribution</h3>
+
+<img src="images/PA18_histo.png" class="img-large">
+
+
+
+<h3>Full Model Data </h3>
+
+<p>Each model can be expanded to view the complete dataset.</p>
+
+<!MODEL 0 >
+<details>
+<summary>MODEL 0</summary>
 <pre>
+NA14
 G Gly -0.77660
 A Ala -0.79931
 V Val 0.46602
@@ -305,12 +427,7 @@ K Lys -0.19313
 R Arg -1.78019
 H His -0.32747
 
-</pre>
-</div>
-
-<h3>Y184</h3>
-<div class="results-block">
-<pre>
+YA17
 G Gly 0.06040
 A Ala 0.06506
 V Val 0.04902
@@ -331,12 +448,7 @@ K Lys 0.04925
 R Arg 0.04495
 H His -0.01633
 
-</pre>
-</div>
-
-<h3>P185</h3>
-<div class="results-block">
-<pre>
+PA18
 G Gly 0.00000
 A Ala 0.00000
 V Val 0.00000
@@ -358,9 +470,707 @@ R Arg -0.00739
 H His 0.00000
 
 </pre>
-</div>
+</details>
+
+
+<details>
+<summary>MODEL 1</summary>
+<pre>
+NA14
+G Gly -0.07163
+A Ala -0.31404
+V Val -0.00120
+L Leu -0.82613
+I Ile -1.17108
+M Met -0.29928
+F Phe -0.56959
+W Trp -1.50571
+P Pro 0.04172
+S Ser -0.11428
+T Thr -0.43234
+C Cys -0.18897
+Y Tyr -0.27114
+Q Gln 0.13523
+D Asp 0.82591
+E Glu 0.74079
+K Lys -0.03578
+R Arg 0.72085
+H His 0.31743
+
+YA17
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00725
+D Asp 0.09217
+E Glu 0.03648
+K Lys -0.00271
+R Arg -0.14254
+H His 0.00000
+
+PA18
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr -0.00001
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00000
+D Asp 0.00226
+E Glu 0.00402
+K Lys 0.00000
+R Arg 0.00729
+H His 0.00000
+</pre>
+</details>
+
+<details>
+<summary>MODEL 2</summary>
+<pre>
+NA14
+G Gly -1.35472
+A Ala 0.01155
+V Val -0.94148
+L Leu 0.49802
+I Ile -1.12238
+M Met 1.13300
+F Phe -1.73328
+W Trp 0.39850
+P Pro 1.10651
+S Ser 0.09251
+T Thr 0.90015
+C Cys -0.53478
+Y Tyr 2.36197
+Q Gln 1.22857
+D Asp 0.30628
+E Glu 2.23115
+K Lys -0.29068
+R Arg 1.59351
+H His -0.36501
+
+YA17
+G Gly 0.00526
+A Ala 0.00160
+V Val -0.00872
+L Leu 0.00128
+I Ile -0.00191
+M Met -0.00696
+F Phe -0.00959
+W Trp 0.00435
+P Pro -0.01634
+S Ser -0.00042
+T Thr -0.00874
+C Cys 0.00434
+Y Tyr 0.00002
+Q Gln -0.01511
+D Asp 0.10765
+E Glu 0.05925
+K Lys -0.26494
+R Arg -0.04182
+H His -0.01361
+
+PA18
+G Gly 0.00434
+A Ala 0.00434
+V Val 0.00370
+L Leu 0.00000
+I Ile 0.00370
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00368
+T Thr 0.00434
+C Cys 0.00434
+Y Tyr 0.00000
+Q Gln 0.00126
+D Asp 0.03789
+E Glu 0.02260
+K Lys 0.00000
+R Arg 0.00353
+H His 0.00000
+
+</pre>
+</details>
+
+<details>
+<summary>MODEL 3</summary>
+<pre>
+NA14
+G Gly 0.05000
+A Ala -0.56130
+V Val -0.82948
+L Leu -1.17475
+I Ile -0.99473
+M Met -0.97103
+F Phe -1.04916
+W Trp -1.45847
+P Pro 2.15083
+S Ser -0.28610
+T Thr -0.12520
+C Cys -0.36750
+Y Tyr -0.70152
+Q Gln -0.12197
+D Asp 0.61878
+E Glu 0.57825
+K Lys -0.13600
+R Arg -0.94535
+H His -0.38940
+
+YA17
+G Gly 0.00860
+A Ala 0.01380
+V Val 0.00020
+L Leu -0.00970
+I Ile 0.00430
+M Met 0.00810
+F Phe 0.00400
+W Trp 0.00440
+P Pro -0.01750
+S Ser 0.00520
+T Thr 0.00430
+C Cys 0.01380
+Y Tyr 0.00010
+Q Gln 0.00800
+D Asp 0.11910
+E Glu 0.04820
+K Lys 0.01290
+R Arg -0.17288
+H His 0.00280
+
+PA18
+G Gly 0.00000
+A Ala 0.01380
+V Val 0.00510
+L Leu 0.00000
+I Ile 0.01380
+M Met 0.00000
+F Phe 0.01390
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00130
+D Asp -0.00010
+E Glu 0.02060
+K Lys -0.00060
+R Arg -0.00100
+H His 0.00000
+</pre>
+</details>
+
+<details>
+<summary>MODEL 4</summary>
+<pre>
+NA14
+G Gly -0.66360
+A Ala -0.75061
+V Val -0.52427
+L Leu -0.79904
+I Ile -1.13234
+M Met -0.50635
+F Phe -0.39987
+W Trp -0.76838
+P Pro 0.07194
+S Ser 0.45954
+T Thr 0.07014
+C Cys 0.26045
+Y Tyr -0.25775
+Q Gln -0.19994
+D Asp 1.31130
+E Glu 1.09534
+K Lys -0.30758
+R Arg -2.85806
+H His -1.00971
+
+YA17
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00050
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00390
+P Pro -0.00070
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00050
+Y Tyr 0.00000
+Q Gln 0.00000
+D Asp 0.10320
+E Glu 0.05590
+K Lys -0.00100
+R Arg -0.01450
+H His 0.00000
+
+PA18
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00000
+D Asp 0.01570
+E Glu 0.03540
+K Lys 0.00000
+R Arg 0.00000
+H His 0.00000
+</pre>
+</details>
+
+<details>
+<summary>MODEL 5</summary>
+<pre>
+NA14
+G Gly -0.17681
+A Ala -0.41160
+V Val -0.36473
+L Leu -1.06004
+I Ile -0.94827
+M Met -0.84491
+F Phe -0.79417
+W Trp 0.63642
+P Pro -0.05736
+S Ser 0.10866
+T Thr 0.10851
+C Cys -0.22433
+Y Tyr -0.45593
+Q Gln 0.57965
+D Asp 0.75783
+E Glu 1.47830
+K Lys -0.18625
+R Arg 0.26436
+H His -0.33099
+
+YA17
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00005
+D Asp 0.11685
+E Glu 0.06346
+K Lys -0.01876
+R Arg -0.05675
+H His 0.00000
+
+PA18
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00000
+D Asp 0.03604
+E Glu 0.04030
+K Lys -0.00050
+R Arg -0.00089
+H His 0.00000
+</pre>
+</details>
+
+<details>
+<summary>MODEL 6</summary>
+<pre>
+NA14
+G Gly -0.01212
+A Ala -0.32509
+V Val -0.29912
+L Leu -0.79826
+I Ile -0.20498
+M Met -0.81815
+F Phe -2.32659
+W Trp -0.65242
+P Pro -0.50998
+S Ser 0.16524
+T Thr 0.39123
+C Cys -0.01857
+Y Tyr -0.68917
+Q Gln -0.06895
+D Asp 0.43927
+E Glu 0.57249
+K Lys -0.31498
+R Arg -1.01783
+H His -0.31216
+
+YA17
+G Gly 0.15600
+A Ala 0.10750
+V Val 0.02750
+L Leu 0.00940
+I Ile -0.06640
+M Met 0.02360
+F Phe 0.00040
+W Trp 0.02210
+P Pro -0.15860
+S Ser 0.08490
+T Thr 0.05380
+C Cys 0.07880
+Y Tyr 0.00060
+Q Gln 0.04770
+D Asp 0.16090
+E Glu 0.16670
+K Lys 0.08860
+R Arg -0.01930
+H His -0.00250
+
+PA18
+G Gly 0.09550
+A Ala 0.11770
+V Val 0.10590
+L Leu 0.01270
+I Ile 0.01100
+M Met 0.01100
+F Phe 0.09910
+W Trp -0.00480
+P Pro 0.00020
+S Ser 0.01340
+T Thr 0.12520
+C Cys 0.01100
+Y Tyr 0.12800
+Q Gln 0.10680
+D Asp 0.04480
+E Glu 0.16380
+K Lys 0.01230
+R Arg 0.01270
+H His 0.06400
+</pre>
+</details>
+
+<details>
+<summary>MODEL 7</summary>
+<pre>
+NA14
+G Gly -1.48190
+A Ala -0.48570
+V Val 0.22006
+L Leu -0.69650
+I Ile 0.13662
+M Met -0.25109
+F Phe -0.28560
+W Trp -1.39080
+P Pro 3.48364
+S Ser -0.39840
+T Thr 0.23660
+C Cys -0.20390
+Y Tyr -0.57240
+Q Gln -0.00390
+D Asp 0.56410
+E Glu 1.18830
+K Lys 0.79455
+R Arg 1.11795
+H His -0.50500
+
+YA17
+G Gly 0.00070
+A Ala 0.00070
+V Val 0.00070
+L Leu 0.00070
+I Ile 0.00070
+M Met 0.00070
+F Phe 0.00070
+W Trp -0.23560
+P Pro -0.00040
+S Ser 0.00070
+T Thr 0.00070
+C Cys 0.00070
+Y Tyr 0.00000
+Q Gln -0.20370
+D Asp 0.04250
+E Glu 0.01280
+K Lys -0.00710
+R Arg -0.07140
+H His 0.00070
+
+PA18
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00000
+D Asp -0.00010
+E Glu 0.00910
+K Lys 0.00000
+R Arg -0.00020
+H His 0.00000
+
+</pre>
+</details>
+
+<details>
+<summary>MODEL 8</summary>
+<pre>
+NA14
+G Gly -0.15944
+A Ala -0.26836
+V Val -2.35471
+L Leu -0.65139
+I Ile -2.77356
+M Met -2.28428
+F Phe -0.54136
+W Trp -0.82137
+P Pro 0.62066
+S Ser 0.02192
+T Thr 0.21990
+C Cys -2.06682
+Y Tyr -0.53471
+Q Gln -0.11856
+D Asp 0.41710
+E Glu 0.13937
+K Lys -0.44710
+R Arg -0.18454
+H His -0.24069
+
+YA17
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00000
+D Asp 0.09035
+E Glu 0.06428
+K Lys -0.02666
+R Arg -0.02988
+H His -0.04093
+
+PA18
+G Gly 0.00000
+A Ala 0.00000
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00000
+P Pro 0.00000
+S Ser 0.00000
+T Thr 0.00000
+C Cys 0.00000
+Y Tyr 0.00000
+Q Gln 0.00000
+D Asp 0.03323
+E Glu 0.06600
+K Lys -0.00038
+R Arg -0.01611
+H His 0.00000
+</pre>
+</details>
+
+<details>
+<summary>MODEL 9</summary>
+<pre>
+NA14
+G Gly 0.04720
+A Ala -0.50360
+V Val -1.35760
+L Leu -1.56040
+I Ile -1.41600
+M Met -1.32315
+F Phe -0.70903
+W Trp -0.84840
+P Pro 2.37235
+S Ser -0.77480
+T Thr -0.64470
+C Cys -0.61940
+Y Tyr -0.68736
+Q Gln -0.71350
+D Asp 2.17699
+E Glu 0.29102
+K Lys -0.31420
+R Arg 0.68452
+H His 0.76537
+
+YA17
+G Gly 0.02160
+A Ala 0.02630
+V Val 0.01730
+L Leu 0.01790
+I Ile 0.01670
+M Met 0.04210
+F Phe -0.02570
+W Trp -0.02830
+P Pro -0.00440
+S Ser 0.02200
+T Thr 0.01750
+C Cys 0.02620
+Y Tyr 0.00010
+Q Gln 0.01330
+D Asp 0.12060
+E Glu 0.11080
+K Lys -0.13980
+R Arg -0.14100
+H His -0.00580
+
+PA18
+G Gly -0.02000
+A Ala -0.02130
+V Val 0.00000
+L Leu 0.00000
+I Ile 0.00000
+M Met 0.00000
+F Phe 0.00000
+W Trp 0.00090
+P Pro 0.00000
+S Ser -0.02460
+T Thr -0.02630
+C Cys -0.02490
+Y Tyr 0.00000
+Q Gln 0.00000
+D Asp -0.00860
+E Glu 0.01940
+K Lys -0.02100
+R Arg -0.02520
+H His -0.00120
+</pre>
+</details>
+
+<h3>Complete Averaged Dataset</h3>
+
+<details>
+<summary>Click to expand full averaged ΔΔG values</summary>
+<pre>
+NA14
+G Gly -0.45996
+A Ala -0.44081
+V Val -0.59865
+L Leu -0.78349
+I Ile -0.98153
+M Met -0.67259
+F Phe -1.01273
+W Trp -0.76145
+P Pro 0.88998
+S Ser -0.02299
+T Thr 0.28142
+C Cys -0.44385
+Y Tyr -0.40266
+Q Gln 0.07395
+D Asp 0.95498
+E Glu 0.97908
+K Lys -0.14312
+R Arg -0.24048
+H His -0.23976
+YA17
+G Gly 0.02526
+A Ala 0.02150
+V Val 0.00860
+L Leu 0.00680
+I Ile -0.00091
+M Met 0.00771
+F Phe 0.00307
+W Trp -0.01862
+P Pro -0.01591
+S Ser 0.01758
+T Thr 0.00614
+C Cys 0.01901
+Y Tyr 0.00008
+Q Gln -0.00900
+D Asp 0.11188
+E Glu 0.07459
+K Lys -0.03102
+R Arg -0.06451
+H His -0.00757
+PA18
+G Gly 0.00798
+A Ala 0.01145
+V Val 0.01147
+L Leu 0.00127
+I Ile 0.00285
+M Met 0.00110
+F Phe 0.01130
+W Trp -0.00039
+P Pro 0.00002
+S Ser -0.00075
+T Thr 0.01032
+C Cys -0.00100
+Y Tyr 0.01280
+Q Gln 0.01107
+D Asp 0.01615
+E Glu 0.04047
+K Lys -0.00112
+R Arg -0.00273
+H His 0.00628
+</pre>
+</details>
 
 </div>
 
+<div class="section">
+<h2>Conclusion</h2>
+
+<p>
+Residue NA14 showed the most significant variation in binding energy when mutated
+</p>
+
+<p>
+Future work should include….
+</p>
+
+</div>
+
+</div>
 </body>
 </html>
+
