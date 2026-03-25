@@ -120,10 +120,8 @@ PSIPRED was used to identify secondary structural features such as alpha helices
 Mutations were avoided in beta-strand regions. The selected residues were located primarily in coil regions, making them more suitable for mutagenesis.
 </p>
 
-<div class="img-row">
-  <img src="images/psipred_1.png">
-  <img src="images/psipred_2.png">
-</div>
+<img src="images/psipred_1.png" class="img-large">
+<img src="images/psipred_2.png" class="img-large">
 </div>
 
 <div class="section">
@@ -137,7 +135,9 @@ The structure was obtained from the Protein Data Bank (PDB ID: 2M32), representi
 
 <p>
 PDBe PISA was used to evaluate accessible surface area (ASA) and buried surface area (BSA). 
-Residues with relatively high ASA and low BSA were selected as mutation targets, as these are more likely to influence binding interactions. The selected residues were N181, Y184, and P185.
+Residues with relatively high ASA and low BSA were selected as mutation targets, as these are more likely to influence binding interactions. The selected residues were N181, Y184, and P185. Residue numbering differs between the UniProt/AlphaFold sequence and the PDB structure (2M32). 
+For example, residue N181 in the UniProt sequence corresponds to position 14 in the PDB file, 
+while Y184 corresponds to position 17 and P185 corresponds to position 18. 
 </p>
 
 <img src="images/pisa_3.png" class="img-large">
@@ -230,9 +230,6 @@ grep "^ATOM" 2M32.pdb | grep -v "HYP\|ACE\|NH2" > 2M32_clean.pdb
 <h2>7. Check Chains and Residue Numbering</h2>
 
 <p>
-Residue numbering differs between the UniProt/AlphaFold sequence and the PDB structure (2M32). 
-For example, residue N181 in the UniProt sequence corresponds to position 14 in the PDB file, 
-while Y184 corresponds to position 17 and P185 corresponds to position 18. 
 
 </p>
 
@@ -285,12 +282,13 @@ echo "$pos"
 cat results/interface_ddgs/final_averages/A-C/$pos | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
 done
 done
+</pre>
 
 <div class="section">
 <h2>10. Compute Average ΔΔG Across All Models</h2>
 
 <p>
-The following command shows the average binding energy changes for each mutation at positions NA14, YA17, and PA18.
+The following command computes the average binding energy changes for each mutation at positions NA14, YA17, and PA18 across all models.
 </p>
 
 <pre>
