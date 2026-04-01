@@ -13,6 +13,8 @@ body {
     color: #ffffff;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
 .container {
@@ -91,11 +93,27 @@ a {
 </head>
 <body>
 
+<div class="navbar">
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('selection')">Selecting Initial Mutation Sites</a>
+    <a onclick="showPage('workflow')">MutateX Workflow</a>
+    <a onclick="showPage('initial')">Initial Results</a>
+    <a onclick="showPage('hpc')">HPC Results</a>
+</div>
+
 <div class="container">
 
+<div id="home" class="page active">
 <h1>Binding Energy Optimization in Integrin Through Site-Directed Mutagenesis</h1>
 
-<div class="section">
+<p>
+This project investigates how targeted mutations affect binding free energy in the Integrin Alpha-1 I-domain. 
+Residues near the magnesium-binding site were selected and mutated using MutateX and FoldX, and then additional surrounding sites 
+were mutated using a high-performance cluster (HPC). The goal is to identify mutations that stabilize binding interactions.
+</p>
+</div>
+
+<div id="selection" class="page">
 <h2>1. Sequence Acquisition</h2>
 
 <p>
@@ -144,11 +162,12 @@ while Y184 corresponds to position 17 and P185 corresponds to position 18.
 <img src="images/pisa_3.png" class="img-large">
 </div>
 
-<div class="section">
-<h2>4. Mutagenesis Workflow</h2>
+<div id="workflow" class="page">
+<h2>Mutatex Workflow</h2>
 
 <p>
-MutateX with FoldX was used to systematically introduce mutations and calculate changes in binding free energy (ΔΔG). The workflow is outlined below, followed by the resulting predicted changes in binding energy.
+MutateX with FoldX was used to introduce mutations and calculate changes in binding free energy (ΔΔG). The workflow is outlined below, followed by the resulting predicted changes in binding energy.
+</p>
 </div>
 <div class="section">
 <h2>1. Install Homebrew & Python 3.11</h2>
@@ -243,7 +262,7 @@ grep "^ATOM" 2M32_clean.pdb | awk '$5 == "A" && $3 == "CA" {print $6, $4}' | gre
 </div>
 
 <div class="section">
-<h2>8. Run Mutagenesis</h2>
+<h2>8. Run </h2>
 
 <pre>
 echo -e "NA14\nYA17\nPA18" > poslist.txt
@@ -301,7 +320,7 @@ done
 
 </div>
 
-
+<div id="initial" class="page">
 <h2>Results Across NMR Models</h2>
 
 <p>
@@ -378,26 +397,17 @@ H His 0.00628
 </pre>
 </div>
 
-<h3>Heatmap Visualization</h3>
+<h3><a href="images/heatmap.png" target="_blank">Heatmap Visualization</a></h3>
 
-<img src="images/heatmap.png" class="img-large">
+<h3><a href="images/NA_histo.png" target="_blank">Asparagine (Asn) 181 Mutation Histogram</a></h3>
 
-<h3>NA14 Mutation Distribution</h3>
+<h3><a href="images/YA17_histo.png" target="_blank">Tyrosine (Tyr) 184 Mutation Histogram</a></h3>
 
-<img src="images/NA_histo.png" class="img-large">
-
-<h3>YA17 Mutation Distribution</h3>
-
-<img src="images/YA17_histo.png" class="img-large">
-
-
-<h3>PA18 Mutation Distribution</h3>
-
-<img src="images/PA18_histo.png" class="img-large">
+<h3><a href="images/PA18_histo.png" target="_blank">Proline (Pro) 185 Mutation Histogram</a></h3>
 
 <h3>Full Model Data </h3>
 
-<!MODEL 0 >
+<!-- MODEL 0 -->
 <details>
 <summary>MODEL 0</summary>
 <pre>
@@ -1152,20 +1162,203 @@ H His 0.00628
 
 </div>
 
-<div class="section">
-<h2> </h2>
-
+<div id="hpc" class="page">
 <p>
-Residue NA14 showed the most significant variation in binding energy when mutated
+In the HPC analysis, the set of mutated amino acid positions was expanded to a total of 58 residues, including:
 </p>
 
 <p>
-Future work should include….
+Serine 1 (SA1), Threonine 2 (TA2), Glutamine 3 (QA3), Leucine 4 (LA4), Aspartic Acid 5 (DA5), Isoleucine 6 (IA6), Valine 7 (VA7), Isoleucine 8 (IA8), Valine 9 (VA9), Leucine 10 (LA10),
 </p>
 
+<p>
+Aspartic Acid 11 (DA11), Glycine 12 (GA12), Serine 13 (SA13), Asparagine 14 (NA14), Serine 15 (SA15), Isoleucine 16 (IA16), Tyrosine 17 (YA17), Proline 18 (PA18), Tryptophan 19 (WA19), Aspartic Acid 20 (DA20),
+</p>
+
+<p>
+Serine 21 (SA21), Valine 22 (VA22), Threonine 23 (TA23), Alanine 24 (AA24), Phenylalanine 25 (FA25), Leucine 26 (LA26), Asparagine 27 (NA27), Aspartic Acid 28 (DA28), Leucine 29 (LA29), Leucine 30 (LA30),
+</p>
+
+<p>
+Glutamic Acid 31 (EA31), Arginine 32 (RA32), Methionine 33 (MA33), Aspartic Acid 34 (DA34), Isoleucine 35 (IA35), Glycine 36 (GA36), Proline 37 (PA37), Lysine 38 (KA38), Glutamine 39 (QA39), Threonine 40 (TA40),
+</p>
+
+<p>
+Glutamine 41 (QA41), Valine 42 (VA42), Glycine 43 (GA43), Isoleucine 44 (IA44), Valine 45 (VA45), Glutamine 46 (QA46), Tyrosine 47 (YA47), Glycine 48 (GA48), Glutamic Acid 49 (EA49), Asparagine 50 (NA50),
+</p>
+
+<p>
+Valine 51 (VA51), Threonine 52 (TA52), Histidine 53 (HA53), Glutamic Acid 54 (EA54), Phenylalanine 55 (FA55), Asparagine 56 (NA56), Leucine 57 (LA57), and Asparagine 58 (NA58).
+</p>
+<p>
+Using the following command, mutations were ranked based on their change in binding free energy (ΔΔG). The subsequent lists identify the most stabilizing mutations (largest negative ΔΔG), the most destabilizing mutations (largest positive ΔΔG), and those closest to neutral (ΔΔG ≈ 0):
+</p>
+
+<pre>
+for f in results/mutation_ddgs/final_averages/*; do
+  pos=$(basename $f)
+  paste <(echo -e "G\nA\nV\nL\nI\nM\nF\nW\nP\nS\nT\nC\nY\nQ\nD\nE\nK\nR\nH") \
+        <(grep -v "^#" $f | awk '{print $1}') \
+  | awk -v pos="$pos" '{print pos, $1, $2}'
+done | sort -k3 -n > all_mutations_ranked.txt
+
+echo "most stabilizing:"
+head -20 all_mutations_ranked.txt
+</pre>
+
+<p>
+<h3>Most Stabilizing Mutations</h3>
+<div class="results-block">
+<pre>
+DA11 V -6.27949
+DA11 L -5.96024
+DA11 M -5.76794
+DA11 I -5.67496
+DA11 T -5.44202
+DA11 P -5.26440
+DA11 C -4.64080
+DA11 A -4.36536
+GA43 M -4.29976
+GA43 K -3.93523
+DA11 S -3.57921
+GA43 V -2.99960
+QA46 I -2.82117
+GA43 I -2.81890
+QA46 L -2.81749
+DA11 G -2.81044
+QA46 V -2.65861
+TA40 F -2.63702
+NA14 R -2.61646
+QA46 F -2.61102
+</pre>
 </div>
 
+<h3>Most Destabilizing Mutations</h3>
+<div class="results-block">
+<pre>
+VA7 P 10.76220
+DA5 H 11.75500
+IA6 Y 12.30540
+SA13 Q 12.33140
+GA48 E 12.72310
+DA11 W 12.85770
+GA48 W 12.98390
+IA6 W 14.11670
+DA5 F 15.31030
+SA13 R 16.13860
+LA57 W 16.53180
+IA35 W 16.66570
+SA13 F 18.95870
+GA12 H 20.69640
+SA15 W 22.45410
+DA5 Y 22.68460
+SA13 H 22.78540
+SA13 Y 23.62280
+DA5 W 24.94720
+SA13 W 44.55960
+</pre>
 </div>
+
+<h3>Near-Neutral Mutations (ΔΔG ≈ 0)</h3>
+<div class="results-block">
+<pre>
+AA24 A 0.00000
+GA12 G 0.00000
+GA36 G 0.00000
+GA43 G 0.00000
+GA48 G 0.00000
+IA44 I -0.00000
+PA37 P 0.00000
+SA1 S 0.00000
+VA22 V 0.00000
+VA42 V 0.00000
+VA45 V 0.00002
+DA5 D 0.00014
+IA16 I -0.00080
+VA51 V -0.00136
+DA20 I -0.00165
+SA21 S 0.00166
+LA10 L -0.00178
+IA35 I -0.00184
+TA40 T -0.00218
+LA30 I 0.00297
+</pre>
+</div>
+
+<h3>Low-Impact Mutations (|ΔΔG| > 0.1 threshold)</h3>
+<div class="results-block">
+<pre>
+KA38 L 0.10003
+VA45 I -0.10262
+SA1 D -0.10299
+IA8 I 0.10342
+KA38 E 0.10444
+RA32 L 0.10508
+DA20 K 0.10580
+TA52 E 0.10884
+FA25 M 0.11034
+DA28 T 0.11092
+QA41 Q -0.11280
+AA24 R 0.11586
+SA21 C 0.11759
+VA9 L 0.11812
+AA24 M -0.11905
+EA49 Y 0.11920
+IA16 K 0.12099
+MA33 Y -0.12415
+QA46 G 0.12677
+LA26 M -0.12695
+</pre>
+</div>
+</p>
+            
+<p>
+To test the modified sequence with AlphaFold and compare its structure to the original, the following process was used:
+The amino acid sequence for the 2M32 structure was extracted directly from the PDB file by selecting alpha carbon (CA) atoms, sorting residues by position, and converting three-letter amino acid codes into their corresponding one-letter representations:
+</p>
+
+<pre>
+WT=$(grep "^ATOM" 2M32_model1_only.pdb | awk '$3=="CA"' | awk '{print $4, $6}' | sort -k2 -n | awk '
+{
+  aa["ALA"]="A"; aa["ARG"]="R"; aa["ASN"]="N"; aa["ASP"]="D"
+  aa["CYS"]="C"; aa["GLN"]="Q"; aa["GLU"]="E"; aa["GLY"]="G"
+  aa["HIS"]="H"; aa["ILE"]="I"; aa["LEU"]="L"; aa["LYS"]="K"
+  aa["MET"]="M"; aa["PHE"]="F"; aa["PRO"]="P"; aa["SER"]="S"
+  aa["THR"]="T"; aa["TRP"]="W"; aa["TYR"]="Y"; aa["VAL"]="V"
+  printf aa[$1]
+} END {print ""}')
+</pre>
+
+<p>
+The extracted sequence was then printed using:
+</p>
+
+<pre>
+echo $WT
+</pre>
+
+<p>
+To generate specific point mutations, the sequence was programmatically modified. For example, the most stabilizing mutation (DA11V) and most destabilizing mutation (SA13W) were generated using:
+</p>
+
+<pre>
+echo $WT | sed 's/./&\n/g' | awk 'NR==11{print "V"; next}1' | tr -d '\n'; echo
+echo $WT | sed 's/./&\n/g' | awk 'NR==13{print "W"; next}1' | tr -d '\n'; echo
+</pre>
+
+<p>
+This command works by first splitting the sequence into one amino acid per line, replacing the residue at the desired position (e.g., position 11 or 13) with the new amino acid, and then recombining the sequence back into a single continuous string.
+</p>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p => p.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+
+
+showPage('home');
+</script>
+
 </body>
 </html>
-
