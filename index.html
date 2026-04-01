@@ -6,28 +6,81 @@
 
 <style>
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: "Times New Roman", Times, serif;
-    margin: 0;
     background-color: #0b1e3d;
     color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     min-height: 100vh;
 }
 
+/* ── NAVBAR ── */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #081529;
+    border-bottom: 2px solid #1f3b73;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    z-index: 1000;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.navbar a {
+    color: #7fb3ff;
+    text-decoration: none;
+    padding: 16px 22px;
+    font-size: 14px;
+    font-family: "Times New Roman", Times, serif;
+    white-space: nowrap;
+    cursor: pointer;
+    border-right: 1px solid #1f3b73;
+    transition: background-color 0.2s, color 0.2s;
+    letter-spacing: 0.3px;
+}
+
+.navbar a:hover {
+    background-color: #132b57;
+    color: #ffffff;
+}
+
+/* ── MAIN CONTENT ── */
 .container {
     max-width: 900px;
-    padding: 50px;
+    margin: 0 auto;
+    padding: 90px 50px 50px 50px; /* top padding accounts for fixed navbar */
+}
+
+/* ── PAGES ── */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
 }
 
 h1, h2, h3 {
     text-align: center;
+    margin-bottom: 20px;
 }
+
+h1 { margin-top: 20px; }
+h2 { margin-top: 10px; }
 
 p {
     text-align: center;
+    line-height: 1.7;
+    margin-bottom: 14px;
 }
 
 code, pre {
@@ -37,8 +90,9 @@ code, pre {
     color: #ffffff;
     overflow-x: auto;
     white-space: pre-wrap;
-    line-height: 1.2; 
-    font-size: 13px;  
+    line-height: 1.2;
+    font-size: 13px;
+    display: block;
 }
 
 .section {
@@ -125,11 +179,10 @@ The Integrin Alpha-1 sequence was obtained from UniProt.
 <p>
 The protein structure and confidence scores were assessed using AlphaFold. 
 Residues surrounding the magnesium-binding site were examined, including G179, N181, I183, M249, Q247, G282, and S284. 
-All of the selected residues showed either “high” or “very high” confidence scores.
+All of the selected residues showed either "high" or "very high" confidence scores.
 <br><br>
 <a href="https://alphafold.ebi.ac.uk/entry/AF-P56199-F1" target="_blank">View AlphaFold Model</a>
 </p>
-</div>
 
 <div class="section">
 <h2>2. Secondary Structure Prediction</h2>
@@ -161,16 +214,17 @@ while Y184 corresponds to position 17 and P185 corresponds to position 18.
 
 <img src="images/pisa_3.png" class="img-large">
 </div>
+</div>
 
 <div id="workflow" class="page">
-<h2>Mutatex Workflow</h2>
+<h2>MutateX Workflow</h2>
 
 <p>
 MutateX with FoldX was used to introduce mutations and calculate changes in binding free energy (ΔΔG). The workflow is outlined below, followed by the resulting predicted changes in binding energy.
 </p>
-</div>
+
 <div class="section">
-<h2>1. Install Homebrew & Python 3.11</h2>
+<h2>1. Install Homebrew &amp; Python 3.11</h2>
 
 <pre>
 cd /Users/inesnix/Downloads/foldx5_Mac_0
@@ -181,7 +235,7 @@ brew install python@3.11
 </div>
 
 <div class="section">
-<h2>2. Clone MutateX & Create Virtual Environment</h2>
+<h2>2. Clone MutateX &amp; Create Virtual Environment</h2>
 
 <pre>
 git clone https://github.com/ELELAB/mutatex.git
@@ -193,7 +247,7 @@ source mutatex-env/bin/activate
 </div>
 
 <div class="section">
-<h2>3. Install MutateX & Dependencies</h2>
+<h2>3. Install MutateX &amp; Dependencies</h2>
 
 <pre>
 cd mutatex
@@ -235,9 +289,7 @@ cp mutatex/tests/foldxsuite5/interaction_nomultimers/repair_runfile_template.txt
 </div>
 
 <div class="section">
-
-<div class="section">
-<h2>6. Download & Clean PDB File</h2>
+<h2>6. Download &amp; Clean PDB File</h2>
 
 <pre>
 curl -O https://files.rcsb.org/download/2M32.pdb
@@ -249,11 +301,6 @@ grep "^ATOM" 2M32.pdb | grep -v "HYP\|ACE\|NH2" > 2M32_clean.pdb
 <div class="section">
 <h2>7. Check Chains and Residue Numbering</h2>
 
-<p>
-
-</p>
-
-
 <pre>
 grep "^ATOM" 2M32_clean.pdb | awk '{print $5}' | sort -u
 
@@ -262,7 +309,7 @@ grep "^ATOM" 2M32_clean.pdb | awk '$5 == "A" && $3 == "CA" {print $6, $4}' | gre
 </div>
 
 <div class="section">
-<h2>8. Run </h2>
+<h2>8. Run</h2>
 
 <pre>
 echo -e "NA14\nYA17\nPA18" > poslist.txt
@@ -303,6 +350,7 @@ cat results/interface_ddgs/final_averages/A-C/$pos | awk 'NR>1 {aa[NR]=$1; val[N
 done
 done
 </pre>
+</div>
 
 <div class="section">
 <h2>10. Compute Average ΔΔG Across All Models</h2>
@@ -317,7 +365,7 @@ for pos in NA14 YA17 PA18; do
   cat results/interface_ddgs/final_averages/A-C/$pos | awk 'NR>1 {aa[NR]=$1; val[NR]=$1} END {split("G A V L I M F W P S T C Y Q D E K R H", syms); split("Gly Ala Val Leu Ile Met Phe Trp Pro Ser Thr Cys Tyr Gln Asp Glu Lys Arg His", names); for(i=2;i<=NR;i++) {n=i-1; print syms[n], names[n], val[i]}}'
 done
 </pre>
-
+</div>
 </div>
 
 <div id="initial" class="page">
@@ -398,16 +446,12 @@ H His 0.00628
 </div>
 
 <h3><a href="images/heatmap.png" target="_blank">Heatmap Visualization</a></h3>
-
 <h3><a href="images/NA_histo.png" target="_blank">Asparagine (Asn) 181 Mutation Histogram</a></h3>
-
 <h3><a href="images/YA17_histo.png" target="_blank">Tyrosine (Tyr) 184 Mutation Histogram</a></h3>
-
 <h3><a href="images/PA18_histo.png" target="_blank">Proline (Pro) 185 Mutation Histogram</a></h3>
 
-<h3>Full Model Data </h3>
+<h3>Full Model Data</h3>
 
-<!-- MODEL 0 -->
 <details>
 <summary>MODEL 0</summary>
 <pre>
@@ -473,10 +517,8 @@ E Glu 0.02346
 K Lys -0.00101
 R Arg -0.00739
 H His 0.00000
-
 </pre>
 </details>
-
 
 <details>
 <summary>MODEL 1</summary>
@@ -611,7 +653,6 @@ E Glu 0.02260
 K Lys 0.00000
 R Arg 0.00353
 H His 0.00000
-
 </pre>
 </details>
 
@@ -952,7 +993,6 @@ E Glu 0.00910
 K Lys 0.00000
 R Arg -0.00020
 H His 0.00000
-
 </pre>
 </details>
 
@@ -1092,8 +1132,6 @@ H His -0.00120
 </pre>
 </details>
 
-<h3>Complete Averaged Dataset</h3>
-
 <details>
 <summary>Click to expand full averaged ΔΔG values</summary>
 <pre>
@@ -1159,7 +1197,6 @@ R Arg -0.00273
 H His 0.00628
 </pre>
 </details>
-
 </div>
 
 <div id="hpc" class="page">
@@ -1190,8 +1227,9 @@ Glutamine 41 (QA41), Valine 42 (VA42), Glycine 43 (GA43), Isoleucine 44 (IA44), 
 <p>
 Valine 51 (VA51), Threonine 52 (TA52), Histidine 53 (HA53), Glutamic Acid 54 (EA54), Phenylalanine 55 (FA55), Asparagine 56 (NA56), Leucine 57 (LA57), and Asparagine 58 (NA58).
 </p>
+
 <p>
-Using the following command, mutations were ranked based on their change in binding free energy (ΔΔG). The subsequent lists identify the most stabilizing mutations (largest negative ΔΔG), the most destabilizing mutations (largest positive ΔΔG), and those closest to neutral (ΔΔG ≈ 0):
+Using the following command, mutations were ranked based on their change in binding free energy (ΔΔG):
 </p>
 
 <pre>
@@ -1206,7 +1244,6 @@ echo "most stabilizing:"
 head -20 all_mutations_ranked.txt
 </pre>
 
-<p>
 <h3>Most Stabilizing Mutations</h3>
 <div class="results-block">
 <pre>
@@ -1310,11 +1347,9 @@ QA46 G 0.12677
 LA26 M -0.12695
 </pre>
 </div>
-</p>
-            
+
 <p>
-To test the modified sequence with AlphaFold and compare its structure to the original, the following process was used:
-The amino acid sequence for the 2M32 structure was extracted directly from the PDB file by selecting alpha carbon (CA) atoms, sorting residues by position, and converting three-letter amino acid codes into their corresponding one-letter representations:
+To test the modified sequence with AlphaFold and compare its structure to the original, the amino acid sequence for the 2M32 structure was extracted directly from the PDB file:
 </p>
 
 <pre>
@@ -1327,35 +1362,29 @@ WT=$(grep "^ATOM" 2M32_model1_only.pdb | awk '$3=="CA"' | awk '{print $4, $6}' |
   aa["THR"]="T"; aa["TRP"]="W"; aa["TYR"]="Y"; aa["VAL"]="V"
   printf aa[$1]
 } END {print ""}')
-</pre>
 
-<p>
-The extracted sequence was then printed using:
-</p>
-
-<pre>
 echo $WT
 </pre>
 
 <p>
-To generate specific point mutations, the sequence was programmatically modified. For example, the most stabilizing mutation (DA11V) and most destabilizing mutation (SA13W) were generated using:
+To generate specific point mutations (e.g. DA11V and SA13W):
 </p>
 
 <pre>
 echo $WT | sed 's/./&\n/g' | awk 'NR==11{print "V"; next}1' | tr -d '\n'; echo
 echo $WT | sed 's/./&\n/g' | awk 'NR==13{print "W"; next}1' | tr -d '\n'; echo
 </pre>
+</div>
 
-<p>
-This command works by first splitting the sequence into one amino acid per line, replacing the residue at the desired position (e.g., position 11 or 13) with the new amino acid, and then recombining the sequence back into a single continuous string.
-</p>
+</div>
 
 <script>
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p => p.style.display='none');
-  document.getElementById(id).style.display='block';
+function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => {
+        p.style.display = 'none';
+    });
+    document.getElementById(id).style.display = 'block';
 }
-
 
 showPage('home');
 </script>
