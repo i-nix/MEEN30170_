@@ -57,7 +57,7 @@ body {
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 90px 50px 50px 50px; /* top padding accounts for fixed navbar */
+    padding: 90px 50px 50px 50px;
 }
 
 /* ── PAGES ── */
@@ -143,6 +143,228 @@ a {
     color: #7fb3ff;
 }
 
+/* ── MUTATION EXPLORER STYLES ── */
+.explorer-container {
+    background-color: #132b57;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 1px solid #1f3b73;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #7fb3ff;
+    font-size: 14px;
+}
+
+.filter-group select, .filter-group input {
+    padding: 8px;
+    border: 1px solid #1f3b73;
+    border-radius: 4px;
+    background-color: #081529;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.slider-container {
+    grid-column: 1 / -1;
+    background: #1f3b73;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.range-slider {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.range-slider input[type="range"] {
+    width: 48%;
+    margin: 0 1%;
+    background: transparent;
+}
+
+.range-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #7fb3ff;
+}
+
+.sorting-controls {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.sort-btn {
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.sort-btn:hover {
+    background: #1976d2;
+}
+
+.sort-btn.active {
+    background: #4fc3f7;
+}
+
+.clear-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    background: #5a6268;
+}
+
+.results {
+    margin-top: 20px;
+}
+
+.mutation-item {
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.1s;
+}
+
+.mutation-item:hover {
+    transform: translateX(5px);
+}
+
+.stabilizing {
+    background-color: #1e3a5f;
+    border-left: 4px solid #4fc3f7;
+}
+
+.destabilizing {
+    background-color: #5f1e1e;
+    border-left: 4px solid #f44336;
+}
+
+.neutral {
+    background-color: #3d1e5f;
+    border-left: 4px solid #9c27b0;
+}
+
+.mutation-name {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.mutation-details {
+    font-size: 0.9em;
+    color: #b3d9ff;
+    margin-top: 4px;
+}
+
+.ddg-value {
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: white;
+    min-width: 90px;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+.ddg-stabilizing {
+    background-color: #2196f3;
+}
+
+.ddg-destabilizing {
+    background-color: #f44336;
+}
+
+.ddg-neutral {
+    background-color: #9c27b0;
+}
+
+.summary-box {
+    background: #1f3b73;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.sequence-generator {
+    background: #1f3b73;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.sequence-generator input {
+    padding: 10px;
+    border: 1px solid #132b57;
+    border-radius: 4px;
+    background-color: #081529;
+    color: #ffffff;
+    width: 200px;
+    margin: 0 10px;
+}
+
+.sequence-generator button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sequence-output {
+    background: #081529;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-family: monospace;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.placeholder-section {
+    background-color: #132b57;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px dashed #1f3b73;
+    text-align: center;
+    margin: 20px 0;
+    color: #7fb3ff;
+}
+
 </style>
 </head>
 <body>
@@ -152,7 +374,8 @@ a {
     <a onclick="showPage('selection')">Selecting Initial Mutation Sites</a>
     <a onclick="showPage('workflow')">MutateX Workflow</a>
     <a onclick="showPage('initial')">Initial Results</a>
-    <a onclick="showPage('hpc')">HPC Results</a>
+    <a onclick="showPage('hpc')">HPC Analysis & Visualization</a>
+    <a onclick="showPage('explorer')">Interactive Mutation Explorer</a>
 </div>
 
 <div class="container">
@@ -449,941 +672,372 @@ H His 0.00628
 <h3><a href="images/NA_histo.png" target="_blank">Asparagine (Asn) 181 Mutation Histogram</a></h3>
 <h3><a href="images/YA17_histo.png" target="_blank">Tyrosine (Tyr) 184 Mutation Histogram</a></h3>
 <h3><a href="images/PA18_histo.png" target="_blank">Proline (Pro) 185 Mutation Histogram</a></h3>
-
-<h3>Full Model Data</h3>
-
-<details>
-<summary>MODEL 0</summary>
-<pre>
-NA14
-G Gly -0.77660
-A Ala -0.79931
-V Val 0.46602
-L Leu -0.76641
-I Ile -0.18853
-M Met -0.56065
-F Phe -1.71869
-W Trp -1.20386
-P Pro -0.38054
-S Ser 0.49579
-T Thr 2.08986
-C Cys -0.47472
-Y Tyr -2.21862
-Q Gln 0.02286
-D Asp 2.13224
-E Glu 1.47580
-K Lys -0.19313
-R Arg -1.78019
-H His -0.32747
-
-YA17
-G Gly 0.06040
-A Ala 0.06506
-V Val 0.04902
-L Leu 0.04847
-I Ile 0.03706
-M Met 0.00961
-F Phe 0.06086
-W Trp 0.04298
-P Pro 0.03880
-S Ser 0.06339
-T Thr -0.00614
-C Cys 0.06573
-Y Tyr 0.00001
-Q Gln 0.05250
-D Asp 0.16551
-E Glu 0.12808
-K Lys 0.04925
-R Arg 0.04495
-H His -0.01633
-
-PA18
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu -0.00001
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys -0.00048
-Y Tyr 0.00000
-Q Gln 0.00129
-D Asp 0.00037
-E Glu 0.02346
-K Lys -0.00101
-R Arg -0.00739
-H His 0.00000
-</pre>
-</details>
-
-<details>
-<summary>MODEL 1</summary>
-<pre>
-NA14
-G Gly -0.07163
-A Ala -0.31404
-V Val -0.00120
-L Leu -0.82613
-I Ile -1.17108
-M Met -0.29928
-F Phe -0.56959
-W Trp -1.50571
-P Pro 0.04172
-S Ser -0.11428
-T Thr -0.43234
-C Cys -0.18897
-Y Tyr -0.27114
-Q Gln 0.13523
-D Asp 0.82591
-E Glu 0.74079
-K Lys -0.03578
-R Arg 0.72085
-H His 0.31743
-
-YA17
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00725
-D Asp 0.09217
-E Glu 0.03648
-K Lys -0.00271
-R Arg -0.14254
-H His 0.00000
-
-PA18
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr -0.00001
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00000
-D Asp 0.00226
-E Glu 0.00402
-K Lys 0.00000
-R Arg 0.00729
-H His 0.00000
-</pre>
-</details>
-
-<details>
-<summary>MODEL 2</summary>
-<pre>
-NA14
-G Gly -1.35472
-A Ala 0.01155
-V Val -0.94148
-L Leu 0.49802
-I Ile -1.12238
-M Met 1.13300
-F Phe -1.73328
-W Trp 0.39850
-P Pro 1.10651
-S Ser 0.09251
-T Thr 0.90015
-C Cys -0.53478
-Y Tyr 2.36197
-Q Gln 1.22857
-D Asp 0.30628
-E Glu 2.23115
-K Lys -0.29068
-R Arg 1.59351
-H His -0.36501
-
-YA17
-G Gly 0.00526
-A Ala 0.00160
-V Val -0.00872
-L Leu 0.00128
-I Ile -0.00191
-M Met -0.00696
-F Phe -0.00959
-W Trp 0.00435
-P Pro -0.01634
-S Ser -0.00042
-T Thr -0.00874
-C Cys 0.00434
-Y Tyr 0.00002
-Q Gln -0.01511
-D Asp 0.10765
-E Glu 0.05925
-K Lys -0.26494
-R Arg -0.04182
-H His -0.01361
-
-PA18
-G Gly 0.00434
-A Ala 0.00434
-V Val 0.00370
-L Leu 0.00000
-I Ile 0.00370
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00368
-T Thr 0.00434
-C Cys 0.00434
-Y Tyr 0.00000
-Q Gln 0.00126
-D Asp 0.03789
-E Glu 0.02260
-K Lys 0.00000
-R Arg 0.00353
-H His 0.00000
-</pre>
-</details>
-
-<details>
-<summary>MODEL 3</summary>
-<pre>
-NA14
-G Gly 0.05000
-A Ala -0.56130
-V Val -0.82948
-L Leu -1.17475
-I Ile -0.99473
-M Met -0.97103
-F Phe -1.04916
-W Trp -1.45847
-P Pro 2.15083
-S Ser -0.28610
-T Thr -0.12520
-C Cys -0.36750
-Y Tyr -0.70152
-Q Gln -0.12197
-D Asp 0.61878
-E Glu 0.57825
-K Lys -0.13600
-R Arg -0.94535
-H His -0.38940
-
-YA17
-G Gly 0.00860
-A Ala 0.01380
-V Val 0.00020
-L Leu -0.00970
-I Ile 0.00430
-M Met 0.00810
-F Phe 0.00400
-W Trp 0.00440
-P Pro -0.01750
-S Ser 0.00520
-T Thr 0.00430
-C Cys 0.01380
-Y Tyr 0.00010
-Q Gln 0.00800
-D Asp 0.11910
-E Glu 0.04820
-K Lys 0.01290
-R Arg -0.17288
-H His 0.00280
-
-PA18
-G Gly 0.00000
-A Ala 0.01380
-V Val 0.00510
-L Leu 0.00000
-I Ile 0.01380
-M Met 0.00000
-F Phe 0.01390
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00130
-D Asp -0.00010
-E Glu 0.02060
-K Lys -0.00060
-R Arg -0.00100
-H His 0.00000
-</pre>
-</details>
-
-<details>
-<summary>MODEL 4</summary>
-<pre>
-NA14
-G Gly -0.66360
-A Ala -0.75061
-V Val -0.52427
-L Leu -0.79904
-I Ile -1.13234
-M Met -0.50635
-F Phe -0.39987
-W Trp -0.76838
-P Pro 0.07194
-S Ser 0.45954
-T Thr 0.07014
-C Cys 0.26045
-Y Tyr -0.25775
-Q Gln -0.19994
-D Asp 1.31130
-E Glu 1.09534
-K Lys -0.30758
-R Arg -2.85806
-H His -1.00971
-
-YA17
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00050
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00390
-P Pro -0.00070
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00050
-Y Tyr 0.00000
-Q Gln 0.00000
-D Asp 0.10320
-E Glu 0.05590
-K Lys -0.00100
-R Arg -0.01450
-H His 0.00000
-
-PA18
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00000
-D Asp 0.01570
-E Glu 0.03540
-K Lys 0.00000
-R Arg 0.00000
-H His 0.00000
-</pre>
-</details>
-
-<details>
-<summary>MODEL 5</summary>
-<pre>
-NA14
-G Gly -0.17681
-A Ala -0.41160
-V Val -0.36473
-L Leu -1.06004
-I Ile -0.94827
-M Met -0.84491
-F Phe -0.79417
-W Trp 0.63642
-P Pro -0.05736
-S Ser 0.10866
-T Thr 0.10851
-C Cys -0.22433
-Y Tyr -0.45593
-Q Gln 0.57965
-D Asp 0.75783
-E Glu 1.47830
-K Lys -0.18625
-R Arg 0.26436
-H His -0.33099
-
-YA17
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00005
-D Asp 0.11685
-E Glu 0.06346
-K Lys -0.01876
-R Arg -0.05675
-H His 0.00000
-
-PA18
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00000
-D Asp 0.03604
-E Glu 0.04030
-K Lys -0.00050
-R Arg -0.00089
-H His 0.00000
-</pre>
-</details>
-
-<details>
-<summary>MODEL 6</summary>
-<pre>
-NA14
-G Gly -0.01212
-A Ala -0.32509
-V Val -0.29912
-L Leu -0.79826
-I Ile -0.20498
-M Met -0.81815
-F Phe -2.32659
-W Trp -0.65242
-P Pro -0.50998
-S Ser 0.16524
-T Thr 0.39123
-C Cys -0.01857
-Y Tyr -0.68917
-Q Gln -0.06895
-D Asp 0.43927
-E Glu 0.57249
-K Lys -0.31498
-R Arg -1.01783
-H His -0.31216
-
-YA17
-G Gly 0.15600
-A Ala 0.10750
-V Val 0.02750
-L Leu 0.00940
-I Ile -0.06640
-M Met 0.02360
-F Phe 0.00040
-W Trp 0.02210
-P Pro -0.15860
-S Ser 0.08490
-T Thr 0.05380
-C Cys 0.07880
-Y Tyr 0.00060
-Q Gln 0.04770
-D Asp 0.16090
-E Glu 0.16670
-K Lys 0.08860
-R Arg -0.01930
-H His -0.00250
-
-PA18
-G Gly 0.09550
-A Ala 0.11770
-V Val 0.10590
-L Leu 0.01270
-I Ile 0.01100
-M Met 0.01100
-F Phe 0.09910
-W Trp -0.00480
-P Pro 0.00020
-S Ser 0.01340
-T Thr 0.12520
-C Cys 0.01100
-Y Tyr 0.12800
-Q Gln 0.10680
-D Asp 0.04480
-E Glu 0.16380
-K Lys 0.01230
-R Arg 0.01270
-H His 0.06400
-</pre>
-</details>
-
-<details>
-<summary>MODEL 7</summary>
-<pre>
-NA14
-G Gly -1.48190
-A Ala -0.48570
-V Val 0.22006
-L Leu -0.69650
-I Ile 0.13662
-M Met -0.25109
-F Phe -0.28560
-W Trp -1.39080
-P Pro 3.48364
-S Ser -0.39840
-T Thr 0.23660
-C Cys -0.20390
-Y Tyr -0.57240
-Q Gln -0.00390
-D Asp 0.56410
-E Glu 1.18830
-K Lys 0.79455
-R Arg 1.11795
-H His -0.50500
-
-YA17
-G Gly 0.00070
-A Ala 0.00070
-V Val 0.00070
-L Leu 0.00070
-I Ile 0.00070
-M Met 0.00070
-F Phe 0.00070
-W Trp -0.23560
-P Pro -0.00040
-S Ser 0.00070
-T Thr 0.00070
-C Cys 0.00070
-Y Tyr 0.00000
-Q Gln -0.20370
-D Asp 0.04250
-E Glu 0.01280
-K Lys -0.00710
-R Arg -0.07140
-H His 0.00070
-
-PA18
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00000
-D Asp -0.00010
-E Glu 0.00910
-K Lys 0.00000
-R Arg -0.00020
-H His 0.00000
-</pre>
-</details>
-
-<details>
-<summary>MODEL 8</summary>
-<pre>
-NA14
-G Gly -0.15944
-A Ala -0.26836
-V Val -2.35471
-L Leu -0.65139
-I Ile -2.77356
-M Met -2.28428
-F Phe -0.54136
-W Trp -0.82137
-P Pro 0.62066
-S Ser 0.02192
-T Thr 0.21990
-C Cys -2.06682
-Y Tyr -0.53471
-Q Gln -0.11856
-D Asp 0.41710
-E Glu 0.13937
-K Lys -0.44710
-R Arg -0.18454
-H His -0.24069
-
-YA17
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00000
-D Asp 0.09035
-E Glu 0.06428
-K Lys -0.02666
-R Arg -0.02988
-H His -0.04093
-
-PA18
-G Gly 0.00000
-A Ala 0.00000
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00000
-P Pro 0.00000
-S Ser 0.00000
-T Thr 0.00000
-C Cys 0.00000
-Y Tyr 0.00000
-Q Gln 0.00000
-D Asp 0.03323
-E Glu 0.06600
-K Lys -0.00038
-R Arg -0.01611
-H His 0.00000
-</pre>
-</details>
-
-<details>
-<summary>MODEL 9</summary>
-<pre>
-NA14
-G Gly 0.04720
-A Ala -0.50360
-V Val -1.35760
-L Leu -1.56040
-I Ile -1.41600
-M Met -1.32315
-F Phe -0.70903
-W Trp -0.84840
-P Pro 2.37235
-S Ser -0.77480
-T Thr -0.64470
-C Cys -0.61940
-Y Tyr -0.68736
-Q Gln -0.71350
-D Asp 2.17699
-E Glu 0.29102
-K Lys -0.31420
-R Arg 0.68452
-H His 0.76537
-
-YA17
-G Gly 0.02160
-A Ala 0.02630
-V Val 0.01730
-L Leu 0.01790
-I Ile 0.01670
-M Met 0.04210
-F Phe -0.02570
-W Trp -0.02830
-P Pro -0.00440
-S Ser 0.02200
-T Thr 0.01750
-C Cys 0.02620
-Y Tyr 0.00010
-Q Gln 0.01330
-D Asp 0.12060
-E Glu 0.11080
-K Lys -0.13980
-R Arg -0.14100
-H His -0.00580
-
-PA18
-G Gly -0.02000
-A Ala -0.02130
-V Val 0.00000
-L Leu 0.00000
-I Ile 0.00000
-M Met 0.00000
-F Phe 0.00000
-W Trp 0.00090
-P Pro 0.00000
-S Ser -0.02460
-T Thr -0.02630
-C Cys -0.02490
-Y Tyr 0.00000
-Q Gln 0.00000
-D Asp -0.00860
-E Glu 0.01940
-K Lys -0.02100
-R Arg -0.02520
-H His -0.00120
-</pre>
-</details>
-
-<details>
-<summary>Click to expand full averaged ΔΔG values</summary>
-<pre>
-NA14
-G Gly -0.45996
-A Ala -0.44081
-V Val -0.59865
-L Leu -0.78349
-I Ile -0.98153
-M Met -0.67259
-F Phe -1.01273
-W Trp -0.76145
-P Pro 0.88998
-S Ser -0.02299
-T Thr 0.28142
-C Cys -0.44385
-Y Tyr -0.40266
-Q Gln 0.07395
-D Asp 0.95498
-E Glu 0.97908
-K Lys -0.14312
-R Arg -0.24048
-H His -0.23976
-YA17
-G Gly 0.02526
-A Ala 0.02150
-V Val 0.00860
-L Leu 0.00680
-I Ile -0.00091
-M Met 0.00771
-F Phe 0.00307
-W Trp -0.01862
-P Pro -0.01591
-S Ser 0.01758
-T Thr 0.00614
-C Cys 0.01901
-Y Tyr 0.00008
-Q Gln -0.00900
-D Asp 0.11188
-E Glu 0.07459
-K Lys -0.03102
-R Arg -0.06451
-H His -0.00757
-PA18
-G Gly 0.00798
-A Ala 0.01145
-V Val 0.01147
-L Leu 0.00127
-I Ile 0.00285
-M Met 0.00110
-F Phe 0.01130
-W Trp -0.00039
-P Pro 0.00002
-S Ser -0.00075
-T Thr 0.01032
-C Cys -0.00100
-Y Tyr 0.01280
-Q Gln 0.01107
-D Asp 0.01615
-E Glu 0.04047
-K Lys -0.00112
-R Arg -0.00273
-H His 0.00628
-</pre>
-</details>
 </div>
 
 <div id="hpc" class="page">
-<p>
-In the HPC analysis, the set of mutated amino acid positions was expanded to a total of 58 residues, including:
-</p>
+<h1>HPC Analysis & Visualization</h1>
 
 <p>
-Serine 1 (SA1), Threonine 2 (TA2), Glutamine 3 (QA3), Leucine 4 (LA4), Aspartic Acid 5 (DA5), Isoleucine 6 (IA6), Valine 7 (VA7), Isoleucine 8 (IA8), Valine 9 (VA9), Leucine 10 (LA10),
+In the HPC analysis, mutations were tested across 58 positions using the same methodology, but with identity mutations excluded to ensure clean results. The analysis covered positions 1-58 of the protein sequence, systematically testing each position with all chemically distinct amino acid substitutions.
 </p>
 
-<p>
-Aspartic Acid 11 (DA11), Glycine 12 (GA12), Serine 13 (SA13), Asparagine 14 (NA14), Serine 15 (SA15), Isoleucine 16 (IA16), Tyrosine 17 (YA17), Proline 18 (PA18), Tryptophan 19 (WA19), Aspartic Acid 20 (DA20),
-</p>
-
-<p>
-Serine 21 (SA21), Valine 22 (VA22), Threonine 23 (TA23), Alanine 24 (AA24), Phenylalanine 25 (FA25), Leucine 26 (LA26), Asparagine 27 (NA27), Aspartic Acid 28 (DA28), Leucine 29 (LA29), Leucine 30 (LA30),
-</p>
-
-<p>
-Glutamic Acid 31 (EA31), Arginine 32 (RA32), Methionine 33 (MA33), Aspartic Acid 34 (DA34), Isoleucine 35 (IA35), Glycine 36 (GA36), Proline 37 (PA37), Lysine 38 (KA38), Glutamine 39 (QA39), Threonine 40 (TA40),
-</p>
-
-<p>
-Glutamine 41 (QA41), Valine 42 (VA42), Glycine 43 (GA43), Isoleucine 44 (IA44), Valine 45 (VA45), Glutamine 46 (QA46), Tyrosine 47 (YA47), Glycine 48 (GA48), Glutamic Acid 49 (EA49), Asparagine 50 (NA50),
-</p>
-
-<p>
-Valine 51 (VA51), Threonine 52 (TA52), Histidine 53 (HA53), Glutamic Acid 54 (EA54), Phenylalanine 55 (FA55), Asparagine 56 (NA56), Leucine 57 (LA57), and Asparagine 58 (NA58).
-</p>
-
-<p>
-Using the following command, mutations were ranked based on their change in binding free energy (ΔΔG):
-</p>
-
-<pre>
-for f in results/mutation_ddgs/final_averages/*; do
-  pos=$(basename $f)
-  paste <(echo -e "G\nA\nV\nL\nI\nM\nF\nW\nP\nS\nT\nC\nY\nQ\nD\nE\nK\nR\nH") \
-        <(grep -v "^#" $f | awk '{print $1}') \
-  | awk -v pos="$pos" '{print pos, $1, $2}'
-done | sort -k3 -n > all_mutations_ranked.txt
-
-echo "most stabilizing:"
-head -20 all_mutations_ranked.txt
-</pre>
-
-<h3>Most Stabilizing Mutations</h3>
-<div class="results-block">
-<pre>
-DA11 V -6.27949
-DA11 L -5.96024
-DA11 M -5.76794
-DA11 I -5.67496
-DA11 T -5.44202
-DA11 P -5.26440
-DA11 C -4.64080
-DA11 A -4.36536
-GA43 M -4.29976
-GA43 K -3.93523
-DA11 S -3.57921
-GA43 V -2.99960
-QA46 I -2.82117
-GA43 I -2.81890
-QA46 L -2.81749
-DA11 G -2.81044
-QA46 V -2.65861
-TA40 F -2.63702
-NA14 R -2.61646
-QA46 F -2.61102
-</pre>
+<div class="placeholder-section">
+    <h2> Mutation Heatmap</h2>
+    <p><strong>[Placeholder for Interactive Heatmap]</strong></p>
+    <p>This section will contain a comprehensive heatmap visualization showing all 1,050 mutations across the 58 positions tested. The heatmap will display binding free energy changes (ΔΔG) with color coding for easy identification of stabilizing and destabilizing mutations.</p>
 </div>
 
-<h3>Most Destabilizing Mutations</h3>
-<div class="results-block">
-<pre>
-SA13 W 44.55960
-DA5 W 24.94720
-SA13 Y 23.62280
-SA13 H 22.78540
-DA5 Y 22.68460
-SA15 W 22.45410
-GA12 H 20.69640
-SA13 F 18.95870
-IA35 W 16.66570
-LA57 W 16.53180
-SA13 R 16.13860
-DA5 F 15.31030
-IA6 W 14.11670
-GA48 W 12.98390
-DA11 W 12.85770
-GA48 E 12.72310
-SA13 Q 12.33140
-IA6 Y 12.30540
-DA5 H 11.75500
-VA7 P 10.76220
-</pre>
+<div class="placeholder-section">
+    <h2>📊 AlphaFold Structure Comparisons</h2>
+    <p><strong>[Placeholder for AlphaFold Results]</strong></p>
+    <p>This section will showcase AlphaFold structure predictions for the most promising mutations identified from the HPC analysis, including:</p>
+    <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
+        <li>Wild-type structure comparison</li>
+        <li>Most stabilizing mutations (DA11V, DA11L, DA11M)</li>
+        <li>Structural impact analysis</li>
+        <li>Binding site architecture changes</li>
+    </ul>
 </div>
 
-<h3>Near-Neutral Mutations (ΔΔG ≈ 0)</h3>
-<div class="results-block">
-<pre>
-AA24 A 0.00000
-GA12 G 0.00000
-GA36 G 0.00000
-GA43 G 0.00000
-GA48 G 0.00000
-IA44 I -0.00000
-PA37 P 0.00000
-SA1 S 0.00000
-VA22 V 0.00000
-VA42 V 0.00000
-VA45 V 0.00002
-DA5 D 0.00014
-IA16 I -0.00080
-VA51 V -0.00136
-DA20 I -0.00165
-SA21 S 0.00166
-LA10 L -0.00178
-IA35 I -0.00184
-TA40 T -0.00218
-LA30 I 0.00297
-</pre>
+<div class="placeholder-section">
+    <h2> AlphaFold Mutation Analysis</h2>
+    <p><strong>[Placeholder for Images]</strong></p>
+    <p>...</p>
 </div>
 
-<h3>Low-Impact Mutations (|ΔΔG| > 0.1 threshold)</h3>
-<div class="results-block">
-<pre>
-KA38 L 0.10003
-VA45 I -0.10262
-SA1 D -0.10299
-IA8 I 0.10342
-KA38 E 0.10444
-RA32 L 0.10508
-DA20 K 0.10580
-TA52 E 0.10884
-FA25 M 0.11034
-DA28 T 0.11092
-QA41 Q -0.11280
-AA24 R 0.11586
-SA21 C 0.11759
-VA9 L 0.11812
-AA24 M -0.11905
-EA49 Y 0.11920
-IA16 K 0.12099
-MA33 Y -0.12415
-QA46 G 0.12677
-LA26 M -0.12695
-</pre>
+<h3><a href="#explorer" onclick="showPage('explorer')" style="font-size: 1.2em;"> Explore All Mutation Data →</a></h3>
 </div>
 
-<p>
-To test the modified sequence with AlphaFold and compare its structure to the original, the amino acid sequence for the 2M32 structure was extracted directly from the PDB file:
+<div id="explorer" class="page">
+<h1>Mutation Explorer</h1>
+<p style="text-align: center; margin-bottom: 30px;">
+Mutation data across 58 positions.
 </p>
 
-<pre>
-WT=$(grep "^ATOM" 2M32_model1_only.pdb | awk '$3=="CA"' | awk '{print $4, $6}' | sort -k2 -n | awk '
-{
-  aa["ALA"]="A"; aa["ARG"]="R"; aa["ASN"]="N"; aa["ASP"]="D"
-  aa["CYS"]="C"; aa["GLN"]="Q"; aa["GLU"]="E"; aa["GLY"]="G"
-  aa["HIS"]="H"; aa["ILE"]="I"; aa["LEU"]="L"; aa["LYS"]="K"
-  aa["MET"]="M"; aa["PHE"]="F"; aa["PRO"]="P"; aa["SER"]="S"
-  aa["THR"]="T"; aa["TRP"]="W"; aa["TYR"]="Y"; aa["VAL"]="V"
-  printf aa[$1]
-} END {print ""}')
+<div class="explorer-container">
+    <div class="summary-box" id="summary">
+        <p><strong>Dataset Summary:</strong> <span id="total-count">Loading...</span> mutations across <span id="position-count">--</span> positions</p>
+        <p><strong>Most Stabilizing:</strong> <span id="most-stabilizing">--</span></p>
+        <p><strong>Most Destabilizing:</strong> <span id="most-destabilizing">--</span></p>
+    </div>
 
-echo $WT
-</pre>
+    <div class="controls">
+        <div class="filter-group">
+            <label for="position-filter">Filter by Position (1-58):</label>
+            <select id="position-filter">
+                <option value="">All Positions</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="wildtype-filter">Filter by Starting Amino Acid:</label>
+            <select id="wildtype-filter">
+                <option value="">All Starting Amino Acids</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="target-filter">Replacement Amino Acid:</label>
+            <select id="target-filter">
+                <option value="">All Replacement Amino Acids</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="ddg-filter">Mutation Effect:</label>
+            <select id="ddg-filter">
+                <option value="">All Effects</option>
+                <option value="stabilizing">Stabilizing (ΔΔG < 0)</option>
+                <option value="destabilizing">Destabilizing (ΔΔG > 0)</option>
+                <option value="highly-stabilizing">Highly Stabilizing (ΔΔG < -2)</option>
+                <option value="highly-destabilizing">Highly Destabilizing (ΔΔG > 10)</option>
+                <option value="neutral">Near Neutral (|ΔΔG| < 1)</option>
+            </select>
+        </div>
 
-<p>
-To generate specific point mutations (e.g. DA11V and SA13W):
-</p>
+        <div class="slider-container">
+            <label>Binding Energy Change Range (ΔΔG in kcal/mol):</label>
+            <div class="range-slider">
+                <input type="range" id="ddg-min" min="-10" max="50" value="-10" step="0.1">
+                <input type="range" id="ddg-max" min="-10" max="50" value="50" step="0.1">
+            </div>
+            <div class="range-values">
+                <span>Min: <span id="ddg-min-value">-10.0</span></span>
+                <span>Max: <span id="ddg-max-value">50.0</span></span>
+            </div>
+        </div>
 
-<pre>
-echo $WT | sed 's/./&\n/g' | awk 'NR==11{print "V"; next}1' | tr -d '\n'; echo
-echo $WT | sed 's/./&\n/g' | awk 'NR==13{print "W"; next}1' | tr -d '\n'; echo
-</pre>
+        <div class="sorting-controls">
+            <label style="margin-right: 15px;">Sort by:</label>
+            <button class="sort-btn" id="sort-stabilizing" onclick="sortMutations('stabilizing')">Most Stabilizing First</button>
+            <button class="sort-btn" id="sort-destabilizing" onclick="sortMutations('destabilizing')">Most Destabilizing First</button>
+            <button class="sort-btn" id="sort-position" onclick="sortMutations('position')">By Position</button>
+            <button class="clear-btn" onclick="clearFilters()">Clear All Filters</button>
+        </div>
+    </div>
+
+    <div class="sequence-generator">
+        <h3>🧬 Custom Sequence Generator</h3>
+        <p>Enter a mutation (e.g., "D11V" or "S13W") to generate the modified protein sequence:</p>
+        <div style="text-align: center; margin: 15px 0;">
+            <input type="text" id="mutation-input" placeholder="Enter mutation (e.g., D11V)" maxlength="10">
+            <button onclick="generateSequence()">Generate Sequence</button>
+        </div>
+        <div id="sequence-output" class="sequence-output" style="display: none;">
+            <strong>Modified Sequence:</strong><br>
+            <span id="generated-sequence"></span>
+            <br><br>
+            <button onclick="copySequence()" style="background: #4caf50; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <div class="results">
+        <h3>Results: <span id="result-count">0</span> mutations</h3>
+        <div id="mutation-list"></div>
+    </div>
+</div>
 </div>
 
 </div>
 
+<script src="mutation_data.js"></script>
 <script>
+// Amino acid mapping
+const aminoAcidNames = {
+    'G': 'Glycine', 'A': 'Alanine', 'V': 'Valine', 'L': 'Leucine', 'I': 'Isoleucine',
+    'M': 'Methionine', 'F': 'Phenylalanine', 'W': 'Tryptophan', 'P': 'Proline',
+    'S': 'Serine', 'T': 'Threonine', 'C': 'Cysteine', 'Y': 'Tyrosine',
+    'N': 'Asparagine', 'Q': 'Glutamine', 'D': 'Aspartic Acid', 'E': 'Glutamic Acid',
+    'K': 'Lysine', 'R': 'Arginine', 'H': 'Histidine'
+};
+
+// Wild-type sequence
+const wildTypeSequence = "STQLDIVIVLDGSNSIYPWDSVTAFLNDLLERMDIGPKQTQVGIVQYGENVTHEFNLNKYSSTEEVLVAAKKIVQRGGRQTMTALGIDTARKEAFTEARGARGRPGGVKPKGVLMVGIEVNTDGGPEGSHPDNGHPRLKKVIQDCEDENIQRFSIAILGSYNRGNLSTEKFVEEIKSIASEPTEKHFFNVSDELALVTIVKTLGERIGPGPGLGENGPGPGPGPGPGLGENGPGPGP";
+
+let allMutations = [];
+let filteredMutations = [];
+let currentSort = 'stabilizing';
+
 function showPage(id) {
     document.querySelectorAll('.page').forEach(p => {
         p.style.display = 'none';
     });
     document.getElementById(id).style.display = 'block';
+}
+
+// Initialize when data is loaded
+if (typeof mutationData !== 'undefined') {
+    initializeExplorer(mutationData);
+} else {
+    // Fallback sample data for testing
+    console.warn('mutation_data.js not loaded, using sample data');
+    const sampleData = [
+        { position: 11, wild_type: 'D', target: 'V', ddg: -6.27949, position_code: 'DA11', mutation_name: 'D11V' },
+        { position: 11, wild_type: 'D', target: 'L', ddg: -5.96024, position_code: 'DA11', mutation_name: 'D11L' },
+        { position: 13, wild_type: 'S', target: 'W', ddg: 44.55960, position_code: 'SA13', mutation_name: 'S13W' }
+    ];
+    initializeExplorer(sampleData);
+}
+
+function initializeExplorer(mutations) {
+    allMutations = mutations;
+    filteredMutations = allMutations;
+    
+    // Populate filters
+    const positions = [...new Set(mutations.map(m => m.position))].sort((a,b) => a-b);
+    const wildTypes = [...new Set(mutations.map(m => m.wild_type))].sort();
+    const allAminoAcids = ['G', 'A', 'V', 'L', 'I', 'M', 'F', 'W', 'P', 'S', 'T', 'C', 'Y', 'N', 'Q', 'D', 'E', 'K', 'R', 'H'];
+    
+    // Populate position filter (1-58)
+    const positionSelect = document.getElementById('position-filter');
+    for (let i = 1; i <= 58; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = `Position ${i}`;
+        positionSelect.appendChild(option);
+    }
+
+    // Populate wild-type filter
+    const wildtypeSelect = document.getElementById('wildtype-filter');
+    wildTypes.forEach(wt => {
+        const option = document.createElement('option');
+        option.value = wt;
+        option.textContent = `${aminoAcidNames[wt]} (${wt})`;
+        wildtypeSelect.appendChild(option);
+    });
+
+    // Populate target filter
+    const targetSelect = document.getElementById('target-filter');
+    allAminoAcids.forEach(aa => {
+        const option = document.createElement('option');
+        option.value = aa;
+        option.textContent = `${aminoAcidNames[aa]} (${aa})`;
+        targetSelect.appendChild(option);
+    });
+
+    // Add event listeners
+    document.getElementById('position-filter').addEventListener('change', applyFilters);
+    document.getElementById('wildtype-filter').addEventListener('change', applyFilters);
+    document.getElementById('target-filter').addEventListener('change', applyFilters);
+    document.getElementById('ddg-filter').addEventListener('change', applyFilters);
+
+    // Range slider event listeners
+    document.getElementById('ddg-min').addEventListener('input', updateRangeValues);
+    document.getElementById('ddg-max').addEventListener('input', updateRangeValues);
+    document.getElementById('ddg-min').addEventListener('change', applyFilters);
+    document.getElementById('ddg-max').addEventListener('change', applyFilters);
+
+    updateSummary();
+    updateRangeValues();
+    sortMutations('stabilizing');
+}
+
+function updateRangeValues() {
+    const minVal = document.getElementById('ddg-min').value;
+    const maxVal = document.getElementById('ddg-max').value;
+    document.getElementById('ddg-min-value').textContent = parseFloat(minVal).toFixed(1);
+    document.getElementById('ddg-max-value').textContent = parseFloat(maxVal).toFixed(1);
+}
+
+function updateSummary() {
+    const mostStabilizing = allMutations.reduce((min, mut) => mut.ddg < min.ddg ? mut : min, allMutations[0]);
+    const mostDestabilizing = allMutations.reduce((max, mut) => mut.ddg > max.ddg ? mut : max, allMutations[0]);
+    const uniquePositions = [...new Set(allMutations.map(m => m.position))].length;
+    
+    document.getElementById('total-count').textContent = allMutations.length;
+    document.getElementById('position-count').textContent = uniquePositions;
+    document.getElementById('most-stabilizing').textContent = 
+        `${mostStabilizing.mutation_name} (ΔΔG = ${mostStabilizing.ddg.toFixed(2)})`;
+    document.getElementById('most-destabilizing').textContent = 
+        `${mostDestabilizing.mutation_name} (ΔΔG = ${mostDestabilizing.ddg.toFixed(2)})`;
+}
+
+function applyFilters() {
+    const positionFilter = document.getElementById('position-filter').value;
+    const wildtypeFilter = document.getElementById('wildtype-filter').value;
+    const targetFilter = document.getElementById('target-filter').value;
+    const ddgFilter = document.getElementById('ddg-filter').value;
+    const ddgMin = parseFloat(document.getElementById('ddg-min').value);
+    const ddgMax = parseFloat(document.getElementById('ddg-max').value);
+
+    filteredMutations = allMutations.filter(mut => {
+        if (positionFilter && mut.position != positionFilter) return false;
+        if (wildtypeFilter && mut.wild_type !== wildtypeFilter) return false;
+        if (targetFilter && mut.target !== targetFilter) return false;
+        if (mut.ddg < ddgMin || mut.ddg > ddgMax) return false;
+        
+        if (ddgFilter) {
+            switch(ddgFilter) {
+                case 'stabilizing': return mut.ddg < 0;
+                case 'destabilizing': return mut.ddg > 0;
+                case 'highly-stabilizing': return mut.ddg < -2;
+                case 'highly-destabilizing': return mut.ddg > 10;
+                case 'neutral': return Math.abs(mut.ddg) < 1;
+            }
+        }
+        
+        return true;
+    });
+
+    displayMutations();
+}
+
+function sortMutations(type) {
+    currentSort = type;
+    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`sort-${type}`).classList.add('active');
+
+    switch(type) {
+        case 'stabilizing':
+            filteredMutations.sort((a, b) => a.ddg - b.ddg);
+            break;
+        case 'destabilizing':
+            filteredMutations.sort((a, b) => b.ddg - a.ddg);
+            break;
+        case 'position':
+            filteredMutations.sort((a, b) => a.position - b.position || a.ddg - b.ddg);
+            break;
+    }
+
+    displayMutations();
+}
+
+function displayMutations() {
+    const container = document.getElementById('mutation-list');
+    const resultCount = document.getElementById('result-count');
+    
+    resultCount.textContent = filteredMutations.length;
+    
+    if (filteredMutations.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #7fb3ff; padding: 20px;">No mutations match the current filters.</p>';
+        return;
+    }
+
+    container.innerHTML = filteredMutations.map(mut => {
+        const className = mut.ddg < 0 ? 'stabilizing' : mut.ddg > 0 ? 'destabilizing' : 'neutral';
+        const ddgClassName = mut.ddg < 0 ? 'ddg-stabilizing' : mut.ddg > 0 ? 'ddg-destabilizing' : 'ddg-neutral';
+        
+        return `
+            <div class="mutation-item ${className}">
+                <div>
+                    <div class="mutation-name">${mut.mutation_name}</div>
+                    <div class="mutation-details">
+                        Position ${mut.position}: ${aminoAcidNames[mut.wild_type]} → ${aminoAcidNames[mut.target]}
+                    </div>
+                </div>
+                <div class="ddg-value ${ddgClassName}">
+                    ${mut.ddg.toFixed(3)}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function clearFilters() {
+    document.getElementById('position-filter').value = '';
+    document.getElementById('wildtype-filter').value = '';
+    document.getElementById('target-filter').value = '';
+    document.getElementById('ddg-filter').value = '';
+    document.getElementById('ddg-min').value = -10;
+    document.getElementById('ddg-max').value = 50;
+    updateRangeValues();
+    filteredMutations = allMutations;
+    sortMutations(currentSort);
+}
+
+function generateSequence() {
+    const input = document.getElementById('mutation-input').value.trim().toUpperCase();
+    const match = input.match(/([A-Z])(\d+)([A-Z])/);
+    
+    if (!match) {
+        alert('Please enter mutation in format like "D11V" or "S13W"');
+        return;
+    }
+    
+    const [, wildType, position, target] = match;
+    const pos = parseInt(position) - 1; // Convert to 0-based indexing
+    
+    if (pos < 0 || pos >= wildTypeSequence.length) {
+        alert(`Position ${position} is out of range (1-${wildTypeSequence.length})`);
+        return;
+    }
+    
+    if (wildTypeSequence[pos] !== wildType) {
+        alert(`Position ${position} has ${wildTypeSequence[pos]}, not ${wildType}`);
+        return;
+    }
+    
+    const mutatedSequence = wildTypeSequence.substring(0, pos) + target + wildTypeSequence.substring(pos + 1);
+    
+    document.getElementById('generated-sequence').textContent = mutatedSequence;
+    document.getElementById('sequence-output').style.display = 'block';
+}
+
+function copySequence() {
+    const sequence = document.getElementById('generated-sequence').textContent;
+    navigator.clipboard.writeText(sequence).then(() => {
+        alert('Sequence copied to clipboard!');
+    });
 }
 
 showPage('home');
