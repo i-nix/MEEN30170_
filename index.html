@@ -19,7 +19,6 @@ body {
     min-height: 100vh;
 }
 
-/* ── NAVBAR ── */
 .navbar {
     position: fixed;
     top: 0;
@@ -53,14 +52,12 @@ body {
     color: #ffffff;
 }
 
-/* ── MAIN CONTENT ── */
 .container {
     max-width: 900px;
     margin: 0 auto;
     padding: 90px 50px 50px 50px;
 }
 
-/* ── PAGES ── */
 .page {
     display: none;
 }
@@ -143,7 +140,6 @@ a {
     color: #7fb3ff;
 }
 
-/* ── MUTATION EXPLORER STYLES ── */
 .explorer-container {
     background-color: #132b57;
     padding: 20px;
@@ -152,11 +148,79 @@ a {
     border: 1px solid #1f3b73;
 }
 
+.top-controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1f3b73;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.results-info {
+    font-size: 16px;
+    font-weight: bold;
+    color: #7fb3ff;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-controls label {
+    color: #7fb3ff;
+    font-weight: bold;
+}
+
+.sort-controls select {
+    padding: 8px 12px;
+    border: 1px solid #132b57;
+    border-radius: 4px;
+    background-color: #081529;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.filters-toggle button {
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.filters-toggle button:hover {
+    background: #1976d2;
+}
+
+.filters-section {
+    background: #1a2c4a;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.filters-section.collapsed {
+    max-height: 0;
+    padding: 0;
+    margin-bottom: 0;
+}
+
 .controls {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 .filter-group {
@@ -180,66 +244,90 @@ a {
     font-size: 13px;
 }
 
-.slider-container {
+.range-slider-container {
     grid-column: 1 / -1;
-    background: #1f3b73;
-    padding: 15px;
+    background: #132b57;
+    padding: 20px;
     border-radius: 8px;
     margin: 10px 0;
 }
 
-.range-slider {
-    width: 100%;
-    margin: 10px 0;
+.range-slider-container label {
+    color: #7fb3ff;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
 }
 
-.range-slider input[type="range"] {
-    width: 48%;
-    margin: 0 1%;
+.dual-range-slider {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    margin: 20px 0;
+}
+
+.slider-track {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background: #1f3b73;
+    border-radius: 3px;
+}
+
+.range-input {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
     background: transparent;
+    pointer-events: none;
+}
+
+.range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #2196f3;
+    cursor: pointer;
+    pointer-events: all;
+    border: 2px solid #ffffff;
+}
+
+.range-input::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #2196f3;
+    cursor: pointer;
+    pointer-events: all;
+    border: 2px solid #ffffff;
 }
 
 .range-values {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-    color: #7fb3ff;
-}
-
-.sorting-controls {
-    grid-column: 1 / -1;
-    display: flex;
-    gap: 10px;
     align-items: center;
-    justify-content: center;
-    margin: 10px 0;
+    font-size: 14px;
+    color: #7fb3ff;
+    margin-top: 10px;
 }
 
-.sort-btn {
-    background: #2196f3;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.sort-btn:hover {
-    background: #1976d2;
-}
-
-.sort-btn.active {
-    background: #4fc3f7;
+.filter-actions {
+    grid-column: 1 / -1;
+    text-align: center;
 }
 
 .clear-btn {
     background: #6c757d;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .clear-btn:hover {
@@ -355,6 +443,268 @@ a {
     line-height: 1.4;
 }
 
+.sequence-generator-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.generator-info {
+    background: #132b57;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #1f3b73;
+}
+
+.generator-info h2 {
+    color: #7fb3ff;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.info-item {
+    background: #1f3b73;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #132b57;
+}
+
+.info-item h3 {
+    color: #4fc3f7;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 1.1em;
+}
+
+.info-item p, .info-item ul {
+    text-align: left;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.info-item ul {
+    padding-left: 20px;
+}
+
+.info-item li {
+    margin-bottom: 5px;
+}
+
+.generator-tool {
+    background: #132b57;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #1f3b73;
+}
+
+.input-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-section h2 {
+    color: #7fb3ff;
+    margin-bottom: 20px;
+}
+
+.mutation-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+#mutation-input-gen {
+    padding: 12px 16px;
+    border: 2px solid #1f3b73;
+    border-radius: 6px;
+    background-color: #081529;
+    color: #ffffff;
+    font-size: 16px;
+    width: 250px;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+#mutation-input-gen:focus {
+    outline: none;
+    border-color: #4fc3f7;
+}
+
+.generate-btn {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.generate-btn:hover {
+    background: #45a049;
+}
+
+.input-help {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #b3d9ff;
+}
+
+.example-link {
+    color: #4fc3f7;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 0 5px;
+}
+
+.example-link:hover {
+    color: #81d4fa;
+}
+
+.sequence-output-section {
+    background: #1f3b73;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid #132b57;
+}
+
+.sequence-output-section h3 {
+    color: #7fb3ff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sequence-display {
+    text-align: center;
+}
+
+.mutation-details-gen {
+    background: #081529;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    color: #b3d9ff;
+    text-align: left;
+}
+
+.sequence-text {
+    background: #081529;
+    padding: 20px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    word-break: break-all;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 15px 0;
+    border: 1px solid #132b57;
+}
+
+.sequence-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.copy-btn, .download-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.copy-btn {
+    background: #2196f3;
+    color: white;
+}
+
+.copy-btn:hover {
+    background: #1976d2;
+}
+
+.download-btn {
+    background: #ff9800;
+    color: white;
+}
+
+.download-btn:hover {
+    background: #f57c00;
+}
+
+.wild-type-reference {
+    background: #1f3b73;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #132b57;
+}
+
+.wild-type-reference h3 {
+    color: #7fb3ff;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.wild-type-sequence {
+    text-align: center;
+}
+
+.wild-type-sequence p {
+    color: #b3d9ff;
+    margin-bottom: 15px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding: 20px;
+    background: #1f3b73;
+    border-radius: 8px;
+}
+
+.pagination button {
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: #1976d2;
+}
+
+.pagination button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+#page-info {
+    color: #7fb3ff;
+    font-weight: bold;
+}
+
 .placeholder-section {
     background-color: #132b57;
     padding: 30px;
@@ -363,6 +713,84 @@ a {
     text-align: center;
     margin: 20px 0;
     color: #7fb3ff;
+}
+
+.important-note {
+    background: #1f3b73;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 30px 0;
+    border: 2px solid #4fc3f7;
+}
+
+.important-note h2 {
+    color: #4fc3f7;
+    margin-bottom: 15px;
+}
+
+.numbering-examples {
+    background: #132b57;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    font-family: monospace;
+}
+
+.numbering-clarification {
+    background: #132b57;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 1px solid #1f3b73;
+}
+
+.numbering-clarification h2 {
+    color: #f44336;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.numbering-table {
+    background: #1f3b73;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.findings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.finding-item {
+    background: #1f3b73;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #132b57;
+    text-align: left;
+}
+
+.finding-item h3 {
+    color: #4fc3f7;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.conclusions-content {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.conclusions-content h3 {
+    color: #7fb3ff;
+    margin: 25px 0 15px 0;
+    text-align: center;
+}
+
+.conclusions-content ul {
+    margin-bottom: 20px;
 }
 
 </style>
@@ -375,7 +803,8 @@ a {
     <a onclick="showPage('workflow')">MutateX Workflow</a>
     <a onclick="showPage('initial')">Initial Results</a>
     <a onclick="showPage('hpc')">HPC Analysis & Visualization</a>
-    <a onclick="showPage('explorer')">Interactive Mutation Explorer</a>
+    <a onclick="showPage('explorer')">Browse Mutations</a>
+    <a onclick="showPage('sequence-generator')">Sequence Generator</a>
 </div>
 
 <div class="container">
@@ -385,9 +814,26 @@ a {
 
 <p>
 This project investigates how targeted mutations affect binding free energy in the Integrin Alpha-1 I-domain. 
-Residues near the magnesium-binding site were selected and mutated using MutateX and FoldX, and then additional surrounding sites 
+Residues near the magnesium-binding site first were selected and mutated using MutateX and FoldX, and then additional surrounding sites 
 were mutated using a high-performance cluster (HPC). The goal is to identify mutations that stabilize binding interactions.
 </p>
+
+<div class="important-note">
+    <h2>Residue Numbering</h2>
+    <p>
+        <strong>This analysis uses PDB structure numbering (2M32), which differs from the full UniProt sequence.</strong> 
+        For reference, here’s how the numbering corresponds between the two:
+    </p>
+    <div class="numbering-examples">
+        <p><strong>UniProt Position 180 (Ser) → PDB Position 13 (SA13)</strong></p>
+        <p><strong>UniProt Position 181 (Asn) → PDB Position 14 (NA14)</strong></p>
+        <p><strong>UniProt Position 182 (Ser) → PDB Position 15 (SA15)</strong></p>
+        <p><em>...and so on through the analyzed region</em></p>
+    </div>
+    <p>
+    
+    </p>
+</div>
 </div>
 
 <div id="selection" class="page">
@@ -678,40 +1124,79 @@ H His 0.00628
 <h1>HPC Analysis & Visualization</h1>
 
 <p>
-In the HPC analysis, mutations were tested across 58 positions using the same methodology, but with identity mutations excluded to ensure clean results. The analysis covered positions 1-58 of the protein sequence, systematically testing each position with all chemically distinct amino acid substitutions.
+In the High-Performance Computing (HPC) analysis, mutations were tested across 58 positions using the same methodology, but with identity mutations excluded to ensure clean results. The analysis covered positions 1-58 of the protein sequence (using PDB 2M32 numbering).
 </p>
 
-<div class="placeholder-section">
-    <h2> Mutation Heatmap</h2>
-    <p><strong>[Placeholder for Interactive Heatmap]</strong></p>
-    <p>This section will contain a comprehensive heatmap visualization showing all 1,050 mutations across the 58 positions tested. The heatmap will display binding free energy changes (ΔΔG) with color coding for easy identification of stabilizing and destabilizing mutations.</p>
+<div class="numbering-clarification">
+    <h2>Residue Numbering System</h2>
+    <p>
+        <strong>All results use PDB structure numbering 2M32 rather than full UniProt sequence numbering:
+    </p>
+    <div class="numbering-table">
+        <p><strong>Example Correspondences:</strong></p>
+        <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
+            <li><strong>PDB Position 13 = UniProt Position 180</strong> (Serine)</li>
+            <li><strong>PDB Position 14 = UniProt Position 181</strong> (Asparagine)</li>
+            <li><strong>PDB Position 17 = UniProt Position 184</strong> (Tyrosine)</li>
+            <li><strong>PDB Position 18 = UniProt Position 185</strong> (Proline)</li>
+        </ul>
+        <p><em>This systematic offset of 167 residues continues throughout the analyzed region. </em></p>
+    </div>
 </div>
 
 <div class="placeholder-section">
-    <h2>📊 AlphaFold Structure Comparisons</h2>
+    <h2> Comprehensive Mutation Heatmap</h2>
+    <div style="text-align: center; margin: 20px 0;">
+        <img src="heatmap_all.png" alt="Comprehensive mutation heatmap showing ΔΔG values for all mutations" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #1f3b73;">
+    </div>
+    <p>This heatmap visualization displays all 1,050 mutations across the 58 positions tested, with color coding representing binding free energy changes (ΔΔG). Blue regions indicate stabilizing mutations (negative ΔΔG), while red regions show destabilizing effects (positive ΔΔG). The grey crosses indicate identity mutations.</p>
+</div>
+
+<div class="placeholder-section">
+    <h2> Key Findings</h2>
+    <p><strong>[Placeholder for Results Analysis]</strong></p>
+    <div class="findings-grid">
+        <div class="finding-item">
+            <h3> Highly Stabilizing Hotspots</h3>
+            <p>Position DA11 (Asp→Val: ΔΔG = -6.28 kcal/mol) had the most negative (stabilizing) change.</p>
+        </div>
+        <div class="finding-item">
+            <h3> Structurally Sensitive Regions</h3>
+            <p>Position SA13 (Ser→Trp: ΔΔG = +44.56 kcal/mol) showed the largest positive change (destabilization).</p>
+        </div>
+    </div>
+</div>
+
+<div class="placeholder-section">
+    <h2> AlphaFold Structure Comparisons</h2>
     <p><strong>[Placeholder for AlphaFold Results]</strong></p>
-    <p>This section will showcase AlphaFold structure predictions for the most promising mutations identified from the HPC analysis, including:</p>
+    <p>This section will show AlphaFold structure predictions for the most stabilizing mutations identified from the HPC analysis:</p>
     <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
-        <li>Wild-type structure comparison</li>
-        <li>Most stabilizing mutations (DA11V, DA11L, DA11M)</li>
-        <li>Structural impact analysis</li>
-        <li>Binding site architecture changes</li>
+        <li>...</li>
     </ul>
 </div>
 
 <div class="placeholder-section">
-    <h2> AlphaFold Mutation Analysis</h2>
-    <p><strong>[Placeholder for Images]</strong></p>
-    <p>...</p>
+    <h2>Conclusions & Future Directions</h2>
+    <p><strong>[Placeholder for Conclusions]</strong></p>
+    <div class="conclusions-content">
+        <h3>Key Conclusions:</h3>
+        <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+            <li><strong>Stabilization Mechanisms:</strong> [Why certain positions might show stabilization potential]</li>
+            <li><strong>Structural Constraints:</strong> [Which mutations disrupt protein structure]</li>
+            <li><strong>Binding Affinity Improvements:</strong> [Applications for improving binding affinity interactions]</li>
+        </ul>
+        
+    </div>
 </div>
 
-<h3><a href="#explorer" onclick="showPage('explorer')" style="font-size: 1.2em;"> Explore All Mutation Data →</a></h3>
+<h3><a href="#explorer" onclick="showPage('explorer')" style="font-size: 1.2em;">Explore All Mutation Data →</a></h3>
 </div>
 
 <div id="explorer" class="page">
-<h1>Mutation Explorer</h1>
+<h1>Explore All Mutations</h1>
 <p style="text-align: center; margin-bottom: 30px;">
-Mutation data across 58 positions.
+All mutation data across 58 positions.
 </p>
 
 <div class="explorer-container">
@@ -721,79 +1206,156 @@ Mutation data across 58 positions.
         <p><strong>Most Destabilizing:</strong> <span id="most-destabilizing">--</span></p>
     </div>
 
-    <div class="controls">
-        <div class="filter-group">
-            <label for="position-filter">Filter by Position (1-58):</label>
-            <select id="position-filter">
-                <option value="">All Positions</option>
+    <div class="top-controls-bar">
+        <div class="results-info">
+            <span id="result-count">0</span> mutations
+        </div>
+        <div class="sort-controls">
+            <label>Sort:</label>
+            <select id="sort-select" onchange="applySorting()">
+                <option value="stabilizing">Most Stabilizing First</option>
+                <option value="destabilizing">Most Destabilizing First</option>
+                <option value="position">By Position</option>
             </select>
         </div>
-        
-        <div class="filter-group">
-            <label for="wildtype-filter">Filter by Starting Amino Acid:</label>
-            <select id="wildtype-filter">
-                <option value="">All Starting Amino Acids</option>
-            </select>
-        </div>
-        
-        <div class="filter-group">
-            <label for="target-filter">Replacement Amino Acid:</label>
-            <select id="target-filter">
-                <option value="">All Replacement Amino Acids</option>
-            </select>
-        </div>
-        
-        <div class="filter-group">
-            <label for="ddg-filter">Mutation Effect:</label>
-            <select id="ddg-filter">
-                <option value="">All Effects</option>
-                <option value="stabilizing">Stabilizing (ΔΔG < 0)</option>
-                <option value="destabilizing">Destabilizing (ΔΔG > 0)</option>
-                <option value="highly-stabilizing">Highly Stabilizing (ΔΔG < -2)</option>
-                <option value="highly-destabilizing">Highly Destabilizing (ΔΔG > 10)</option>
-                <option value="neutral">Near Neutral (|ΔΔG| < 1)</option>
-            </select>
-        </div>
-
-        <div class="slider-container">
-            <label>Binding Energy Change Range (ΔΔG in kcal/mol):</label>
-            <div class="range-slider">
-                <input type="range" id="ddg-min" min="-10" max="50" value="-10" step="0.1">
-                <input type="range" id="ddg-max" min="-10" max="50" value="50" step="0.1">
-            </div>
-            <div class="range-values">
-                <span>Min: <span id="ddg-min-value">-10.0</span></span>
-                <span>Max: <span id="ddg-max-value">50.0</span></span>
-            </div>
-        </div>
-
-        <div class="sorting-controls">
-            <label style="margin-right: 15px;">Sort by:</label>
-            <button class="sort-btn" id="sort-stabilizing" onclick="sortMutations('stabilizing')">Most Stabilizing First</button>
-            <button class="sort-btn" id="sort-destabilizing" onclick="sortMutations('destabilizing')">Most Destabilizing First</button>
-            <button class="sort-btn" id="sort-position" onclick="sortMutations('position')">By Position</button>
-            <button class="clear-btn" onclick="clearFilters()">Clear All Filters</button>
+        <div class="filters-toggle">
+            <button id="filters-toggle-btn" onclick="toggleFilters()">🔽 All Filters</button>
         </div>
     </div>
 
-    <div class="sequence-generator">
-        <h3>🧬 Custom Sequence Generator</h3>
-        <p>Enter a mutation (e.g., "D11V" or "S13W") to generate the modified protein sequence:</p>
-        <div style="text-align: center; margin: 15px 0;">
-            <input type="text" id="mutation-input" placeholder="Enter mutation (e.g., D11V)" maxlength="10">
-            <button onclick="generateSequence()">Generate Sequence</button>
-        </div>
-        <div id="sequence-output" class="sequence-output" style="display: none;">
-            <strong>Modified Sequence:</strong><br>
-            <span id="generated-sequence"></span>
-            <br><br>
-            <button onclick="copySequence()" style="background: #4caf50; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Copy to Clipboard</button>
+    <div class="filters-section" id="filters-section">
+        <div class="controls">
+            <div class="filter-group">
+                <label for="position-filter">Position (1-58):</label>
+                <select id="position-filter">
+                    <option value="">All Positions</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="wildtype-filter">Starting Amino Acid:</label>
+                <select id="wildtype-filter">
+                    <option value="">All Starting</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="target-filter">Replacement Amino Acid:</label>
+                <select id="target-filter">
+                    <option value="">All Replacements</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="ddg-filter">Mutation Effect:</label>
+                <select id="ddg-filter">
+                    <option value="">All Effects</option>
+                    <option value="stabilizing">Stabilizing (ΔΔG < 0)</option>
+                    <option value="destabilizing">Destabilizing (ΔΔG > 0)</option>
+                    <option value="highly-stabilizing">Highly Stabilizing (ΔΔG < -2)</option>
+                    <option value="highly-destabilizing">Highly Destabilizing (ΔΔG > 10)</option>
+                    <option value="neutral">Near Neutral (|ΔΔG| < 1)</option>
+                </select>
+            </div>
+
+            <div class="range-slider-container">
+                <label>Binding Energy Range (ΔΔG):</label>
+                <div class="dual-range-slider">
+                    <div class="slider-track"></div>
+                    <input type="range" id="range-min" min="-10" max="50" value="-10" step="0.1" class="range-input">
+                    <input type="range" id="range-max" min="-10" max="50" value="50" step="0.1" class="range-input">
+                </div>
+                <div class="range-values">
+                    <span id="range-min-value">-10.0</span>
+                    <span>to</span>
+                    <span id="range-max-value">50.0</span>
+                    <span>kcal/mol</span>
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <button class="clear-btn" onclick="clearFilters()">Clear All Filters</button>
+            </div>
         </div>
     </div>
 
+ 
     <div class="results">
-        <h3>Results: <span id="result-count">0</span> mutations</h3>
         <div id="mutation-list"></div>
+        
+
+        <div class="pagination" id="pagination">
+            <button id="prev-btn" onclick="previousPage()" disabled>‹ Previous</button>
+            <span id="page-info">Page 1 of 1</span>
+            <button id="next-btn" onclick="nextPage()" disabled>Next ›</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="sequence-generator" class="page">
+<h1>Custom Sequence Generator</h1>
+<p style="text-align: center; margin-bottom: 30px;">
+Generate modified protein sequences for any mutation to test in AlphaFold or other structure prediction tools.
+</p>
+
+<div class="sequence-generator-container">
+    <div class="generator-info">
+        <h2>How to Use</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>Input Format</h3>
+                <p>Enter mutations like: <strong>D11V</strong>, <strong>S13W</strong>, or <strong>A24R</strong></p>
+                <p><em>Format: [Original][Position][New] (e.g., D11V means Aspartic Acid at position 11 → Valine)</em></p>
+            </div>
+            <div class="info-item">
+                <h3>Validation</h3>
+                <p>This automatically checks:</p>
+                <ul>
+                    <li>Position is within range (1-200)</li>
+                    <li>Original amino acid matches the wild-type sequence</li>
+                    <li>Input format is correct</li>
+                </ul>
+            </div>
+            <div class="info-item">
+            </div>
+        </div>
+    </div>
+
+    <div class="generator-tool">
+        <div class="input-section">
+            <h2>Generate Mutated Sequence</h2>
+            <div class="mutation-input-container">
+                <input type="text" id="mutation-input-gen" placeholder="Enter mutation (e.g., D11V)" maxlength="10">
+                <button onclick="generateSequence()" class="generate-btn">Generate Sequence</button>
+            </div>
+            <p class="input-help">Try examples: <span class="example-link" onclick="setExample('D11V')">D11V</span>, <span class="example-link" onclick="setExample('S13W')">S13W</span>, <span class="example-link" onclick="setExample('A24R')">A24R</span></p>
+        </div>
+
+        <div id="sequence-output-gen" class="sequence-output-section" style="display: none;">
+            <h3>Generated Sequence</h3>
+            <div class="sequence-display">
+                <div class="mutation-details-gen">
+                    <strong>Mutation:</strong> <span id="mutation-description"></span><br>
+                    <strong>Position:</strong> <span id="position-description"></span>
+                </div>
+                <div class="sequence-text" id="generated-sequence-gen"></div>
+                <div class="sequence-actions">
+                    <button onclick="copySequence()" class="copy-btn">📋 Copy to Clipboard</button>
+                    <button onclick="downloadSequence()" class="download-btn">💾 Download as FASTA</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="wild-type-reference">
+            <h3>Wild-Type Reference Sequence</h3>
+            <div class="wild-type-sequence">
+                <p><strong>Length:</strong> 200 amino acids</p>
+                <div class="sequence-text" style="font-size: 12px;">
+                    STQLDIVIVLDGSNSIYPWDSVTAFLNDLLERMDIGPKQTQVGIVQYGENVTHEFNLNKYSSTEEVLVAAKKIVQRGGRQTMTALGIDTARKEAFTEARGARGRPGGVKPKGVLMVGIEVNTDGGPEGSHPDNGHPRLKKVIQDCEDENIQRFSIAILGSYNRGNLSTEKFVEEIKSIASEPTEKHFFNVSDELALVTIVKTLGERIGPGPGLGENGPGPGPGPGPGLGENGPGPGP
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </div>
@@ -802,7 +1364,7 @@ Mutation data across 58 positions.
 
 <script src="mutation_data.js"></script>
 <script>
-// Amino acid mapping
+
 const aminoAcidNames = {
     'G': 'Glycine', 'A': 'Alanine', 'V': 'Valine', 'L': 'Leucine', 'I': 'Isoleucine',
     'M': 'Methionine', 'F': 'Phenylalanine', 'W': 'Tryptophan', 'P': 'Proline',
@@ -811,12 +1373,15 @@ const aminoAcidNames = {
     'K': 'Lysine', 'R': 'Arginine', 'H': 'Histidine'
 };
 
-// Wild-type sequence
+
 const wildTypeSequence = "STQLDIVIVLDGSNSIYPWDSVTAFLNDLLERMDIGPKQTQVGIVQYGENVTHEFNLNKYSSTEEVLVAAKKIVQRGGRQTMTALGIDTARKEAFTEARGARGRPGGVKPKGVLMVGIEVNTDGGPEGSHPDNGHPRLKKVIQDCEDENIQRFSIAILGSYNRGNLSTEKFVEEIKSIASEPTEKHFFNVSDELALVTIVKTLGERIGPGPGLGENGPGPGPGPGPGLGENGPGPGP";
 
 let allMutations = [];
 let filteredMutations = [];
 let currentSort = 'stabilizing';
+let currentPage = 1;
+let mutationsPerPage = 30;
+let filtersCollapsed = true;
 
 function showPage(id) {
     document.querySelectorAll('.page').forEach(p => {
@@ -825,11 +1390,10 @@ function showPage(id) {
     document.getElementById(id).style.display = 'block';
 }
 
-// Initialize when data is loaded
 if (typeof mutationData !== 'undefined') {
     initializeExplorer(mutationData);
 } else {
-    // Fallback sample data for testing
+
     console.warn('mutation_data.js not loaded, using sample data');
     const sampleData = [
         { position: 11, wild_type: 'D', target: 'V', ddg: -6.27949, position_code: 'DA11', mutation_name: 'D11V' },
@@ -843,12 +1407,12 @@ function initializeExplorer(mutations) {
     allMutations = mutations;
     filteredMutations = allMutations;
     
-    // Populate filters
+    document.getElementById('filters-section').classList.add('collapsed');
+    
     const positions = [...new Set(mutations.map(m => m.position))].sort((a,b) => a-b);
     const wildTypes = [...new Set(mutations.map(m => m.wild_type))].sort();
     const allAminoAcids = ['G', 'A', 'V', 'L', 'I', 'M', 'F', 'W', 'P', 'S', 'T', 'C', 'Y', 'N', 'Q', 'D', 'E', 'K', 'R', 'H'];
     
-    // Populate position filter (1-58)
     const positionSelect = document.getElementById('position-filter');
     for (let i = 1; i <= 58; i++) {
         const option = document.createElement('option');
@@ -857,7 +1421,6 @@ function initializeExplorer(mutations) {
         positionSelect.appendChild(option);
     }
 
-    // Populate wild-type filter
     const wildtypeSelect = document.getElementById('wildtype-filter');
     wildTypes.forEach(wt => {
         const option = document.createElement('option');
@@ -866,7 +1429,6 @@ function initializeExplorer(mutations) {
         wildtypeSelect.appendChild(option);
     });
 
-    // Populate target filter
     const targetSelect = document.getElementById('target-filter');
     allAminoAcids.forEach(aa => {
         const option = document.createElement('option');
@@ -875,28 +1437,50 @@ function initializeExplorer(mutations) {
         targetSelect.appendChild(option);
     });
 
-    // Add event listeners
     document.getElementById('position-filter').addEventListener('change', applyFilters);
     document.getElementById('wildtype-filter').addEventListener('change', applyFilters);
     document.getElementById('target-filter').addEventListener('change', applyFilters);
     document.getElementById('ddg-filter').addEventListener('change', applyFilters);
 
-    // Range slider event listeners
-    document.getElementById('ddg-min').addEventListener('input', updateRangeValues);
-    document.getElementById('ddg-max').addEventListener('input', updateRangeValues);
-    document.getElementById('ddg-min').addEventListener('change', applyFilters);
-    document.getElementById('ddg-max').addEventListener('change', applyFilters);
+
+    document.getElementById('range-min').addEventListener('input', updateDualRange);
+    document.getElementById('range-max').addEventListener('input', updateDualRange);
+    document.getElementById('range-min').addEventListener('change', applyFilters);
+    document.getElementById('range-max').addEventListener('change', applyFilters);
 
     updateSummary();
-    updateRangeValues();
-    sortMutations('stabilizing');
+    updateDualRange();
+    applySorting();
 }
 
-function updateRangeValues() {
-    const minVal = document.getElementById('ddg-min').value;
-    const maxVal = document.getElementById('ddg-max').value;
-    document.getElementById('ddg-min-value').textContent = parseFloat(minVal).toFixed(1);
-    document.getElementById('ddg-max-value').textContent = parseFloat(maxVal).toFixed(1);
+function toggleFilters() {
+    const filtersSection = document.getElementById('filters-section');
+    const toggleBtn = document.getElementById('filters-toggle-btn');
+    
+    filtersCollapsed = !filtersCollapsed;
+    
+    if (filtersCollapsed) {
+        filtersSection.classList.add('collapsed');
+        toggleBtn.innerHTML = '🔽 All Filters';
+    } else {
+        filtersSection.classList.remove('collapsed');
+        toggleBtn.innerHTML = '🔼 Hide Filters';
+    }
+}
+
+function updateDualRange() {
+    const minVal = parseFloat(document.getElementById('range-min').value);
+    const maxVal = parseFloat(document.getElementById('range-max').value);
+    
+
+    if (minVal >= maxVal) {
+        document.getElementById('range-min').value = maxVal - 0.1;
+    }
+    
+    document.getElementById('range-min-value').textContent = 
+        parseFloat(document.getElementById('range-min').value).toFixed(1);
+    document.getElementById('range-max-value').textContent = 
+        parseFloat(document.getElementById('range-max').value).toFixed(1);
 }
 
 function updateSummary() {
@@ -917,14 +1501,14 @@ function applyFilters() {
     const wildtypeFilter = document.getElementById('wildtype-filter').value;
     const targetFilter = document.getElementById('target-filter').value;
     const ddgFilter = document.getElementById('ddg-filter').value;
-    const ddgMin = parseFloat(document.getElementById('ddg-min').value);
-    const ddgMax = parseFloat(document.getElementById('ddg-max').value);
+    const rangeMin = parseFloat(document.getElementById('range-min').value);
+    const rangeMax = parseFloat(document.getElementById('range-max').value);
 
     filteredMutations = allMutations.filter(mut => {
         if (positionFilter && mut.position != positionFilter) return false;
         if (wildtypeFilter && mut.wild_type !== wildtypeFilter) return false;
         if (targetFilter && mut.target !== targetFilter) return false;
-        if (mut.ddg < ddgMin || mut.ddg > ddgMax) return false;
+        if (mut.ddg < rangeMin || mut.ddg > rangeMax) return false;
         
         if (ddgFilter) {
             switch(ddgFilter) {
@@ -939,15 +1523,15 @@ function applyFilters() {
         return true;
     });
 
-    displayMutations();
+    currentPage = 1;
+    applySorting();
 }
 
-function sortMutations(type) {
-    currentSort = type;
-    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById(`sort-${type}`).classList.add('active');
+function applySorting() {
+    const sortType = document.getElementById('sort-select').value;
+    currentSort = sortType;
 
-    switch(type) {
+    switch(sortType) {
         case 'stabilizing':
             filteredMutations.sort((a, b) => a.ddg - b.ddg);
             break;
@@ -970,10 +1554,16 @@ function displayMutations() {
     
     if (filteredMutations.length === 0) {
         container.innerHTML = '<p style="text-align: center; color: #7fb3ff; padding: 20px;">No mutations match the current filters.</p>';
+        updatePagination();
         return;
     }
 
-    container.innerHTML = filteredMutations.map(mut => {
+    const totalPages = Math.ceil(filteredMutations.length / mutationsPerPage);
+    const startIndex = (currentPage - 1) * mutationsPerPage;
+    const endIndex = Math.min(startIndex + mutationsPerPage, filteredMutations.length);
+    const currentMutations = filteredMutations.slice(startIndex, endIndex);
+
+    container.innerHTML = currentMutations.map(mut => {
         const className = mut.ddg < 0 ? 'stabilizing' : mut.ddg > 0 ? 'destabilizing' : 'neutral';
         const ddgClassName = mut.ddg < 0 ? 'ddg-stabilizing' : mut.ddg > 0 ? 'ddg-destabilizing' : 'ddg-neutral';
         
@@ -991,6 +1581,31 @@ function displayMutations() {
             </div>
         `;
     }).join('');
+
+    updatePagination();
+}
+
+function updatePagination() {
+    const totalPages = Math.ceil(filteredMutations.length / mutationsPerPage);
+    
+    document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById('prev-btn').disabled = currentPage <= 1;
+    document.getElementById('next-btn').disabled = currentPage >= totalPages;
+}
+
+function previousPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        displayMutations();
+    }
+}
+
+function nextPage() {
+    const totalPages = Math.ceil(filteredMutations.length / mutationsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        displayMutations();
+    }
 }
 
 function clearFilters() {
@@ -998,15 +1613,17 @@ function clearFilters() {
     document.getElementById('wildtype-filter').value = '';
     document.getElementById('target-filter').value = '';
     document.getElementById('ddg-filter').value = '';
-    document.getElementById('ddg-min').value = -10;
-    document.getElementById('ddg-max').value = 50;
-    updateRangeValues();
+    document.getElementById('range-min').value = -10;
+    document.getElementById('range-max').value = 50;
+    document.getElementById('sort-select').value = 'stabilizing';
+    updateDualRange();
     filteredMutations = allMutations;
-    sortMutations(currentSort);
+    currentPage = 1;
+    applySorting();
 }
 
 function generateSequence() {
-    const input = document.getElementById('mutation-input').value.trim().toUpperCase();
+    const input = document.getElementById('mutation-input-gen').value.trim().toUpperCase();
     const match = input.match(/([A-Z])(\d+)([A-Z])/);
     
     if (!match) {
@@ -1014,8 +1631,8 @@ function generateSequence() {
         return;
     }
     
-    const [, wildType, position, target] = match;
-    const pos = parseInt(position) - 1; // Convert to 0-based indexing
+    const [fullMatch, wildType, position, target] = match;
+    const pos = parseInt(position) - 1; 
     
     if (pos < 0 || pos >= wildTypeSequence.length) {
         alert(`Position ${position} is out of range (1-${wildTypeSequence.length})`);
@@ -1023,21 +1640,61 @@ function generateSequence() {
     }
     
     if (wildTypeSequence[pos] !== wildType) {
-        alert(`Position ${position} has ${wildTypeSequence[pos]}, not ${wildType}`);
+        alert(`Position ${position} has ${wildTypeSequence[pos]}, not ${wildType}. Did you mean ${wildTypeSequence[pos]}${position}${target}?`);
         return;
     }
     
     const mutatedSequence = wildTypeSequence.substring(0, pos) + target + wildTypeSequence.substring(pos + 1);
-    
-    document.getElementById('generated-sequence').textContent = mutatedSequence;
-    document.getElementById('sequence-output').style.display = 'block';
+ 
+    document.getElementById('mutation-description').textContent = `${aminoAcidNames[wildType]} → ${aminoAcidNames[target]} (${fullMatch})`;
+    document.getElementById('position-description').textContent = `Position ${position} of 200`;
+    document.getElementById('generated-sequence-gen').textContent = mutatedSequence;
+    document.getElementById('sequence-output-gen').style.display = 'block';
+}
+
+function setExample(mutation) {
+    document.getElementById('mutation-input-gen').value = mutation;
+    generateSequence();
 }
 
 function copySequence() {
-    const sequence = document.getElementById('generated-sequence').textContent;
+    const sequence = document.getElementById('generated-sequence-gen').textContent;
     navigator.clipboard.writeText(sequence).then(() => {
-        alert('Sequence copied to clipboard!');
+       
+        
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        btn.style.backgroundColor = '#4caf50';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.backgroundColor = '#2196f3';
+        }, 2000);
+    }).catch(() => {
+        alert('Failed to copy to clipboard. Please select and copy the sequence manually.');
     });
+}
+
+function downloadSequence() {
+    const sequence = document.getElementById('generated-sequence-gen').textContent;
+    const mutation = document.getElementById('mutation-description').textContent;
+    
+    if (!sequence) {
+        alert('Please generate a sequence first.');
+        return;
+    }
+    
+    const fastaContent = `>Integrin_Alpha1_${mutation.replace(' → ', '_to_').replace(/[^\w]/g, '_')}\n${sequence}`;
+    
+    const blob = new Blob([fastaContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `integrin_alpha1_${mutation.replace(' → ', '_to_').replace(/[^\w]/g, '_')}.fasta`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }
 
 showPage('home');
