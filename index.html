@@ -31,33 +31,37 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #081529;
-    border-bottom: 2px solid #1f3b73;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0,0,0,0.06); 
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    gap: 0;
+    padding: 0 30px;
     z-index: 1000;
-    padding: 0 20px 0 0;
-    overflow-x: auto;
+}
+.navbar a:first-child {
+    margin-right: auto;
 }
 
 .navbar a {
-    color: #ffffff;
+    color: #0b1e3d; 
     text-decoration: none;
-    padding: 16px 22px;
-    font-size: 14px;
+    padding: 12px 14px;
+    font-size: 12px;
     font-family: "Poppins", sans-serif;
     white-space: nowrap;
     cursor: pointer;
-    border-right: 1px solid #1f3b73;
-    transition: background-color 0.2s, color 0.2s;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
+    border-right: none; 
+    transition: opacity 0.2s ease;
+}
+
+.navbar a:not(:first-child) {
+    margin-left: 18px;
 }
 
 .navbar a:hover {
-    background-color: #132b57;
-    color: #ffffff;
+    opacity: 0.6;
+    background-color: transparent;
 }
 
 .container {
