@@ -2328,14 +2328,6 @@ const mutationData = [
     "mutation_name": "D20I"
   },
   {
-    "position": 24,
-    "wild_type": "A",
-    "target": "A",
-    "ddg": 0.0,
-    "position_code": "AA24",
-    "mutation_name": "A24A"
-  },
-  {
     "position": 30,
     "wild_type": "L",
     "target": "I",
