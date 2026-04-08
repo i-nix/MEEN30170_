@@ -792,6 +792,7 @@ a {
     text-decoration: none;
     opacity: 0.8;
     transition: opacity 0.2s;
+    cursor: pointer;
 }
 
 .footer-right a:hover {
@@ -1223,7 +1224,7 @@ In the High-Performance Computing (HPC) analysis, mutations were tested across 5
     </div>
 </div>
 
-<h3><a href="#explorer" onclick="showPage('explorer')" style="font-size: 1.2em;">Explore All Mutation Data →</a></h3>
+<h3><a onclick="showPage('explorer')" style="font-size: 1.2em; cursor: pointer;">Explore All Mutation Data →</a></h3>
 </div>
 
 <div id="explorer" class="page">
@@ -1312,15 +1313,13 @@ All mutation data across 58 positions.
         </div>
     </div>
 
- 
     <div class="results">
         <div id="mutation-list"></div>
-        
 
         <div class="pagination" id="pagination">
-            <button id="prev-btn" onclick="previousPage()" disabled>‹ Previous</button>
+            <button id="prev-btn" onclick="previousPage()" disabled>&#8249; Previous</button>
             <span id="page-info">Page 1 of 1</span>
-            <button id="next-btn" onclick="nextPage()" disabled>Next ›</button>
+            <button id="next-btn" onclick="nextPage()" disabled>Next &#8250;</button>
         </div>
     </div>
 </div>
@@ -1349,7 +1348,7 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
                     <li>Original amino acid matches the wild-type sequence</li>
                     <li>Input format is correct</li>
                 </ul>
-          
+            </div>
         </div>
     </div>
 
@@ -1417,7 +1416,7 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
         <p>Contact: inessnix@gmail.com</p>
 
         <h3>Google Fonts</h3>
-        <p>This website uses Google Fonts, a service provided by Google. When fonts are loaded, your browser may connect to Google's servers, which may collect technical information such as your IP address. For more information, please review Google’s Privacy Policy.</p>
+        <p>This website uses Google Fonts, a service provided by Google. When fonts are loaded, your browser may connect to Google's servers, which may collect technical information such as your IP address. For more information, please review Google's Privacy Policy.</p>
         
         <h3>Cookies</h3>
         <p>This website does not use cookies directly for tracking or analytics. However, third-party services such as GitHub (hosting) and Google (Google Fonts) may use cookies or similar technologies. I do not control these cookies. You can manage or disable cookies through your browser settings.</p>
@@ -1461,7 +1460,7 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
         <p>This website may include links to third-party websites. I do not control or endorse these sites and am not responsible for their content or practices.</p>
         
         <h3>Research Ethics</h3>
-        <p>Users are responsible for complying with their institution’s research ethics guidelines when using any data or outputs from this website.</p>
+        <p>Users are responsible for complying with their institution's research ethics guidelines when using any data or outputs from this website.</p>
         
         <h3>Attribution</h3>
         <p>If you use data or insights from this website in academic work or publications, please cite the appropriate scientific sources and acknowledge this website where relevant.</p>
@@ -1475,8 +1474,8 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
         © 2026
     </div>
     <div class="footer-right">
-        <a href="#" onclick="openModal('privacy-modal')">Privacy Policy</a>
-        <a href="#" onclick="openModal('terms-modal')">Terms of Use</a>
+        <a onclick="openModal('privacy-modal')">Privacy Policy</a>
+        <a onclick="openModal('terms-modal')">Terms of Use</a>
     </div>
 </div>
 
@@ -1487,7 +1486,6 @@ function sanitizeInput(str) {
     div.textContent = str;
     return div.innerHTML;
 }
-
 
 function openModal(modalId) {
     document.getElementById(modalId).style.display = 'block';
@@ -1520,11 +1518,12 @@ let currentPage = 1;
 let mutationsPerPage = 30;
 let filtersCollapsed = true;
 
+// FIX: use classList instead of inline styles so CSS .page.active rules work correctly
 function showPage(id) {
     document.querySelectorAll('.page').forEach(p => {
-        p.style.display = 'none';
+        p.classList.remove('active');
     });
-    document.getElementById(id).style.display = 'block';
+    document.getElementById(id).classList.add('active');
 }
 
 if (typeof mutationData !== 'undefined') {
