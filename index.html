@@ -6,11 +6,19 @@
 <meta http-equiv="X-Frame-Options" content="DENY">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; media-src 'self' blob:;">
 <title>Binding Energy Optimization in Integrin Through Site-Directed Mutagenesis</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* ── Palette ──────────────────────────────────────────────────────────────────
+   #EAEFF5  lightest  (text on dark, highlights)
+   #C2D0DE  light     (secondary text, borders)
+   #7E97B0  mid       (muted elements, placeholders)
+   #3A5672  dark      (panels, nav hover)
+   #0A1520  darkest   (page background)
+   ──────────────────────────────────────────────────────────────────────────── */
 
 * {
     box-sizing: border-box;
@@ -20,101 +28,92 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background-color: #0b1e3d;
-    color: #ffffff;
+    background-color: #0A1520;
+    color: #EAEFF5;
     min-height: 100vh;
-    padding-bottom: 80px;
+    font-weight: 400;
 }
+
+strong, b { font-weight: 400; }
 
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #f5f9ff; 
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background-color: #EAEFF5;
+    border-bottom: 1px solid #C2D0DE;
     display: flex;
     align-items: center;
-    padding: 0 10px; 
+    padding: 0 10px;
     z-index: 1000;
 }
 
-.navbar a:first-child {
-    margin-right: auto;
-}
+.navbar a:first-child { margin-right: auto; }
 
 .navbar a {
-    color: #0b1e3d;
+    color: #3A5672;
     text-decoration: none;
-    padding: 10px 10px; 
-    font-size: 12px;
+    padding: 10px 10px;
+    font-size: 11px;
     font-family: "Poppins", sans-serif;
     white-space: nowrap;
     cursor: pointer;
     letter-spacing: 0.2px;
-    border-right: none;
     transition: opacity 0.2s ease;
 }
 
-.navbar a:not(:first-child) {
-    margin-left: 9px; 
-}
-
-.navbar a:hover {
-    opacity: 0.6;
-    background-color: transparent;
-}
+.navbar a:not(:first-child) { margin-left: 9px; }
+.navbar a:hover { opacity: 0.5; background-color: transparent; }
 
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 90px 50px 50px 50px;
+    padding: 90px 50px 60px 50px;
 }
 
-.page {
-    display: none;
-}
-
-.page.active {
-    display: block;
-}
+.page { display: none; }
+.page.active { display: block; }
 
 h1, h2, h3 {
     text-align: center;
     margin-bottom: 20px;
     font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    color: #EAEFF5;
 }
 
-h1 { margin-top: 20px; }
-h2 { margin-top: 10px; }
+h1 { margin-top: 20px; font-size: 1.6em; }
+h2 { margin-top: 10px; font-size: 1.2em; }
+h3 { font-size: 1em; }
 
 p {
     text-align: center;
     line-height: 1.7;
     margin-bottom: 14px;
+    color: #C2D0DE;
 }
 
 code, pre {
-    background-color: #132b57;
+    background-color: #111e2e;
     padding: 12px;
     border-radius: 6px;
-    color: #ffffff;
+    color: #C2D0DE;
     overflow-x: auto;
     white-space: pre-wrap;
-    line-height: 1.2;
+    line-height: 1.4;
     font-size: 13px;
     display: block;
+    border: 1px solid #1e3248;
 }
 
-.section {
-    margin-bottom: 60px;
-}
+.section { margin-bottom: 60px; }
 
 .results-block {
-    background-color: #132b57;
+    background-color: #111e2e;
     padding: 20px;
     border-radius: 10px;
-    border: 1px solid #1f3b73;
+    border: 1px solid #1e3248;
     margin-top: 20px;
 }
 
@@ -132,40 +131,32 @@ code, pre {
     flex-wrap: wrap;
 }
 
-.img-row img {
-    width: 45%;
-    border-radius: 8px;
-}
+.img-row img { width: 45%; border-radius: 8px; }
 
 details {
     margin-top: 15px;
-    background-color: #132b57;
+    background-color: #111e2e;
     padding: 10px;
     border-radius: 8px;
 }
 
-summary {
-    cursor: pointer;
-    color: #ffffff;
-}
+summary { cursor: pointer; color: #EAEFF5; }
+a { color: #C2D0DE; }
 
-a {
-    color: #ffffff;
-}
-
+/* ── Explorer ─────────────────────────────────────────────────────────────── */
 .explorer-container {
-    background-color: #132b57;
+    background-color: #111e2e;
     padding: 20px;
     border-radius: 10px;
     margin: 20px 0;
-    border: 1px solid #1f3b73;
+    border: 1px solid #1e3248;
 }
 
 .top-controls-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #1f3b73;
+    background: #1a2d42;
     padding: 15px 20px;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -173,33 +164,23 @@ a {
     gap: 15px;
 }
 
-.results-info {
-    font-size: 16px;
-    color: #ffffff;
-}
+.results-info { font-size: 16px; color: #EAEFF5; }
 
-.sort-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.sort-controls label {
-    color: #ffffff;
-}
+.sort-controls { display: flex; align-items: center; gap: 10px; }
+.sort-controls label { color: #C2D0DE; }
 
 .sort-controls select {
     padding: 8px 12px;
-    border: 1px solid #132b57;
+    border: 1px solid #3A5672;
     border-radius: 4px;
-    background-color: #081529;
-    color: #ffffff;
+    background-color: #0A1520;
+    color: #EAEFF5;
     font-size: 14px;
 }
 
 .filters-toggle button {
-    background: #2196f3;
-    color: white;
+    background: #3A5672;
+    color: #EAEFF5;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
@@ -207,23 +188,17 @@ a {
     transition: background-color 0.2s;
 }
 
-.filters-toggle button:hover {
-    background: #1976d2;
-}
+.filters-toggle button:hover { background: #4a6a87; }
 
 .filters-section {
-    background: #1a2c4a;
+    background: #0f1c2b;
     border-radius: 8px;
     margin-bottom: 20px;
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
-.filters-section.collapsed {
-    max-height: 0;
-    padding: 0;
-    margin-bottom: 0;
-}
+.filters-section.collapsed { max-height: 0; padding: 0; margin-bottom: 0; }
 
 .controls {
     display: grid;
@@ -233,36 +208,33 @@ a {
     padding: 20px;
 }
 
-.filter-group {
-    display: flex;
-    flex-direction: column;
-}
+.filter-group { display: flex; flex-direction: column; }
 
 .filter-group label {
     margin-bottom: 5px;
-    color: #ffffff;
+    color: #C2D0DE;
     font-size: 14px;
 }
 
 .filter-group select, .filter-group input {
     padding: 8px;
-    border: 1px solid #1f3b73;
+    border: 1px solid #3A5672;
     border-radius: 4px;
-    background-color: #081529;
-    color: #ffffff;
+    background-color: #0A1520;
+    color: #EAEFF5;
     font-size: 13px;
 }
 
 .range-slider-container {
     grid-column: 1 / -1;
-    background: #132b57;
+    background: #111e2e;
     padding: 20px;
     border-radius: 8px;
     margin: 10px 0;
 }
 
 .range-slider-container label {
-    color: #ffffff;
+    color: #C2D0DE;
     display: block;
     margin-bottom: 15px;
 }
@@ -278,7 +250,7 @@ a {
     position: absolute;
     width: 100%;
     height: 6px;
-    background: #1f3b73;
+    background: #3A5672;
     border-radius: 3px;
 }
 
@@ -298,20 +270,20 @@ a {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #2196f3;
+    background: #7E97B0;
     cursor: pointer;
     pointer-events: all;
-    border: 2px solid #ffffff;
+    border: 2px solid #EAEFF5;
 }
 
 .range-input::-moz-range-thumb {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #2196f3;
+    background: #7E97B0;
     cursor: pointer;
     pointer-events: all;
-    border: 2px solid #ffffff;
+    border: 2px solid #EAEFF5;
 }
 
 .range-values {
@@ -319,31 +291,24 @@ a {
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
-    color: #ffffff;
+    color: #C2D0DE;
     margin-top: 10px;
 }
 
-.filter-actions {
-    grid-column: 1 / -1;
-    text-align: center;
-}
+.filter-actions { grid-column: 1 / -1; text-align: center; }
 
 .clear-btn {
-    background: #6c757d;
-    color: white;
+    background: #3A5672;
+    color: #EAEFF5;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.clear-btn:hover {
-    background: #5a6268;
-}
+.clear-btn:hover { background: #4a6a87; }
 
-.results {
-    margin-top: 20px;
-}
+.results { margin-top: 20px; }
 
 .mutation-item {
     padding: 12px;
@@ -355,82 +320,49 @@ a {
     transition: transform 0.1s;
 }
 
-.mutation-item:hover {
-    transform: translateX(5px);
-}
+.mutation-item:hover { transform: translateX(5px); }
 
-.stabilizing {
-    background-color: #1e3a5f;
-    border-left: 4px solid #4fc3f7;
-}
+.stabilizing   { background-color: #0f1e30; border-left: 4px solid #7E97B0; }
+.destabilizing { background-color: #1e1218; border-left: 4px solid #8a5060; }
+.neutral       { background-color: #151f2b; border-left: 4px solid #3A5672; }
 
-.destabilizing {
-    background-color: #5f1e1e;
-    border-left: 4px solid #ff7043;
-}
+.mutation-name { font-size: 1.1em; color: #EAEFF5; }
 
-.neutral {
-    background-color: #3d1e5f;
-    border-left: 4px solid #9c27b0;
-}
-
-.mutation-name {
-    font-size: 1.1em;
-}
-
-.mutation-details {
-    font-size: 0.9em;
-    color: #ffffff;
-    margin-top: 4px;
-    opacity: 0.8;
-}
+.mutation-details { font-size: 0.9em; color: #7E97B0; margin-top: 4px; }
 
 .ddg-value {
     padding: 6px 12px;
     border-radius: 4px;
-    color: white;
     min-width: 90px;
     text-align: center;
     font-size: 0.95em;
+    font-family: 'Courier New', monospace;
 }
 
-.ddg-stabilizing {
-    background-color: #2196f3;
-}
-
-.ddg-destabilizing {
-    background-color: #ff7043;
-}
-
-.ddg-neutral {
-    background-color: #9c27b0;
-}
+.ddg-stabilizing   { background-color: #1e3248; color: #C2D0DE; }
+.ddg-destabilizing { background-color: #2a1820; color: #C2D0DE; }
+.ddg-neutral       { background-color: #1a2d42; color: #C2D0DE; }
 
 .summary-box {
-    background: #1f3b73;
+    background: #1a2d42;
     padding: 15px;
     border-radius: 6px;
     margin-bottom: 20px;
+    color: #C2D0DE;
 }
 
-.sequence-generator-container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
+/* ── Sequence generator ───────────────────────────────────────────────────── */
+.sequence-generator-container { max-width: 1000px; margin: 0 auto; }
 
 .generator-info {
-    background: #132b57;
+    background: #111e2e;
     padding: 25px;
     border-radius: 10px;
     margin-bottom: 30px;
-    border: 1px solid #1f3b73;
+    border: 1px solid #1e3248;
 }
 
-.generator-info h2 {
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 25px;
-}
+.generator-info h2 { color: #EAEFF5; text-align: center; margin-bottom: 25px; }
 
 .info-grid {
     display: grid;
@@ -440,50 +372,27 @@ a {
 }
 
 .info-item {
-    background: #1f3b73;
+    background: #1a2d42;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #132b57;
+    border: 1px solid #1e3248;
 }
 
-.info-item h3 {
-    color: #ffffff;
-    margin-bottom: 10px;
-    text-align: left;
-    font-size: 1.1em;
-}
-
-.info-item p, .info-item ul {
-    text-align: left;
-    line-height: 1.6;
-    margin-bottom: 10px;
-}
-
-.info-item ul {
-    padding-left: 20px;
-}
-
-.info-item li {
-    margin-bottom: 5px;
-}
+.info-item h3 { color: #EAEFF5; margin-bottom: 10px; text-align: left; font-size: 1.1em; }
+.info-item p, .info-item ul { text-align: left; line-height: 1.6; margin-bottom: 10px; color: #C2D0DE; }
+.info-item ul { padding-left: 20px; }
+.info-item li { margin-bottom: 5px; }
 
 .generator-tool {
-    background: #132b57;
+    background: #111e2e;
     padding: 30px;
     border-radius: 10px;
     margin-bottom: 30px;
-    border: 1px solid #1f3b73;
+    border: 1px solid #1e3248;
 }
 
-.input-section {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.input-section h2 {
-    color: #ffffff;
-    margin-bottom: 20px;
-}
+.input-section { text-align: center; margin-bottom: 30px; }
+.input-section h2 { color: #EAEFF5; margin-bottom: 20px; }
 
 .mutation-input-container {
     display: flex;
@@ -496,24 +405,21 @@ a {
 
 #mutation-input-gen {
     padding: 12px 16px;
-    border: 2px solid #1f3b73;
+    border: 1px solid #3A5672;
     border-radius: 6px;
-    background-color: #081529;
-    color: #ffffff;
+    background-color: #0A1520;
+    color: #EAEFF5;
     font-size: 16px;
     width: 250px;
     text-align: center;
     transition: border-color 0.3s;
 }
 
-#mutation-input-gen:focus {
-    outline: none;
-    border-color: #4fc3f7;
-}
+#mutation-input-gen:focus { outline: none; border-color: #7E97B0; }
 
 .generate-btn {
-    background: #66bb6a;
-    color: white;
+    background: #3A5672;
+    color: #EAEFF5;
     border: none;
     padding: 12px 24px;
     border-radius: 6px;
@@ -522,66 +428,44 @@ a {
     transition: background-color 0.3s;
 }
 
-.generate-btn:hover {
-    background: #5cb85c;
-}
+.generate-btn:hover { background: #4a6a87; }
 
-.input-help {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #ffffff;
-    opacity: 0.8;
-}
+.input-help { margin-top: 15px; font-size: 14px; color: #7E97B0; }
 
-.example-link {
-    color: #ffffff;
-    cursor: pointer;
-    text-decoration: underline;
-    margin: 0 5px;
-}
-
-.example-link:hover {
-    opacity: 0.8;
-}
+.example-link { color: #C2D0DE; cursor: pointer; text-decoration: underline; margin: 0 5px; }
+.example-link:hover { opacity: 0.7; }
 
 .sequence-output-section {
-    background: #1f3b73;
+    background: #1a2d42;
     padding: 25px;
     border-radius: 8px;
     margin: 20px 0;
-    border: 1px solid #132b57;
+    border: 1px solid #1e3248;
 }
 
-.sequence-output-section h3 {
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.sequence-display {
-    text-align: center;
-}
+.sequence-output-section h3 { color: #EAEFF5; text-align: center; margin-bottom: 20px; }
+.sequence-display { text-align: center; }
 
 .mutation-details-gen {
-    background: #081529;
+    background: #0A1520;
     padding: 15px;
     border-radius: 6px;
     margin-bottom: 20px;
-    color: #ffffff;
+    color: #C2D0DE;
     text-align: left;
 }
 
 .sequence-text {
-    background: #081529;
+    background: #0A1520;
     padding: 20px;
     border-radius: 6px;
     font-family: 'Courier New', monospace;
     font-size: 14px;
     word-break: break-all;
     line-height: 1.6;
-    color: #ffffff;
+    color: #C2D0DE;
     margin: 15px 0;
-    border: 1px solid #132b57;
+    border: 1px solid #1e3248;
 }
 
 .sequence-actions {
@@ -592,137 +476,137 @@ a {
     flex-wrap: wrap;
 }
 
-.copy-btn, .download-btn {
+.copy-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s;
+    background: #3A5672;
+    color: #EAEFF5;
 }
 
-.copy-btn {
-    background: #2196f3;
-    color: white;
-}
-
-.copy-btn:hover {
-    background: #1976d2;
-}
-
-.download-btn {
-    background: #ff9800;
-    color: white;
-}
-
-.download-btn:hover {
-    background: #f57c00;
-}
+.copy-btn:hover { background: #4a6a87; }
 
 .wild-type-reference {
-    background: #1f3b73;
+    background: #1a2d42;
     padding: 25px;
     border-radius: 8px;
-    border: 1px solid #132b57;
+    border: 1px solid #1e3248;
 }
 
-.wild-type-reference h3 {
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 15px;
+.wild-type-reference h3 { color: #EAEFF5; text-align: center; margin-bottom: 15px; }
+.wild-type-sequence { text-align: center; }
+.wild-type-sequence p { color: #C2D0DE; margin-bottom: 15px; }
+
+/* Sequence annotation */
+.seq-annotated {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 2;
+    word-break: break-all;
+    text-align: left;
+    padding: 15px;
 }
 
-.wild-type-sequence {
-    text-align: center;
+.seq-analyzed {
+    background-color: #3A5672;
+    color: #EAEFF5;
+    border-radius: 3px;
+    padding: 1px 2px;
+    cursor: default;
 }
 
-.wild-type-sequence p {
-    color: #ffffff;
-    margin-bottom: 15px;
-    opacity: 0.9;
+.seq-legend { display: flex; gap: 20px; justify-content: center; margin-top: 15px; font-size: 13px; flex-wrap: wrap; }
+.seq-legend-item { display: flex; align-items: center; gap: 6px; color: #C2D0DE; }
+.seq-legend-swatch { display: inline-block; width: 16px; height: 16px; border-radius: 3px; background: #3A5672; }
+.seq-legend-swatch-wt { background: #111e2e; border: 1px solid #3A5672; }
+
+.numbering-block {
+    background: #0A1520;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 15px;
+    text-align: left;
+    overflow-x: auto;
+    color: #C2D0DE;
 }
 
+/* ── Pagination ───────────────────────────────────────────────────────────── */
 .pagination {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
     padding: 20px;
-    background: #1f3b73;
+    background: #1a2d42;
     border-radius: 8px;
 }
 
 .pagination button {
-    background: #2196f3;
-    color: white;
+    background: #3A5672;
+    color: #EAEFF5;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.pagination button:hover:not(:disabled) {
-    background: #1976d2;
-}
+.pagination button:hover:not(:disabled) { background: #4a6a87; }
+.pagination button:disabled { background: #1e3248; color: #7E97B0; cursor: not-allowed; }
+#page-info { color: #C2D0DE; }
 
-.pagination button:disabled {
-    background: #6c757d;
-    cursor: not-allowed;
-}
-
-#page-info {
-    color: #ffffff;
-}
-
+/* ── Misc panels ──────────────────────────────────────────────────────────── */
 .placeholder-section {
-    background-color: #132b57;
+    background-color: #111e2e;
     padding: 30px;
     border-radius: 10px;
-    border: 2px dashed #1f3b73;
+    border: 1px solid #1e3248;
     text-align: center;
     margin: 20px 0;
-    color: #ffffff;
+    color: #C2D0DE;
 }
 
 .important-note {
-    background: #1f3b73;
+    background: #111e2e;
     padding: 25px;
     border-radius: 10px;
     margin: 30px 0;
-    border: 2px solid #ffffff;
+    border: 1px solid #3A5672;
 }
 
-.important-note h2 {
-    color: #ffffff;
-    margin-bottom: 15px;
-}
+.important-note h2 { color: #EAEFF5; margin-bottom: 15px; }
 
 .numbering-examples {
-    background: #132b57;
+    background: #0A1520;
     padding: 15px;
     border-radius: 6px;
     margin: 15px 0;
     font-family: 'Courier New', monospace;
+    color: #C2D0DE;
 }
 
+.numbering-examples p { text-align: left; color: #C2D0DE; margin-bottom: 4px; }
+
 .numbering-clarification {
-    background: #132b57;
+    background: #111e2e;
     padding: 25px;
     border-radius: 10px;
     margin: 20px 0;
-    border: 1px solid #1f3b73;
+    border: 1px solid #1e3248;
 }
 
-.numbering-clarification h2 {
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 15px;
-}
+.numbering-clarification h2 { color: #EAEFF5; text-align: center; margin-bottom: 15px; }
 
 .numbering-table {
-    background: #1f3b73;
+    background: #1a2d42;
     padding: 20px;
     border-radius: 8px;
     margin-top: 15px;
+    color: #C2D0DE;
 }
 
 .findings-grid {
@@ -733,86 +617,253 @@ a {
 }
 
 .finding-item {
-    background: #1f3b73;
+    background: #1a2d42;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #132b57;
+    border: 1px solid #1e3248;
+    text-align: left;
+    color: #C2D0DE;
+}
+
+.finding-item h3 { color: #EAEFF5; margin-bottom: 10px; font-size: 1.1em; }
+
+.conclusions-content { text-align: center; margin: 20px 0; color: #C2D0DE; }
+.conclusions-content h3 { color: #EAEFF5; margin: 25px 0 15px 0; text-align: center; }
+.conclusions-content ul { margin-bottom: 20px; }
+
+/* ── Video / gallery ──────────────────────────────────────────────────────── */
+.video-section {
+    background: #111e2e;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 1px solid #1e3248;
+    text-align: center;
+}
+
+.video-section h3 { color: #EAEFF5; margin-bottom: 15px; }
+
+.structure-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
     text-align: left;
 }
 
-.finding-item h3 {
-    color: #ffffff;
-    margin-bottom: 10px;
-    font-size: 1.1em;
+.struct-card {
+    background: #1a2d42;
+    border-radius: 10px;
+    border: 1px solid #2a4060;
+    overflow: hidden;
+    transition: transform 0.15s;
 }
 
-.conclusions-content {
-    text-align: center;
-    margin: 20px 0;
+.struct-card:hover { transform: translateY(-2px); }
+
+.struct-card-header {
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid #1e3248;
 }
 
-.conclusions-content h3 {
-    color: #ffffff;
-    margin: 25px 0 15px 0;
-    text-align: center;
+.struct-card-title { font-size: 1.05em; color: #EAEFF5; margin-bottom: 3px; }
+
+.struct-card-ddg { font-size: 13px; font-family: 'Courier New', monospace; }
+.struct-card-ddg.stabilizing { color: #7E97B0; }
+.struct-card-ddg.wt          { color: #7E97B0; opacity: 0.6; }
+
+.struct-card-body { padding: 12px 16px 16px; }
+
+.struct-video-container {
+    background: #0A1520;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
 }
 
-.conclusions-content ul {
-    margin-bottom: 20px;
+.struct-video-container video { width: 100%; height: 100%; object-fit: cover; display: none; }
+
+.struct-video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #7E97B0;
+    font-size: 13px;
 }
 
-/* Footer Styles */
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+.struct-video-placeholder span { font-size: 28px; }
+
+.struct-load-btn {
     width: 100%;
-    background-color: #051426;
-    border-top: 1px solid #1f3b73;
+    background: #3A5672;
+    color: #EAEFF5;
+    border: none;
+    padding: 9px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.struct-load-btn:hover { background: #4a6a87; }
+.struct-load-btn.loaded { background: #1e3a28; color: #a0c8a8; }
+
+.struct-card-desc { font-size: 12px; color: #7E97B0; margin-top: 8px; line-height: 1.5; }
+
+/* ── Initial results tables ───────────────────────────────────────────────── */
+.results-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.result-table-card {
+    background: #111e2e;
+    border-radius: 10px;
+    border: 1px solid #1e3248;
+    overflow: hidden;
+}
+
+.result-table-card-header {
+    background: #1a2d42;
+    padding: 14px 18px;
+    border-bottom: 1px solid #1e3248;
+}
+
+.result-table-card-header .pos-code {
+    font-size: 1.15em;
+    color: #EAEFF5;
+    letter-spacing: 0.5px;
+}
+
+.result-table-card-header .pos-meta {
+    font-size: 11px;
+    color: #7E97B0;
+    margin-top: 2px;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.result-table thead th {
+    background: #0f1c2b;
+    color: #7E97B0;
+    padding: 8px 14px;
+    text-align: left;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #1e3248;
+}
+
+.result-table thead th:last-child { text-align: right; }
+
+.result-table tbody tr {
+    border-bottom: 1px solid #0f1c2b;
+    transition: background 0.1s;
+}
+
+.result-table tbody tr:last-child { border-bottom: none; }
+.result-table tbody tr:hover { background: #0f1c2b; }
+
+.result-table td {
+    padding: 7px 14px;
+    color: #C2D0DE;
+    vertical-align: middle;
+}
+
+.result-table td:last-child {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+}
+
+.ddg-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+}
+
+.ddg-pill.neg { background: #1a2d42; color: #7E97B0; }
+.ddg-pill.pos { background: #2a1820; color: #9a6070; }
+.ddg-pill.neu { background: #1a2028; color: #7E97B0; }
+
+.aa-symbol {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 4px;
+    background: #1e3248;
+    color: #EAEFF5;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    margin-right: 6px;
+}
+
+.result-table-summary {
+    padding: 10px 14px;
+    background: #0f1c2b;
+    border-top: 1px solid #1e3248;
+    font-size: 11px;
+    color: #7E97B0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+.footer {
+    position: static;
+    width: 100%;
+    background-color: #060e18;
+    border-top: 1px solid #1e3248;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 999;
     font-size: 12px;
+    margin-top: 60px;
 }
 
-.footer-left {
-    color: #ffffff;
-    opacity: 0.8;
-}
+.footer-left { color: #7E97B0; }
 
-.footer-right {
-    display: flex;
-    gap: 20px;
-}
+.footer-right { display: flex; gap: 20px; }
 
 .footer-right a {
-    color: #ffffff;
+    color: #7E97B0;
     text-decoration: none;
-    opacity: 0.8;
-    transition: opacity 0.2s;
+    transition: color 0.2s;
     cursor: pointer;
 }
 
-.footer-right a:hover {
-    opacity: 1;
-}
+.footer-right a:hover { color: #C2D0DE; }
 
-/* Modal Styles */
+/* ── Modal ────────────────────────────────────────────────────────────────── */
 .modal {
     display: none;
     position: fixed;
     z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.75);
 }
 
 .modal-content {
-    background-color: #132b57;
+    background-color: #111e2e;
     margin: 5% auto;
     padding: 30px;
     border-radius: 10px;
@@ -820,19 +871,12 @@ a {
     max-width: 600px;
     max-height: 80%;
     overflow-y: auto;
-    border: 1px solid #1f3b73;
+    border: 1px solid #1e3248;
+    color: #C2D0DE;
 }
 
-.close {
-    color: #ffffff;
-    float: right;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-.close:hover {
-    opacity: 0.7;
-}
+.close { color: #7E97B0; float: right; font-size: 28px; cursor: pointer; }
+.close:hover { color: #EAEFF5; }
 
 </style>
 </head>
@@ -850,33 +894,39 @@ a {
 
 <div class="container">
 
+<!-- ═══════════════════════════════ HOME ═══════════════════════════════ -->
 <div id="home" class="page active">
 <h1>Binding Energy Optimization in Integrin Through Site-Directed Mutagenesis</h1>
 
 <p>
 This project investigates how targeted mutations affect binding free energy in the Integrin Alpha-1 I-domain. 
-Residues near the magnesium-binding site first were selected and mutated using MutateX and FoldX, and then additional surrounding sites 
+Residues near the magnesium-binding site were first selected and mutated using MutateX and FoldX, and then additional surrounding sites 
 were mutated using a high-performance cluster (HPC). The goal is to identify mutations that stabilize binding interactions.
 </p>
 
 <div class="important-note">
     <h2>Residue Numbering</h2>
     <p>
-        This analysis uses PDB structure numbering (2M32), which differs from the full UniProt sequence. 
-        For reference, here's how the numbering corresponds between the two:
+        This analysis uses <strong>PDB structure numbering (2M32)</strong>, which covers a 58-residue region of the I-domain and does <em>not</em> correspond directly to the full UniProt sequence. The PDB structure begins at UniProt residue 168, creating a consistent offset of <strong>+167</strong> between PDB and UniProt positions.
     </p>
     <div class="numbering-examples">
-        <p>UniProt Position 180 (Ser) → PDB Position 13 (SA13)</p>
-        <p>UniProt Position 181 (Asn) → PDB Position 14 (NA14)</p>
-        <p>UniProt Position 182 (Ser) → PDB Position 15 (SA15)</p>
-        <p>...and so on through the analyzed region</p>
+        <p><strong>PDB pos.</strong> &nbsp;→&nbsp; <strong>UniProt pos.</strong> &nbsp;→&nbsp; <strong>Residue</strong></p>
+        <p>PDB&nbsp;&nbsp;1 (S) &nbsp;=&nbsp; UniProt 168</p>
+        <p>PDB 11 (D) &nbsp;=&nbsp; UniProt 178</p>
+        <p>PDB 13 (S) &nbsp;=&nbsp; UniProt 180</p>
+        <p>PDB 14 (N) &nbsp;=&nbsp; UniProt 181</p>
+        <p>PDB 17 (Y) &nbsp;=&nbsp; UniProt 184</p>
+        <p>PDB 18 (P) &nbsp;=&nbsp; UniProt 185</p>
+        <p>PDB 58 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp; UniProt 225</p>
     </div>
-    <p>
-    
+    <p style="margin-top:12px;">
+        All mutation codes throughout this site (e.g. <strong>D11V</strong>, <strong>S13W</strong>, <strong>N14F</strong>) use <strong>PDB 2M32 numbering</strong>. 
+        The format is: <em>[wild-type residue][PDB position][mutant residue]</em>. Since all residues are on chain A, the chain letter is omitted.
     </p>
 </div>
 </div>
 
+<!-- ═══════════════════════════════ SELECTION ═══════════════════════════════ -->
 <div id="selection" class="page">
 <h2>1. Sequence Acquisition</h2>
 
@@ -917,15 +967,14 @@ The structure was obtained from the Protein Data Bank (PDB ID: 2M32), representi
 
 <p>
 PDBe PISA was used to evaluate accessible surface area (ASA) and buried surface area (BSA). 
-Residues with relatively high ASA and low BSA were selected as mutation targets, as these are more likely to influence binding interactions. The selected residues were N181, Y184, and P185. Residue numbering differs between the UniProt/AlphaFold sequence and the PDB structure (2M32). 
-For example, residue N181 in the UniProt sequence corresponds to position 14 in the PDB file, 
-while Y184 corresponds to position 17 and P185 corresponds to position 18. 
+Residues with relatively high ASA and low BSA were selected as mutation targets, as these are more likely to influence binding interactions. The selected residues were N181, Y184, and P185 (UniProt numbering), corresponding to positions <strong>NA14</strong>, <strong>YA17</strong>, and <strong>PA18</strong> in the PDB 2M32 structure.
 </p>
 
 <img src="images/pisa_3.png" class="img-large">
 </div>
 </div>
 
+<!-- ═══════════════════════════════ WORKFLOW ═══════════════════════════════ -->
 <div id="workflow" class="page">
 <h2>MutateX Workflow</h2>
 
@@ -935,7 +984,6 @@ MutateX with FoldX was used to introduce mutations and calculate changes in bind
 
 <div class="section">
 <h2>1. Install Homebrew &amp; Python 3.11</h2>
-
 <pre>
 cd /Users/inesnix/Downloads/foldx5_Mac_0
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -946,7 +994,6 @@ brew install python@3.11
 
 <div class="section">
 <h2>2. Clone MutateX &amp; Create Virtual Environment</h2>
-
 <pre>
 git clone https://github.com/ELELAB/mutatex.git
 
@@ -958,7 +1005,6 @@ source mutatex-env/bin/activate
 
 <div class="section">
 <h2>3. Install MutateX &amp; Dependencies</h2>
-
 <pre>
 cd mutatex
 
@@ -974,7 +1020,6 @@ cd ..
 
 <div class="section">
 <h2>4. Set Up FoldX Binary</h2>
-
 <pre>
 chmod +x foldx_20270131
 
@@ -988,7 +1033,6 @@ echo $FOLDX_BINARY
 
 <div class="section">
 <h2>5. Copy Required Runfile Templates</h2>
-
 <pre>
 cp mutatex/tests/foldxsuite5/interaction_skip_repair/mutate_runfile_template.txt .
 
@@ -1000,7 +1044,6 @@ cp mutatex/tests/foldxsuite5/interaction_nomultimers/repair_runfile_template.txt
 
 <div class="section">
 <h2>6. Download &amp; Clean PDB File</h2>
-
 <pre>
 curl -O https://files.rcsb.org/download/2M32.pdb
 
@@ -1010,7 +1053,6 @@ grep "^ATOM" 2M32.pdb | grep -v "HYP\|ACE\|NH2" > 2M32_clean.pdb
 
 <div class="section">
 <h2>7. Check Chains and Residue Numbering</h2>
-
 <pre>
 grep "^ATOM" 2M32_clean.pdb | awk '{print $5}' | sort -u
 
@@ -1020,7 +1062,6 @@ grep "^ATOM" 2M32_clean.pdb | awk '$5 == "A" && $3 == "CA" {print $6, $4}' | gre
 
 <div class="section">
 <h2>8. Run</h2>
-
 <pre>
 echo -e "NA14\nYA17\nPA18" > poslist.txt
 
@@ -1041,7 +1082,6 @@ mutatex 2M32_clean.pdb \
 
 <div class="section">
 <h2>9. Run Across All NMR Models</h2>
-
 <pre>
 for i in 0 1 2 3 4 5 6 7 8 9; do
 
@@ -1064,11 +1104,6 @@ done
 
 <div class="section">
 <h2>10. Compute Average ΔΔG Across All Models</h2>
-
-<p>
-The following command computes the average binding energy changes for each mutation at positions NA14, YA17, and PA18 across all models.
-</p>
-
 <pre>
 for pos in NA14 YA17 PA18; do
   echo "$pos"
@@ -1078,115 +1113,140 @@ done
 </div>
 </div>
 
+<!-- ═══════════════════════════════ INITIAL RESULTS ═══════════════════════════════ -->
 <div id="initial" class="page">
 <h2>Results Across NMR Models</h2>
 
 <p>
-Binding free energy changes (ΔΔG) were computed across 10 NMR models. 
-Negative values indicate stabilizing mutations, while positive values indicate destabilization.
+Binding free energy changes (ΔΔG) were computed across 10 NMR models for three initial positions selected near the magnesium-binding site. Values below zero indicate stabilizing mutations; values above zero indicate destabilization.
 </p>
 
-<h3>Average ΔΔG Across All Models</h3>
+<div style="background:#111e2e;border-radius:10px;border:1px solid #1e3248;padding:18px 24px;margin:24px 0;display:flex;gap:40px;justify-content:center;flex-wrap:wrap;">
+    <div style="text-align:center;">
+        <div style="font-size:11px;color:#7E97B0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Positions analyzed</div>
+        <div style="font-size:1.4em;color:#EAEFF5;">3</div>
+    </div>
+    <div style="text-align:center;">
+        <div style="font-size:11px;color:#7E97B0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">NMR models averaged</div>
+        <div style="font-size:1.4em;color:#EAEFF5;">10</div>
+    </div>
+    <div style="text-align:center;">
+        <div style="font-size:11px;color:#7E97B0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Most stabilizing</div>
+        <div style="font-size:1.4em;color:#7E97B0;font-family:'Courier New',monospace;">N14F &nbsp;−1.013</div>
+    </div>
+    <div style="text-align:center;">
+        <div style="font-size:11px;color:#7E97B0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Most destabilizing</div>
+        <div style="font-size:1.4em;color:#8a5060;font-family:'Courier New',monospace;">N14E &nbsp;+0.979</div>
+    </div>
+</div>
 
-<div class="results-block">
-<pre>
-NA14
-G Gly -0.45996
-A Ala -0.44081
-V Val -0.59865
-L Leu -0.78349
-I Ile -0.98153
-M Met -0.67259
-F Phe -1.01273
-W Trp -0.76145
-P Pro 0.88998
-S Ser -0.02299
-T Thr 0.28142
-C Cys -0.44385
-Y Tyr -0.40266
-Q Gln 0.07395
-D Asp 0.95498
-E Glu 0.97908
-K Lys -0.14312
-R Arg -0.24048
-H His -0.23976
+<div class="results-tables-grid">
 
-YA17 
-G Gly 0.02526
-A Ala 0.02150
-V Val 0.00860
-L Leu 0.00680
-I Ile -0.00091
-M Met 0.00771
-F Phe 0.00307
-W Trp -0.01862
-P Pro -0.01591
-S Ser 0.01758
-T Thr 0.00614
-C Cys 0.01901
-Y Tyr 0.00008
-Q Gln -0.00900
-D Asp 0.11188
-E Glu 0.07459
-K Lys -0.03102
-R Arg -0.06451
-H His -0.00757
+    <!-- N14 -->
+    <div class="result-table-card">
+        <div class="result-table-card-header">
+            <div class="pos-code">N14 &mdash; Asparagine</div>
+            <div class="pos-meta">PDB position 14 &middot; UniProt 181 &middot; near Mg²⁺ binding site</div>
+        </div>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Substitution</th>
+                    <th>Amino acid</th>
+                    <th>ΔΔG (kcal/mol)</th>
+                </tr>
+            </thead>
+            <tbody id="n14-tbody"></tbody>
+        </table>
+        <div class="result-table-summary">
+            <span>19 substitutions</span>
+            <span>12 stabilizing &middot; 4 destabilizing &middot; 3 near-neutral</span>
+        </div>
+    </div>
 
-PA18 
-G Gly 0.00798
-A Ala 0.01145
-V Val 0.01147
-L Leu 0.00127
-I Ile 0.00285
-M Met 0.00110
-F Phe 0.01130
-W Trp -0.00039
-P Pro 0.00002
-S Ser -0.00075
-T Thr 0.01032
-C Cys -0.00100
-Y Tyr 0.01280
-Q Gln 0.01107
-D Asp 0.01615
-E Glu 0.04047
-K Lys -0.00112
-R Arg -0.00273
-H His 0.00628
-</pre>
+    <!-- Y17 -->
+    <div class="result-table-card">
+        <div class="result-table-card-header">
+            <div class="pos-code">Y17 &mdash; Tyrosine</div>
+            <div class="pos-meta">PDB position 17 &middot; UniProt 184 &middot; surface-exposed</div>
+        </div>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Substitution</th>
+                    <th>Amino acid</th>
+                    <th>ΔΔG (kcal/mol)</th>
+                </tr>
+            </thead>
+            <tbody id="y17-tbody"></tbody>
+        </table>
+        <div class="result-table-summary">
+            <span>19 substitutions</span>
+            <span>Mostly near-neutral</span>
+        </div>
+    </div>
+
+    <!-- P18 -->
+    <div class="result-table-card">
+        <div class="result-table-card-header">
+            <div class="pos-code">P18 &mdash; Proline</div>
+            <div class="pos-meta">PDB position 18 &middot; UniProt 185 &middot; surface-exposed</div>
+        </div>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>Substitution</th>
+                    <th>Amino acid</th>
+                    <th>ΔΔG (kcal/mol)</th>
+                </tr>
+            </thead>
+            <tbody id="p18-tbody"></tbody>
+        </table>
+        <div class="result-table-summary">
+            <span>19 substitutions</span>
+            <span>Mostly near-neutral</span>
+        </div>
+    </div>
+
 </div>
 </div>
 
+<!-- ═══════════════════════════════ HPC ═══════════════════════════════ -->
 <div id="hpc" class="page">
 <h1>HPC Analysis & Visualization</h1>
 
 <p>
-In the High-Performance Computing (HPC) analysis, mutations were tested across 58 positions using the same methodology, but with identity mutations excluded to ensure clean results. The analysis covered positions 1-58 of the protein sequence (using PDB 2M32 numbering).
+In the High-Performance Computing (HPC) analysis, mutations were tested across <strong>58 positions</strong> using the same methodology, with identity mutations excluded. These 58 positions correspond to the full chain A of PDB structure 2M32 (residues 1–58 in PDB numbering, equivalent to UniProt residues 168–225 of Integrin Alpha-1).
 </p>
 
 <div class="numbering-clarification">
     <h2>Residue Numbering System</h2>
     <p>
-        All results use PDB structure numbering 2M32 rather than full UniProt sequence numbering:
+        All results use PDB 2M32 numbering. The structure captures a 58-residue segment of the I-domain. Every position is offset by +167 relative to the full UniProt sequence (UniProt P56199). Since all residues are on chain A, mutation codes use the format <strong>[wild-type][position]</strong> — e.g., <strong>D11V</strong> = Asp at position 11 → Val.
     </p>
-    <div class="numbering-table">
-        <p>Example Correspondences:</p>
-        <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
-            <li>PDB Position 13 = UniProt Position 180 (Serine)</li>
-            <li>PDB Position 14 = UniProt Position 181 (Asparagine)</li>
-            <li>PDB Position 17 = UniProt Position 184 (Tyrosine)</li>
-            <li>PDB Position 18 = UniProt Position 185 (Proline)</li>
-        </ul>
-        <p>This systematic offset of 167 residues continues throughout the analyzed region.</p>
+
+    <div style="margin-top: 15px;">
+        <button onclick="toggleCorrespondences()" id="corr-toggle-btn" style="background:#2196f3;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:14px;display:flex;align-items:center;gap:8px;margin:0 auto;">
+            <span id="corr-arrow" style="display:inline-block;transition:transform 0.3s;">▶</span>
+            Show all 58 position correspondences
+        </button>
+        <div id="corr-body" style="max-height:0;overflow:hidden;transition:max-height 0.4s ease;">
+            <div class="numbering-table" style="margin-top:15px;">
+                <div id="corr-table-content" style="font-family:'Courier New',monospace;font-size:13px;line-height:1.9;column-count:2;column-gap:30px;text-align:left;">
+                    <!-- filled by JS -->
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="placeholder-section">
-    <h2>Comprehensive Mutation Analysis & Visualizations</h2>
+    <h2>Mutation Analysis & Visualizations</h2>
     <p>The complete mutation dataset was converted from JavaScript to JSON format and analyzed using RStudio/R to produce visualizations of the results.</p>
     
     <div style="text-align: center; margin: 30px 0;">
-        <img src="images/heatmap_actual.png" alt="Comprehensive mutation heatmap showing ΔΔG values for all mutations" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #1f3b73; margin-bottom: 15px;">
-        <p><strong>Mutation Heatmap:</strong> Displays all 1,102 mutations across 58 positions with color coding for binding free energy changes (ΔΔG). Blue regions indicate stabilizing mutations (negative ΔΔG), while red regions show destabilizing effects (positive ΔΔG).</p>
+        <img src="images/heatmap_actual.png" alt="Mutation heatmap showing ΔΔG values for all mutations" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #1f3b73; margin-bottom: 15px;">
+        <p><strong>Mutation Heatmap:</strong> Displays all 1,102 mutations across 58 positions with colour coding for binding free energy changes (ΔΔG). Blue regions indicate stabilizing mutations (negative ΔΔG), while red regions show destabilizing effects (positive ΔΔG).</p>
     </div>
 
     <div class="img-row" style="margin: 30px 0;">
@@ -1196,13 +1256,13 @@ In the High-Performance Computing (HPC) analysis, mutations were tested across 5
         </div>
         <div style="width: 48%;">
             <img src="images/Mutation_Effects.png" alt="Amino acid substitution effects" style="width: 100%; border-radius: 8px; border: 1px solid #1f3b73;">
-            <p style="margin-top: 10px; font-size: 0.9em;"><strong>Sequence Profile:</strong> The red line shows average mutation effect at each position. The gray ribbon shows the range. Blue dots mark the most stabilizing mutation possible at each position. </p>
+            <p style="margin-top: 10px; font-size: 0.9em;"><strong>Sequence Profile:</strong> The red line shows the average mutation effect at each position. The grey ribbon shows the range. Blue dots mark the most stabilizing mutation possible at each position.</p>
         </div>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
         <img src="images/Stabilization_Hotspot.png" alt="Stabilization hotspots" style="max-width: 80%; height: auto; border-radius: 8px; border: 1px solid #1f3b73; margin-bottom: 15px;">
-        <p><strong>Experimental Target Hotspots:</strong> Identifies positions with multiple stabilizing mutations (ΔΔG < -0.5 kcal/mol).</p>
+        <p><strong>Experimental Target Hotspots:</strong> Identifies positions with multiple stabilizing mutations (ΔΔG &lt; −0.5 kcal/mol).</p>
     </div>
 </div>
 
@@ -1210,45 +1270,45 @@ In the High-Performance Computing (HPC) analysis, mutations were tested across 5
     <h2>Key Findings</h2>
     <div class="findings-grid">
         <div class="finding-item">
-            <h3>Highly Stabilizing Hotspots</h3>
-            <p>Position DA11 (Asp→Val: ΔΔG = -6.28 kcal/mol) had the most negative (stabilizing) change.</p>
+            <h3>Highly Stabilizing Hotspot</h3>
+            <p><strong>D11V</strong> (Asp→Val, PDB pos. 11 / UniProt 178): ΔΔG = −6.28 kcal/mol — the most stabilizing substitution identified.</p>
         </div>
         <div class="finding-item">
-            <h3>Structurally Sensitive Regions</h3>
-            <p>Position SA13 (Ser→Trp: ΔΔG = +44.56 kcal/mol) showed the largest positive change (destabilization).</p>
+            <h3>Structurally Sensitive Region</h3>
+            <p><strong>S13W</strong> (Ser→Trp, PDB pos. 13 / UniProt 180): ΔΔG = +44.56 kcal/mol — the largest destabilizing effect observed.</p>
         </div>
     </div>
 </div>
 
-<div class="placeholder-section">
-    <h2>AlphaFold Structure Comparisons</h2>
-    <p>[Placeholder for AlphaFold Results]</p>
-    <p>This section will show AlphaFold structure predictions for the most stabilizing mutations identified from the HPC analysis:</p>
-    <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
-        <li>...</li>
-    </ul>
+<!-- AlphaFold structure video gallery -->
+<div class="video-section">
+    <h3>AlphaFold Structure Comparisons</h3>
+    <p style="opacity:0.85;font-size:14px;">Videos are loaded locally in your browser and never uploaded anywhere. Load each MP4 using the button on its card. The structures shown are the wild-type 2M32 and the top stabilizing mutants identified from the HPC scan.</p>
+
+    <div class="structure-gallery" id="structure-gallery">
+        <!-- cards injected by JS -->
+    </div>
 </div>
 
 <div class="placeholder-section">
     <h2>Conclusions & Future Research</h2>
-    <p>[Placeholder for Conclusions]</p>
     <div class="conclusions-content">
         <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-            <li>Stabilization Mechanisms: [Why certain positions might show stabilization potential]</li>
+            <li>Stabilization Mechanisms: [Why certain positions might show stabilisation potential]</li>
             <li>Structural Constraints: [Which mutations disrupt protein structure]</li>
             <li>Binding Affinity Improvements: [Applications for improving binding affinity interactions]</li>
         </ul>
-        
     </div>
 </div>
 
 <h3><a onclick="showPage('explorer')" style="font-size: 1.2em; cursor: pointer;">Explore All Mutation Data →</a></h3>
 </div>
 
+<!-- ═══════════════════════════════ EXPLORER ═══════════════════════════════ -->
 <div id="explorer" class="page">
 <h1>Explore All Mutations</h1>
 <p style="text-align: center; margin-bottom: 30px;">
-All mutation data across 58 positions.
+All mutation data across 58 positions (PDB 2M32 numbering). Mutation codes are formatted as <em>[wild-type][PDB position][mutant]</em> — e.g., D11V.
 </p>
 
 <div class="explorer-container">
@@ -1278,7 +1338,7 @@ All mutation data across 58 positions.
     <div class="filters-section" id="filters-section">
         <div class="controls">
             <div class="filter-group">
-                <label for="position-filter">Position (1-58):</label>
+                <label for="position-filter">Position (1–58, PDB 2M32):</label>
                 <select id="position-filter">
                     <option value="">All Positions</option>
                 </select>
@@ -1302,11 +1362,11 @@ All mutation data across 58 positions.
                 <label for="ddg-filter">Mutation Effect:</label>
                 <select id="ddg-filter">
                     <option value="">All Effects</option>
-                    <option value="stabilizing">Stabilizing (ΔΔG < 0)</option>
-                    <option value="destabilizing">Destabilizing (ΔΔG > 0)</option>
-                    <option value="highly-stabilizing">Highly Stabilizing (ΔΔG < -2)</option>
-                    <option value="highly-destabilizing">Highly Destabilizing (ΔΔG > 10)</option>
-                    <option value="neutral">Near Neutral (|ΔΔG| < 1)</option>
+                    <option value="stabilizing">Stabilizing (ΔΔG &lt; 0)</option>
+                    <option value="destabilizing">Destabilizing (ΔΔG &gt; 0)</option>
+                    <option value="highly-stabilizing">Highly Stabilizing (ΔΔG &lt; −2)</option>
+                    <option value="highly-destabilizing">Highly Destabilizing (ΔΔG &gt; 10)</option>
+                    <option value="neutral">Near Neutral (|ΔΔG| &lt; 1)</option>
                 </select>
             </div>
 
@@ -1343,6 +1403,7 @@ All mutation data across 58 positions.
 </div>
 </div>
 
+<!-- ═══════════════════════════════ SEQUENCE GENERATOR ═══════════════════════════════ -->
 <div id="sequence-generator" class="page">
 <h1>Custom Sequence Generator</h1>
 <p style="text-align: center; margin-bottom: 30px;">
@@ -1355,17 +1416,22 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
         <div class="info-grid">
             <div class="info-item">
                 <h3>Input Format</h3>
-                <p>Enter mutations like: D11V, S13W, or A24R</p>
-                <p>Format: [Original][Position][New] (e.g., D11V means Aspartic Acid at position 11 → Valine)</p>
+                <p>Enter mutations using <strong>PDB 2M32 position numbers</strong>: e.g. <strong>D11V</strong>, <strong>S13W</strong>, <strong>N14F</strong></p>
+                <p>Format: [Wild-type AA][PDB position][New AA]</p>
+                <p style="font-size:12px; opacity:0.8;">Example: D11V = Aspartic Acid at PDB position 11 → Valine (UniProt 178)</p>
             </div>
             <div class="info-item">
                 <h3>Validation</h3>
                 <p>This automatically checks:</p>
                 <ul>
-                    <li>Position is within range (1-200)</li>
-                    <li>Original amino acid matches the wild-type sequence</li>
+                    <li>Position is within the 58-residue analyzed region</li>
+                    <li>Original amino acid matches the PDB 2M32 wild-type sequence</li>
                     <li>Input format is correct</li>
                 </ul>
+            </div>
+            <div class="info-item">
+                <h3>About the Sequence</h3>
+                <p>The <strong>full 200 AA wild-type sequence</strong> is shown below. Positions 1–58 (highlighted in the reference) correspond to the 58-residue PDB 2M32 chain A region that was analyzed. Mutations entered here are applied to position numbers matching the PDB structure — not UniProt positions.</p>
             </div>
         </div>
     </div>
@@ -1377,7 +1443,7 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
                 <input type="text" id="mutation-input-gen" placeholder="Enter mutation (e.g., D11V)" maxlength="10">
                 <button onclick="generateSequence()" class="generate-btn">Generate Sequence</button>
             </div>
-            <p class="input-help">Try examples: <span class="example-link" onclick="setExample('D11V')">D11V</span>, <span class="example-link" onclick="setExample('S13W')">S13W</span>, <span class="example-link" onclick="setExample('A24R')">A24R</span></p>
+            <p class="input-help">Try examples: <span class="example-link" onclick="setExample('D11V')">D11V</span>, <span class="example-link" onclick="setExample('S13W')">S13W</span>, <span class="example-link" onclick="setExample('N14F')">N14F</span></p>
         </div>
 
         <div id="sequence-output-gen" class="sequence-output-section" style="display: none;">
@@ -1385,22 +1451,39 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
             <div class="sequence-display">
                 <div class="mutation-details-gen">
                     Mutation: <span id="mutation-description"></span><br>
-                    Position: <span id="position-description"></span>
+                    PDB Position: <span id="position-description"></span><br>
+                    UniProt Position: <span id="uniprot-description"></span>
                 </div>
                 <div class="sequence-text" id="generated-sequence-gen"></div>
                 <div class="sequence-actions">
-                    <button onclick="copySequence()" class="copy-btn">Copy to Clipboard</button>
-                    <button onclick="downloadSequence()" class="download-btn">Download as FASTA</button>
+                    <button onclick="copySequence()" class="copy-btn" id="copy-btn">Copy to Clipboard</button>
                 </div>
             </div>
         </div>
 
+        <!-- Wild-type reference with annotated sequence -->
         <div class="wild-type-reference">
-            <h3>Wild-Type Reference Sequence</h3>
+            <h3>Wild-Type Reference Sequence (200 AA, Full I-domain)</h3>
             <div class="wild-type-sequence">
-                <p>Length: 200 amino acids</p>
-                <div class="sequence-text" style="font-size: 12px;">
-                    STQLDIVIVLDGSNSIYPWDSVTAFLNDLLERMDIGPKQTQVGIVQYGENVTHEFNLNKYSSTEEVLVAAKKIVQRGGRQTMTALGIDTARKEAFTEARGARGRPGGVKPKGVLMVGIEVNTDGGPEGSHPDNGHPRLKKVIQDCEDENIQRFSIAILGSYNRGNLSTEKFVEEIKSIASEPTEKHFFNVSDELALVTIVKTLGERIGPGPGLGENGPGPGPGPGPGLGENGPGPGP
+                <p>The full 200-residue sequence is shown below. Residues at <strong>PDB positions 1–58</strong> (highlighted in blue) correspond to the region analyzed in this study — equivalent to <strong>UniProt positions 168–225</strong> of Integrin Alpha-1 (P56199).</p>
+
+                <div class="sequence-text" id="annotated-wt-sequence" style="font-size:13px; text-align:left;">
+                    <!-- filled by JS -->
+                </div>
+
+                <div class="seq-legend">
+                    <div class="seq-legend-item">
+                        <span class="seq-legend-swatch"></span>
+                        <span>Positions 1–58 analyzed in this study (PDB 2M32)</span>
+                    </div>
+                    <div class="seq-legend-item">
+                        <span class="seq-legend-swatch seq-legend-swatch-wt"></span>
+                        <span>Remaining sequence (not analyzed)</span>
+                    </div>
+                </div>
+
+                <div class="numbering-block" id="numbering-key">
+                    <!-- filled by JS -->
                 </div>
             </div>
         </div>
@@ -1409,44 +1492,22 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
 </div>
 
 
+<!-- ═══════════════════ MODALS ═══════════════════ -->
 <div id="privacy-modal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('privacy-modal')">&times;</span>
         <h2>Privacy Policy</h2>
         <p>Last updated: April 2026</p>
-        
-        <h3>Changes to This Policy</h3>
-        <p>I may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date. Your continued use of this website after any changes indicates your acceptance of the updated policy.</p>
-        
         <h3>Data Collection</h3>
-        <p>I do not collect, store, or process personal data from visitors to this website. This site is intended for informational and academic purposes only.</p>
-        
+        <p>I do not collect, store, or process personal data from visitors to this website.</p>
         <h3>Copyright</h3>
-        <p>© Ines Nix 2026. All rights reserved. All content on this website, including text, graphics, images, and design, is the property of Ines Nix unless otherwise stated and is protected by applicable copyright laws. No content may be reproduced, distributed, modified, or used without prior permission.</p>
-
-        <h3>Copyright & Infringement Notice</h3>
-        <p>I respect the intellectual property rights of others and expect users of this website to do the same. This site may contain third-party materials or links to third-party websites. To the best of my knowledge, such materials do not infringe copyright.</p>
-        
-        <p>If you believe that any content on this site infringes your copyright, please contact me at the email address below. Upon receiving a valid notice, I will respond promptly, including removing or disabling access to the allegedly infringing material where appropriate.</p>
-        
-        <p>Repeat infringers may have their access restricted or terminated.</p>
-        
-        <p>Contact: inessnix@gmail.com</p>
-
+        <p>© Ines Nix 2026. All rights reserved.</p>
         <h3>Google Fonts</h3>
-        <p>This website uses Google Fonts, a service provided by Google. When fonts are loaded, your browser may connect to Google's servers, which may collect technical information such as your IP address. For more information, please review Google's Privacy Policy.</p>
-        
+        <p>This website uses Google Fonts, which may connect to Google's servers and collect technical information such as your IP address.</p>
         <h3>Cookies</h3>
-        <p>This website does not use cookies directly for tracking or analytics. However, third-party services such as GitHub (hosting) and Google (Google Fonts) may use cookies or similar technologies. I do not control these cookies. You can manage or disable cookies through your browser settings.</p>
-
-        <h3>Links to Other Websites</h3>
-        <p>This website may contain links to external websites. I am not responsible for the privacy practices or content of those sites. I encourage you to review the privacy policies of any third-party websites you visit.</p>
-        
-        <h3>Consent</h3>
-        <p>By using this website, you agree to this Privacy Policy. If you do not agree, please do not use the site.</p>
-        
-        <h3>Research Data Disclaimer</h3>
-        <p>The mutation data displayed on this site is derived from published research and does not contain any personal or sensitive information.</p>
+        <p>This website does not use cookies directly. Third-party services (GitHub, Google Fonts) may use cookies.</p>
+        <h3>Contact</h3>
+        <p>inessnix@gmail.com</p>
     </div>
 </div>
 
@@ -1455,42 +1516,19 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
         <span class="close" onclick="closeModal('terms-modal')">&times;</span>
         <h2>Terms of Use</h2>
         <p>Last updated: April 2026</p>
-        
         <h3>Use of This Website</h3>
-        <p>You agree to use this website only for lawful purposes. You must not use the site in any way that could damage, disable, overburden, or impair the website or interfere with any other user's access.</p>
-
-        <h3>Intellectual Property</h3>
-        <p>All content on this website, including text, images, data, and design, is the property of Ines Nix unless otherwise stated. You may not reproduce, distribute, modify, or create derivative works from any content without prior permission.</p>
-        
-        <h3>Academic and Research Use</h3>
-        <p>This website is intended for academic and research purposes. Any data, tools, or outputs provided should be used responsibly and in accordance with applicable research standards.</p>
-        
+        <p>You agree to use this website only for lawful, academic, or research purposes.</p>
         <h3>Data Accuracy</h3>
-        <p>While efforts are made to ensure accuracy, no guarantees are made regarding the completeness or reliability of the data or results. Users should independently verify any information before relying on it.</p>
-        
-        <h3>No Warranties</h3>
-        <p>This website is provided "as is" without any warranties, express or implied. I make no representations or guarantees regarding the functionality, availability, or accuracy of the site.</p>
-        
-        <h3>Limitation of Liability</h3>
-        <p>I am not liable for any direct, indirect, incidental, or consequential damages resulting from the use of this website or reliance on its content.</p>
-        
-        <h3>Third-Party Links</h3>
-        <p>This website may include links to third-party websites. I do not control or endorse these sites and am not responsible for their content or practices.</p>
-        
-        <h3>Research Ethics</h3>
-        <p>Users are responsible for complying with their institution's research ethics guidelines when using any data or outputs from this website.</p>
-        
+        <p>While efforts are made to ensure accuracy, no guarantees are made regarding completeness or reliability. Users should independently verify information before relying on it.</p>
         <h3>Attribution</h3>
-        <p>If you use data or insights from this website in academic work or publications, please cite the appropriate scientific sources and acknowledge this website where relevant.</p>
+        <p>If you use data or insights from this website in academic work, please cite the appropriate scientific sources and acknowledge this website where relevant.</p>
     </div>
 </div>
 
-</div>
+</div><!-- /container -->
 
 <div class="footer">
-    <div class="footer-left">
-        © 2026
-    </div>
+    <div class="footer-left">© 2026 Ines Nix</div>
     <div class="footer-right">
         <a onclick="openModal('privacy-modal')">Privacy Policy</a>
         <a onclick="openModal('terms-modal')">Terms of Use</a>
@@ -1499,102 +1537,273 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
 
 <script src="mutation_data.js"></script>
 <script>
+//  Utilities 
 function sanitizeInput(str) {
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
 }
 
-function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
+function openModal(id) { document.getElementById(id).style.display = 'block'; }
+function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+window.onclick = e => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; }
+
+function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
 }
 
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
+//  Amino acid data 
+const aminoAcidNames = {
+    'G':'Glycine','A':'Alanine','V':'Valine','L':'Leucine','I':'Isoleucine',
+    'M':'Methionine','F':'Phenylalanine','W':'Tryptophan','P':'Proline',
+    'S':'Serine','T':'Threonine','C':'Cysteine','Y':'Tyrosine',
+    'N':'Asparagine','Q':'Glutamine','D':'Aspartic Acid','E':'Glutamic Acid',
+    'K':'Lysine','R':'Arginine','H':'Histidine'
+};
+
+// Full 200 AA sequence (positions 1-58 = PDB 2M32 chain A region, UniProt 168-225)
+const wildTypeSequence = "STQLDIVIVLDGSNSIYPWDSVTAFLNDLLERMDIGPKQTQVGIVQYGENVTHEFNLNKYSSTEEVLVAAKKIVQRGGRQTMTALGIDTARKEAFTEARGARGRPGGVKPKGVLMVGIEVNTDGGPEGSHPDNGHPRLKKVIQDCEDENIQRFSIAILGSYNRGNLSTEKFVEEIKSIASEPTEKHFFNVSDELALVTIVKTLGERIGPGPGLGENGPGPGPGPGPGLGENGPGPGP";
+
+// The first 58 residues (index 0–57) = PDB 2M32 chain A
+const ANALYZED_REGION_LENGTH = 58;
+// UniProt offset: PDB position 1 = UniProt position 168
+const UNIPROT_OFFSET = 167;
+
+// Annotated wild-type display
+function buildAnnotatedSequence() {
+    const container = document.getElementById('annotated-wt-sequence');
+    if (!container) return;
+
+    let html = '<div class="seq-annotated">';
+    for (let i = 0; i < wildTypeSequence.length; i++) {
+        const aa = wildTypeSequence[i];
+        const pdbPos = i + 1;
+        const uniprotPos = i + 1 + UNIPROT_OFFSET;
+        if (i < ANALYZED_REGION_LENGTH) {
+            html += `<span class="seq-analyzed" title="PDB pos ${pdbPos} | UniProt pos ${uniprotPos} | ${aminoAcidNames[aa] || aa}">${aa}</span>`;
+        } else {
+            html += `<span title="Full-sequence pos ${pdbPos} | UniProt pos ${uniprotPos} | ${aminoAcidNames[aa] || aa}">${aa}</span>`;
+        }
+        // spacing every 10
+        if ((i + 1) % 10 === 0) html += ' ';
+        if ((i + 1) % 50 === 0) html += '\n';
+    }
+    html += '</div>';
+    container.innerHTML = html;
+
+    // Build a compact numbering key for the analyzed 58
+    const keyEl = document.getElementById('numbering-key');
+    if (!keyEl) return;
+    let keyHtml = '<strong>Analyzed positions (PDB → UniProt → Residue):</strong>\n';
+    for (let i = 0; i < ANALYZED_REGION_LENGTH; i++) {
+        const aa = wildTypeSequence[i];
+        const pdb = i + 1;
+        const uni = pdb + UNIPROT_OFFSET;
+        keyHtml += `PDB ${String(pdb).padStart(2)} = UniProt ${uni} (${aa})`;
+        if (i < ANALYZED_REGION_LENGTH - 1) keyHtml += '\n';
+    }
+    keyEl.textContent = keyHtml;
 }
 
-window.onclick = function(event) {
-    if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
+// Structure gallery 
+const structureCards = [
+    {
+        id: 'wt',
+        label: '2M32 Wild-Type',
+        subtitle: 'Original structure',
+        ddgLabel: 'Reference',
+        ddgClass: 'wt',
+        desc: 'The unmodified Integrin Alpha-1 I-domain in complex with a collagen-like peptide (PDB 2M32).',
+        filename: '40A5DDC254A3EBAB_camera-spin.mp4'
+    },
+    {
+        id: 'd11v',
+        label: 'D11V',
+        subtitle: 'Asp → Val at position 11',
+        ddgLabel: 'ΔΔG = −6.28 kcal/mol',
+        ddgClass: 'stabilizing',
+        desc: '',
+        filename: '316164BE2F364909_camera-spin.mp4'
+    },
+    {
+        id: 'd11l',
+        label: 'D11L',
+        subtitle: 'Asp → Leu at position 11',
+        ddgLabel: 'ΔΔG = −5.96 kcal/mol',
+        ddgClass: 'stabilizing',
+        desc: 'Second most stabilizing. Leucine substitution at position 11.',
+        filename: '23F293135EE9D60E_camera-spin.mp4'
+    },
+    {
+        id: 'd11m',
+        label: 'D11M',
+        subtitle: 'Asp → Met at position 11',
+        ddgLabel: 'ΔΔG ≈ highly stabilizing',
+        ddgClass: 'stabilizing',
+        desc: 'Methionine substitution at position 11.',
+        filename: '1560189C5A81CAB8_camera-spin.mp4'
+    },
+    {
+        id: 'd11t',
+        label: 'D11T',
+        subtitle: 'Asp → Thr at position 11',
+        ddgLabel: 'ΔΔG ≈ stabilizing',
+        ddgClass: 'stabilizing',
+        desc: 'Threonine substitution at position 11. ',
+        filename: '453A6687092CDA40_camera-spin.mp4'
+    },
+    {
+        id: 'g43m',
+        label: 'G43M',
+        subtitle: 'Gly → Met at position 43',
+        ddgLabel: 'ΔΔG ≈ stabilizing',
+        ddgClass: 'stabilizing',
+        desc: 'Methionine substitution at glycine position 43 (UniProt 210).',
+        filename: '6738EED1445AC5D7_camera-spin.mp4'
+    },
+    {
+        id: 'g43k',
+        label: 'G43K',
+        subtitle: 'Gly → Lys at position 43',
+        ddgLabel: 'ΔΔG ≈ stabilizing',
+        ddgClass: 'stabilizing',
+        desc: 'Lysine substitution at glycine position 43 (UniProt 210). The long positively charged side chain may form new electrostatic contacts.',
+        filename: '6A24F61BC22609F3_camera-spin.mp4'
+    },
+];
+
+function buildStructureGallery() {
+    const gallery = document.getElementById('structure-gallery');
+    if (!gallery) return;
+    gallery.innerHTML = structureCards.map(c => `
+        <div class="struct-card" id="card-${c.id}">
+            <div class="struct-card-header">
+                <div class="struct-card-title">${c.label}</div>
+                <div class="struct-card-subtitle" style="font-size:12px;opacity:0.7;margin-bottom:4px;">${c.subtitle}</div>
+                <div class="struct-card-ddg ${c.ddgClass}">${c.ddgLabel}</div>
+            </div>
+            <div class="struct-card-body">
+                <div class="struct-video-container" id="vc-${c.id}">
+                    <div class="struct-video-placeholder" id="ph-${c.id}">
+                        <span>⬡</span>
+                        <div>No video loaded</div>
+                    </div>
+                    <video id="vid-${c.id}" loop playsinline></video>
+                </div>
+                <input type="file" id="fi-${c.id}" accept="video/mp4,video/*" style="display:none;" onchange="loadStructureVideo('${c.id}', this)">
+                <button class="struct-load-btn" id="btn-${c.id}" onclick="document.getElementById('fi-${c.id}').click()">
+                    ▶ Load video
+                </button>
+                <div class="struct-card-desc">${c.desc}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function loadStructureVideo(id, input) {
+    const file = input.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    const video = document.getElementById('vid-' + id);
+    const placeholder = document.getElementById('ph-' + id);
+    const btn = document.getElementById('btn-' + id);
+    video.src = url;
+    video.style.display = 'block';
+    placeholder.style.display = 'none';
+    btn.textContent = '✓ Loaded — click to change';
+    btn.classList.add('loaded');
+    video.play();
+}
+
+//  Correspondence accordion
+function toggleCorrespondences() {
+    const body = document.getElementById('corr-body');
+    const arrow = document.getElementById('corr-arrow');
+    const btn = document.getElementById('corr-toggle-btn');
+    const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+    if (isOpen) {
+        body.style.maxHeight = '0';
+        arrow.style.transform = 'rotate(0deg)';
+        btn.querySelector('span:last-child') && (btn.lastChild.textContent = ' Show all 58 position correspondences');
+    } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        arrow.style.transform = 'rotate(90deg)';
     }
 }
 
-const aminoAcidNames = {
-    'G': 'Glycine', 'A': 'Alanine', 'V': 'Valine', 'L': 'Leucine', 'I': 'Isoleucine',
-    'M': 'Methionine', 'F': 'Phenylalanine', 'W': 'Tryptophan', 'P': 'Proline',
-    'S': 'Serine', 'T': 'Threonine', 'C': 'Cysteine', 'Y': 'Tyrosine',
-    'N': 'Asparagine', 'Q': 'Glutamine', 'D': 'Aspartic Acid', 'E': 'Glutamic Acid',
-    'K': 'Lysine', 'R': 'Arginine', 'H': 'Histidine'
-};
+function buildCorrespondenceTable() {
+    const el = document.getElementById('corr-table-content');
+    if (!el) return;
+//    const notes = {11:'— most stabilizing hotspot', 13:'— most destabilizing (S→W)', 14:'— initial MutateX target', 17:'— initial MutateX target', 18:'— initial MutateX target'};
+    let html = '';
+    for (let i = 0; i < ANALYZED_REGION_LENGTH; i++) {
+        const aa = wildTypeSequence[i];
+        const pdb = i + 1;
+        const uni = pdb + UNIPROT_OFFSET;
+        const note = notes[pdb] ? ` <em style="opacity:0.6;font-size:11px;">${notes[pdb]}</em>` : '';
+        html += `<div>PDB <strong>${String(pdb).padStart(2)}</strong> (${aa}) = UniProt ${uni}${note}</div>`;
+    }
+    el.innerHTML = html;
+    // after content is built, set proper scroll height for accordion
+    const body = document.getElementById('corr-body');
+    if (body) body.style.maxHeight = '0px';
+}
 
-const wildTypeSequence = "STQLDIVIVLDGSNSIYPWDSVTAFLNDLLERMDIGPKQTQVGIVQYGENVTHEFNLNKYSSTEEVLVAAKKIVQRGGRQTMTALGIDTARKEAFTEARGARGRPGGVKPKGVLMVGIEVNTDGGPEGSHPDNGHPRLKKVIQDCEDENIQRFSIAILGSYNRGNLSTEKFVEEIKSIASEPTEKHFFNVSDELALVTIVKTLGERIGPGPGLGENGPGPGPGPGPGLGENGPGPGP";
-
+//  Explorer
 let allMutations = [];
 let filteredMutations = [];
 let currentSort = 'stabilizing';
 let currentPage = 1;
-let mutationsPerPage = 30;
+const mutationsPerPage = 30;
 let filtersCollapsed = true;
-
-// FIX: use classList instead of inline styles so CSS .page.active rules work correctly
-function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => {
-        p.classList.remove('active');
-    });
-    document.getElementById(id).classList.add('active');
-}
 
 if (typeof mutationData !== 'undefined') {
     initializeExplorer(mutationData);
 } else {
     console.warn('mutation_data.js not loaded, using sample data');
-    const sampleData = [
-        { position: 11, wild_type: 'D', target: 'V', ddg: -6.27949, position_code: 'DA11', mutation_name: 'D11V' },
-        { position: 11, wild_type: 'D', target: 'L', ddg: -5.96024, position_code: 'DA11', mutation_name: 'D11L' },
-        { position: 13, wild_type: 'S', target: 'W', ddg: 44.55960, position_code: 'SA13', mutation_name: 'S13W' }
-    ];
-    initializeExplorer(sampleData);
+    initializeExplorer([
+        { position:11, wild_type:'D', target:'V', ddg:-6.27949, position_code:'DA11', mutation_name:'D11V' },
+        { position:11, wild_type:'D', target:'L', ddg:-5.96024, position_code:'DA11', mutation_name:'D11L' },
+        { position:13, wild_type:'S', target:'W', ddg:44.55960, position_code:'SA13', mutation_name:'S13W' }
+    ]);
 }
 
 function initializeExplorer(mutations) {
     allMutations = mutations;
-    filteredMutations = allMutations;
-    
+    filteredMutations = [...allMutations];
+
     document.getElementById('filters-section').classList.add('collapsed');
-    
-    const positions = [...new Set(mutations.map(m => m.position))].sort((a,b) => a-b);
+
     const wildTypes = [...new Set(mutations.map(m => m.wild_type))].sort();
-    const allAminoAcids = ['G', 'A', 'V', 'L', 'I', 'M', 'F', 'W', 'P', 'S', 'T', 'C', 'Y', 'N', 'Q', 'D', 'E', 'K', 'R', 'H'];
-    
-    const positionSelect = document.getElementById('position-filter');
+    const allAAs = ['G','A','V','L','I','M','F','W','P','S','T','C','Y','N','Q','D','E','K','R','H'];
+
+    const posEl = document.getElementById('position-filter');
     for (let i = 1; i <= 58; i++) {
-        const option = document.createElement('option');
-        option.value = i;
-        option.textContent = `Position ${i}`;
-        positionSelect.appendChild(option);
+        const o = document.createElement('option');
+        o.value = i;
+        o.textContent = `PDB Position ${i} (UniProt ${i + UNIPROT_OFFSET})`;
+        posEl.appendChild(o);
     }
 
-    const wildtypeSelect = document.getElementById('wildtype-filter');
+    const wtEl = document.getElementById('wildtype-filter');
     wildTypes.forEach(wt => {
-        const option = document.createElement('option');
-        option.value = wt;
-        option.textContent = `${aminoAcidNames[wt]} (${wt})`;
-        wildtypeSelect.appendChild(option);
+        const o = document.createElement('option');
+        o.value = wt;
+        o.textContent = `${aminoAcidNames[wt] || wt} (${wt})`;
+        wtEl.appendChild(o);
     });
 
-    const targetSelect = document.getElementById('target-filter');
-    allAminoAcids.forEach(aa => {
-        const option = document.createElement('option');
-        option.value = aa;
-        option.textContent = `${aminoAcidNames[aa]} (${aa})`;
-        targetSelect.appendChild(option);
+    const tgEl = document.getElementById('target-filter');
+    allAAs.forEach(aa => {
+        const o = document.createElement('option');
+        o.value = aa;
+        o.textContent = `${aminoAcidNames[aa] || aa} (${aa})`;
+        tgEl.appendChild(o);
     });
 
-    document.getElementById('position-filter').addEventListener('change', applyFilters);
-    document.getElementById('wildtype-filter').addEventListener('change', applyFilters);
-    document.getElementById('target-filter').addEventListener('change', applyFilters);
-    document.getElementById('ddg-filter').addEventListener('change', applyFilters);
-
+    ['position-filter','wildtype-filter','target-filter','ddg-filter'].forEach(id =>
+        document.getElementById(id).addEventListener('change', applyFilters));
     document.getElementById('range-min').addEventListener('input', updateDualRange);
     document.getElementById('range-max').addEventListener('input', updateDualRange);
     document.getElementById('range-min').addEventListener('change', applyFilters);
@@ -1606,248 +1815,251 @@ function initializeExplorer(mutations) {
 }
 
 function toggleFilters() {
-    const filtersSection = document.getElementById('filters-section');
-    const toggleBtn = document.getElementById('filters-toggle-btn');
-    
+    const sec = document.getElementById('filters-section');
+    const btn = document.getElementById('filters-toggle-btn');
     filtersCollapsed = !filtersCollapsed;
-    
-    if (filtersCollapsed) {
-        filtersSection.classList.add('collapsed');
-        toggleBtn.innerHTML = 'All Filters';
-    } else {
-        filtersSection.classList.remove('collapsed');
-        toggleBtn.innerHTML = 'Hide Filters';
-    }
+    sec.classList.toggle('collapsed', filtersCollapsed);
+    btn.textContent = filtersCollapsed ? 'All Filters' : 'Hide Filters';
 }
 
 function updateDualRange() {
-    const minVal = parseFloat(document.getElementById('range-min').value);
-    const maxVal = parseFloat(document.getElementById('range-max').value);
-    
-    if (minVal >= maxVal) {
-        document.getElementById('range-min').value = maxVal - 0.1;
-    }
-    
-    document.getElementById('range-min-value').textContent = 
-        parseFloat(document.getElementById('range-min').value).toFixed(1);
-    document.getElementById('range-max-value').textContent = 
-        parseFloat(document.getElementById('range-max').value).toFixed(1);
+    let min = parseFloat(document.getElementById('range-min').value);
+    let max = parseFloat(document.getElementById('range-max').value);
+    if (min >= max) document.getElementById('range-min').value = max - 0.1;
+    document.getElementById('range-min-value').textContent = parseFloat(document.getElementById('range-min').value).toFixed(1);
+    document.getElementById('range-max-value').textContent = parseFloat(document.getElementById('range-max').value).toFixed(1);
 }
 
 function updateSummary() {
-    const mostStabilizing = allMutations.reduce((min, mut) => mut.ddg < min.ddg ? mut : min, allMutations[0]);
-    const mostDestabilizing = allMutations.reduce((max, mut) => mut.ddg > max.ddg ? mut : max, allMutations[0]);
-    const uniquePositions = [...new Set(allMutations.map(m => m.position))].length;
-    
+    const best = allMutations.reduce((a,b) => b.ddg < a.ddg ? b : a, allMutations[0]);
+    const worst = allMutations.reduce((a,b) => b.ddg > a.ddg ? b : a, allMutations[0]);
+    const positions = new Set(allMutations.map(m => m.position)).size;
     document.getElementById('total-count').textContent = allMutations.length;
-    document.getElementById('position-count').textContent = uniquePositions;
-    document.getElementById('most-stabilizing').textContent = 
-        `${mostStabilizing.mutation_name} (ΔΔG = ${mostStabilizing.ddg.toFixed(2)})`;
-    document.getElementById('most-destabilizing').textContent = 
-        `${mostDestabilizing.mutation_name} (ΔΔG = ${mostDestabilizing.ddg.toFixed(2)})`;
+    document.getElementById('position-count').textContent = positions;
+    document.getElementById('most-stabilizing').textContent = `${best.mutation_name} (ΔΔG = ${best.ddg.toFixed(2)})`;
+    document.getElementById('most-destabilizing').textContent = `${worst.mutation_name} (ΔΔG = ${worst.ddg.toFixed(2)})`;
 }
 
 function applyFilters() {
-    const positionFilter = document.getElementById('position-filter').value;
-    const wildtypeFilter = document.getElementById('wildtype-filter').value;
-    const targetFilter = document.getElementById('target-filter').value;
-    const ddgFilter = document.getElementById('ddg-filter').value;
-    const rangeMin = parseFloat(document.getElementById('range-min').value);
-    const rangeMax = parseFloat(document.getElementById('range-max').value);
+    const pos = document.getElementById('position-filter').value;
+    const wt = document.getElementById('wildtype-filter').value;
+    const tg = document.getElementById('target-filter').value;
+    const ddgF = document.getElementById('ddg-filter').value;
+    const rMin = parseFloat(document.getElementById('range-min').value);
+    const rMax = parseFloat(document.getElementById('range-max').value);
 
-    filteredMutations = allMutations.filter(mut => {
-        if (positionFilter && mut.position != positionFilter) return false;
-        if (wildtypeFilter && mut.wild_type !== wildtypeFilter) return false;
-        if (targetFilter && mut.target !== targetFilter) return false;
-        if (mut.ddg < rangeMin || mut.ddg > rangeMax) return false;
-        
-        if (ddgFilter) {
-            switch(ddgFilter) {
-                case 'stabilizing': return mut.ddg < 0;
-                case 'destabilizing': return mut.ddg > 0;
-                case 'highly-stabilizing': return mut.ddg < -2;
-                case 'highly-destabilizing': return mut.ddg > 10;
-                case 'neutral': return Math.abs(mut.ddg) < 1;
-            }
+    filteredMutations = allMutations.filter(m => {
+        if (pos && m.position != pos) return false;
+        if (wt && m.wild_type !== wt) return false;
+        if (tg && m.target !== tg) return false;
+        if (m.ddg < rMin || m.ddg > rMax) return false;
+        if (ddgF) {
+            if (ddgF === 'stabilizing' && m.ddg >= 0) return false;
+            if (ddgF === 'destabilizing' && m.ddg <= 0) return false;
+            if (ddgF === 'highly-stabilizing' && m.ddg >= -2) return false;
+            if (ddgF === 'highly-destabilizing' && m.ddg <= 10) return false;
+            if (ddgF === 'neutral' && Math.abs(m.ddg) >= 1) return false;
         }
-        
         return true;
     });
-
     currentPage = 1;
     applySorting();
 }
 
 function applySorting() {
-    const sortType = document.getElementById('sort-select').value;
-    currentSort = sortType;
-
-    switch(sortType) {
-        case 'stabilizing':
-            filteredMutations.sort((a, b) => a.ddg - b.ddg);
-            break;
-        case 'destabilizing':
-            filteredMutations.sort((a, b) => b.ddg - a.ddg);
-            break;
-        case 'position':
-            filteredMutations.sort((a, b) => a.position - b.position || a.ddg - b.ddg);
-            break;
-    }
-
+    const s = document.getElementById('sort-select').value;
+    if (s === 'stabilizing') filteredMutations.sort((a,b) => a.ddg - b.ddg);
+    else if (s === 'destabilizing') filteredMutations.sort((a,b) => b.ddg - a.ddg);
+    else filteredMutations.sort((a,b) => a.position - b.position || a.ddg - b.ddg);
     displayMutations();
 }
 
 function displayMutations() {
     const container = document.getElementById('mutation-list');
-    const resultCount = document.getElementById('result-count');
-    
-    resultCount.textContent = filteredMutations.length;
-    
-    if (filteredMutations.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #ffffff; padding: 20px;">No mutations match the current filters.</p>';
+    document.getElementById('result-count').textContent = filteredMutations.length;
+
+    if (!filteredMutations.length) {
+        container.innerHTML = '<p style="text-align:center;padding:20px;">No mutations match the current filters.</p>';
         updatePagination();
         return;
     }
 
-    const totalPages = Math.ceil(filteredMutations.length / mutationsPerPage);
-    const startIndex = (currentPage - 1) * mutationsPerPage;
-    const endIndex = Math.min(startIndex + mutationsPerPage, filteredMutations.length);
-    const currentMutations = filteredMutations.slice(startIndex, endIndex);
+    const start = (currentPage - 1) * mutationsPerPage;
+    const slice = filteredMutations.slice(start, start + mutationsPerPage);
 
-    container.innerHTML = currentMutations.map(mut => {
-        const className = mut.ddg < 0 ? 'stabilizing' : mut.ddg > 0 ? 'destabilizing' : 'neutral';
-        const ddgClassName = mut.ddg < 0 ? 'ddg-stabilizing' : mut.ddg > 0 ? 'ddg-destabilizing' : 'ddg-neutral';
-        
+    container.innerHTML = slice.map(m => {
+        const cls = m.ddg < 0 ? 'stabilizing' : m.ddg > 0 ? 'destabilizing' : 'neutral';
+        const dcls = m.ddg < 0 ? 'ddg-stabilizing' : m.ddg > 0 ? 'ddg-destabilizing' : 'ddg-neutral';
+        const uniprotPos = m.position + UNIPROT_OFFSET;
         return `
-            <div class="mutation-item ${className}">
+            <div class="mutation-item ${cls}">
                 <div>
-                    <div class="mutation-name">${sanitizeInput(mut.mutation_name)}</div>
+                    <div class="mutation-name">${sanitizeInput(m.mutation_name)}</div>
                     <div class="mutation-details">
-                        Position ${mut.position}: ${aminoAcidNames[mut.wild_type]} → ${aminoAcidNames[mut.target]}
+                        PDB pos ${m.position} (UniProt ${uniprotPos}): ${aminoAcidNames[m.wild_type] || m.wild_type} → ${aminoAcidNames[m.target] || m.target}
                     </div>
                 </div>
-                <div class="ddg-value ${ddgClassName}">
-                    ${mut.ddg.toFixed(3)}
-                </div>
-            </div>
-        `;
+                <div class="ddg-value ${dcls}">${m.ddg.toFixed(3)}</div>
+            </div>`;
     }).join('');
-
     updatePagination();
 }
 
 function updatePagination() {
-    const totalPages = Math.ceil(filteredMutations.length / mutationsPerPage);
-    
-    document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+    const total = Math.ceil(filteredMutations.length / mutationsPerPage);
+    document.getElementById('page-info').textContent = `Page ${currentPage} of ${Math.max(total,1)}`;
     document.getElementById('prev-btn').disabled = currentPage <= 1;
-    document.getElementById('next-btn').disabled = currentPage >= totalPages;
+    document.getElementById('next-btn').disabled = currentPage >= total;
 }
 
-function previousPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        displayMutations();
-    }
-}
-
+function previousPage() { if (currentPage > 1) { currentPage--; displayMutations(); } }
 function nextPage() {
-    const totalPages = Math.ceil(filteredMutations.length / mutationsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        displayMutations();
-    }
+    if (currentPage < Math.ceil(filteredMutations.length / mutationsPerPage)) { currentPage++; displayMutations(); }
 }
 
 function clearFilters() {
-    document.getElementById('position-filter').value = '';
-    document.getElementById('wildtype-filter').value = '';
-    document.getElementById('target-filter').value = '';
-    document.getElementById('ddg-filter').value = '';
+    ['position-filter','wildtype-filter','target-filter','ddg-filter'].forEach(id =>
+        document.getElementById(id).value = '');
     document.getElementById('range-min').value = -10;
     document.getElementById('range-max').value = 50;
     document.getElementById('sort-select').value = 'stabilizing';
     updateDualRange();
-    filteredMutations = allMutations;
+    filteredMutations = [...allMutations];
     currentPage = 1;
     applySorting();
 }
 
+//  Sequence Generator 
 function generateSequence() {
-    const input = sanitizeInput(document.getElementById('mutation-input-gen').value.trim().toUpperCase());
+    const raw = document.getElementById('mutation-input-gen').value.trim().toUpperCase();
+    const input = sanitizeInput(raw);
     const match = input.match(/^([A-Z])(\d+)([A-Z])$/);
-    
-    if (!match) {
-        alert('Please enter mutation in format like "D11V" or "S13W"');
+
+    if (!match) { alert('Please enter mutation in format like "D11V" or "S13W"'); return; }
+    const [, wildType, posStr, target] = match;
+    const pdbPos = parseInt(posStr);
+    const idx = pdbPos - 1;
+
+    if (pdbPos < 1 || pdbPos > ANALYZED_REGION_LENGTH) {
+        alert(`Position ${pdbPos} is outside the analyzed region (1–${ANALYZED_REGION_LENGTH} in PDB 2M32 numbering).`);
         return;
     }
-    
-    const [fullMatch, wildType, position, target] = match;
-    const pos = parseInt(position) - 1;
-    
-    if (pos < 0 || pos >= wildTypeSequence.length) {
-        alert(`Position ${position} is out of range (1-${wildTypeSequence.length})`);
+    if (wildTypeSequence[idx] !== wildType) {
+        alert(`PDB position ${pdbPos} has ${wildTypeSequence[idx]}, not ${wildType}. Did you mean ${wildTypeSequence[idx]}${pdbPos}${target}?`);
         return;
     }
-    
-    if (wildTypeSequence[pos] !== wildType) {
-        alert(`Position ${position} has ${wildTypeSequence[pos]}, not ${wildType}. Did you mean ${wildTypeSequence[pos]}${position}${target}?`);
-        return;
-    }
-    
-    const mutatedSequence = wildTypeSequence.substring(0, pos) + target + wildTypeSequence.substring(pos + 1);
-    
-    document.getElementById('mutation-description').textContent = `${aminoAcidNames[wildType]} → ${aminoAcidNames[target]} (${fullMatch})`;
-    document.getElementById('position-description').textContent = `Position ${position} of 200`;
-    document.getElementById('generated-sequence-gen').textContent = mutatedSequence;
+
+    const mutated = wildTypeSequence.substring(0, idx) + target + wildTypeSequence.substring(idx + 1);
+    const uniprotPos = pdbPos + UNIPROT_OFFSET;
+
+    document.getElementById('mutation-description').textContent =
+        `${aminoAcidNames[wildType] || wildType} → ${aminoAcidNames[target] || target} (${input})`;
+    document.getElementById('position-description').textContent =
+        `PDB 2M32 position ${pdbPos}`;
+    document.getElementById('uniprot-description').textContent =
+        `UniProt position ${uniprotPos} (offset +${UNIPROT_OFFSET})`;
+    document.getElementById('generated-sequence-gen').textContent = mutated;
     document.getElementById('sequence-output-gen').style.display = 'block';
 }
 
-function setExample(mutation) {
-    document.getElementById('mutation-input-gen').value = mutation;
+function setExample(mut) {
+    document.getElementById('mutation-input-gen').value = mut;
     generateSequence();
 }
 
 function copySequence() {
-    const sequence = document.getElementById('generated-sequence-gen').textContent;
-    navigator.clipboard.writeText(sequence).then(() => {
-        const btn = event.target;
-        const originalText = btn.textContent;
-        btn.textContent = 'Copied!';
-        btn.style.backgroundColor = '#4caf50';
+    const seq = document.getElementById('generated-sequence-gen').textContent;
+    const btn = document.getElementById('copy-btn');
+
+    const finish = (ok) => {
+        btn.textContent = ok ? 'Copied!' : 'Select text above and copy manually';
+        btn.style.backgroundColor = ok ? '#4caf50' : '#e57373';
         setTimeout(() => {
-            btn.textContent = originalText;
+            btn.textContent = 'Copy to Clipboard';
             btn.style.backgroundColor = '#2196f3';
-        }, 2000);
-    }).catch(() => {
-        alert('Failed to copy to clipboard. Please select and copy the sequence manually.');
+        }, 2500);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(seq).then(() => finish(true)).catch(() => fallbackCopy(seq, finish));
+    } else {
+        fallbackCopy(seq, finish);
+    }
+}
+
+function fallbackCopy(text, finish) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+        document.execCommand('copy');
+        finish(true);
+    } catch {
+        finish(false);
+    }
+    document.body.removeChild(ta);
+}
+
+//  Initial Results Tables 
+const initialResultsData = {
+    n14: [
+        ['G','Glycine',-0.45996],['A','Alanine',-0.44081],['V','Valine',-0.59865],
+        ['L','Leucine',-0.78349],['I','Isoleucine',-0.98153],['M','Methionine',-0.67259],
+        ['F','Phenylalanine',-1.01273],['W','Tryptophan',-0.76145],['P','Proline',0.88998],
+        ['S','Serine',-0.02299],['T','Threonine',0.28142],['C','Cysteine',-0.44385],
+        ['Y','Tyrosine',-0.40266],['Q','Glutamine',0.07395],['D','Aspartic Acid',0.95498],
+        ['E','Glutamic Acid',0.97908],['K','Lysine',-0.14312],['R','Arginine',-0.24048],
+        ['H','Histidine',-0.23976]
+    ],
+    y17: [
+        ['G','Glycine',0.02526],['A','Alanine',0.02150],['V','Valine',0.00860],
+        ['L','Leucine',0.00680],['I','Isoleucine',-0.00091],['M','Methionine',0.00771],
+        ['F','Phenylalanine',0.00307],['W','Tryptophan',-0.01862],['P','Proline',-0.01591],
+        ['S','Serine',0.01758],['T','Threonine',0.00614],['C','Cysteine',0.01901],
+        ['Y','Tyrosine',0.00008],['Q','Glutamine',-0.00900],['D','Aspartic Acid',0.11188],
+        ['E','Glutamic Acid',0.07459],['K','Lysine',-0.03102],['R','Arginine',-0.06451],
+        ['H','Histidine',-0.00757]
+    ],
+    p18: [
+        ['G','Glycine',0.00798],['A','Alanine',0.01145],['V','Valine',0.01147],
+        ['L','Leucine',0.00127],['I','Isoleucine',0.00285],['M','Methionine',0.00110],
+        ['F','Phenylalanine',0.01130],['W','Tryptophan',-0.00039],['P','Proline',0.00002],
+        ['S','Serine',-0.00075],['T','Threonine',0.01032],['C','Cysteine',-0.00100],
+        ['Y','Tyrosine',0.01280],['Q','Glutamine',0.01107],['D','Aspartic Acid',0.01615],
+        ['E','Glutamic Acid',0.04047],['K','Lysine',-0.00112],['R','Arginine',-0.00273],
+        ['H','Histidine',0.00628]
+    ]
+};
+
+function buildInitialResultsTables() {
+    const THRESHOLD = 0.05;
+    [['n14','n14-tbody'],['y17','y17-tbody'],['p18','p18-tbody']].forEach(([key, tbodyId]) => {
+        const tbody = document.getElementById(tbodyId);
+        if (!tbody) return;
+        const sorted = [...initialResultsData[key]].sort((a,b) => a[2] - b[2]);
+        tbody.innerHTML = sorted.map(([sym, name, val]) => {
+            const isNeg = val < -THRESHOLD, isPos = val > THRESHOLD;
+            const pillClass = isNeg ? 'neg' : isPos ? 'pos' : 'neu';
+            const sign = val > 0 ? '+' : '';
+            return `<tr>
+                <td><span class="aa-symbol">${sym}</span></td>
+                <td style="color:#C2D0DE;">${name}</td>
+                <td><span class="ddg-pill ${pillClass}">${sign}${val.toFixed(3)}</span></td>
+            </tr>`;
+        }).join('');
     });
 }
 
-function downloadSequence() {
-    const sequence = document.getElementById('generated-sequence-gen').textContent;
-    const mutation = document.getElementById('mutation-description').textContent;
-    
-    if (!sequence) {
-        alert('Please generate a sequence first.');
-        return;
-    }
-    
-    const fastaContent = `>Integrin_Alpha1_${mutation.replace(' → ', '_to_').replace(/[^\w]/g, '_')}\n${sequence}`;
-    
-    const blob = new Blob([fastaContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `integrin_alpha1_${mutation.replace(' → ', '_to_').replace(/[^\w]/g, '_')}.fasta`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
 
+buildAnnotatedSequence();
+buildStructureGallery();
+buildCorrespondenceTable();
+buildInitialResultsTables();
 showPage('home');
 </script>
-
 </body>
 </html>
