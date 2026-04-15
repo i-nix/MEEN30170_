@@ -6,19 +6,19 @@
 <meta http-equiv="X-Frame-Options" content="DENY">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; media-src 'self' blob:;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; media-src 'self' blob: data:;">
 <title>Binding Energy Optimization in Integrin Through Site-Directed Mutagenesis</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* Palette
+/* ── Palette ──────────────────────────────────────────────────────────────────
    #EAEFF5  lightest  (text on dark, highlights)
    #C2D0DE  light     (secondary text, borders)
    #7E97B0  mid       (muted elements, placeholders)
    #3A5672  dark      (panels, nav hover)
    #0A1520  darkest   (page background)
- */
+   ──────────────────────────────────────────────────────────────────────────── */
 
 * {
     box-sizing: border-box;
@@ -668,9 +668,9 @@ a { color: #C2D0DE; }
 
 .struct-card-title { font-size: 1.05em; color: #EAEFF5; margin-bottom: 3px; }
 
-.struct-card-ddg { font-size: 13px; font-family: 'Courier New', monospace; }
+.struct-card-ddg { font-size: 13px; font-family: 'Courier New', monospace; color: #7E97B0; background: none; }
 .struct-card-ddg.stabilizing { color: #7E97B0; }
-.struct-card-ddg.wt          { color: #7E97B0; opacity: 0.6; }
+.struct-card-ddg.wt          { color: #7E97B0; opacity: 0.5; }
 
 .struct-card-body { padding: 12px 16px 16px; }
 
@@ -685,34 +685,11 @@ a { color: #C2D0DE; }
     margin-bottom: 12px;
 }
 
-.struct-video-container video { width: 100%; height: 100%; object-fit: cover; display: none; }
-
-.struct-video-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: #7E97B0;
-    font-size: 13px;
-}
-
-.struct-video-placeholder span { font-size: 28px; }
-
-.struct-load-btn {
+.struct-video-container video {
     width: 100%;
-    background: #3A5672;
-    color: #EAEFF5;
-    border: none;
-    padding: 9px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 13px;
-    transition: background 0.2s;
+    height: 100%;
+    object-fit: cover;
 }
-
-.struct-load-btn:hover { background: #4a6a87; }
-.struct-load-btn.loaded { background: #1e3a28; color: #a0c8a8; }
 
 .struct-card-desc { font-size: 12px; color: #7E97B0; margin-top: 8px; line-height: 1.5; }
 
@@ -761,9 +738,7 @@ a { color: #C2D0DE; }
     padding: 8px 14px;
     text-align: left;
     font-weight: 400;
-    font-size: 11px;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
+    font-size: 12px;
     border-bottom: 1px solid #1e3248;
 }
 
@@ -1123,20 +1098,20 @@ Binding free energy changes (ΔΔG) were computed across 10 NMR models for three
 
 <div style="background:#111e2e;border-radius:10px;border:1px solid #1e3248;padding:18px 24px;margin:24px 0;display:flex;gap:40px;justify-content:center;flex-wrap:wrap;">
     <div style="text-align:center;">
-        <div style="font-size:11px;color:#7E97B0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Positions analyzed</div>
+        <div style="font-size:11px;color:#7E97B0;margin-bottom:4px;">Positions analyzed</div>
         <div style="font-size:1.4em;color:#EAEFF5;">3</div>
     </div>
     <div style="text-align:center;">
-        <div style="font-size:11px;color:#7E97B0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">NMR models averaged</div>
+        <div style="font-size:11px;color:#7E97B0;margin-bottom:4px;">NMR models averaged</div>
         <div style="font-size:1.4em;color:#EAEFF5;">10</div>
     </div>
     <div style="text-align:center;">
-        <div style="font-size:11px;color:#7E97B0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Most stabilizing</div>
-        <div style="font-size:1.4em;color:#7E97B0;font-family:'Courier New',monospace;">N14F &nbsp;−1.013</div>
+        <div style="font-size:11px;color:#7E97B0;margin-bottom:4px;">Most stabilizing</div>
+        <div style="font-size:1.2em;color:#7E97B0;font-family:'Courier New',monospace;">N14F &nbsp;−1.013</div>
     </div>
     <div style="text-align:center;">
-        <div style="font-size:11px;color:#7E97B0;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Most destabilizing</div>
-        <div style="font-size:1.4em;color:#8a5060;font-family:'Courier New',monospace;">N14E &nbsp;+0.979</div>
+        <div style="font-size:11px;color:#7E97B0;margin-bottom:4px;">Most destabilizing</div>
+        <div style="font-size:1.2em;color:#8a5060;font-family:'Courier New',monospace;">N14E &nbsp;+0.979</div>
     </div>
 </div>
 
@@ -1146,7 +1121,6 @@ Binding free energy changes (ΔΔG) were computed across 10 NMR models for three
     <div class="result-table-card">
         <div class="result-table-card-header">
             <div class="pos-code">N14 &mdash; Asparagine</div>
-            <div class="pos-meta">PDB position 14 &middot; UniProt 181 &middot; near Mg²⁺ binding site</div>
         </div>
         <table class="result-table">
             <thead>
@@ -1168,7 +1142,6 @@ Binding free energy changes (ΔΔG) were computed across 10 NMR models for three
     <div class="result-table-card">
         <div class="result-table-card-header">
             <div class="pos-code">Y17 &mdash; Tyrosine</div>
-            <div class="pos-meta">PDB position 17 &middot; UniProt 184 &middot; surface-exposed</div>
         </div>
         <table class="result-table">
             <thead>
@@ -1190,7 +1163,6 @@ Binding free energy changes (ΔΔG) were computed across 10 NMR models for three
     <div class="result-table-card">
         <div class="result-table-card-header">
             <div class="pos-code">P18 &mdash; Proline</div>
-            <div class="pos-meta">PDB position 18 &middot; UniProt 185 &middot; surface-exposed</div>
         </div>
         <table class="result-table">
             <thead>
@@ -1222,11 +1194,11 @@ In the High-Performance Computing (HPC) analysis, mutations were tested across <
 <div class="numbering-clarification">
     <h2>Residue Numbering System</h2>
     <p>
-        All results use PDB 2M32 numbering. The structure captures a 58-residue segment of the I-domain. Every position is offset by +167 relative to the full UniProt sequence (UniProt P56199). Since all residues are on chain A, mutation codes use the format <strong>[wild-type][position]</strong> — e.g., <strong>D11V</strong> = Asp at position 11 → Val.
+        All results use PDB 2M32 numbering. The structure captures a 58-residue segment of the I-domain. Every position is offset by +167 relative to the full UniProt sequence (UniProt accession P56199). Since all residues are on chain A, mutation codes simply use the format <strong>[wild-type][position]</strong> — e.g., <strong>D11V</strong> = Asp at position 11 → Val.
     </p>
 
     <div style="margin-top: 15px;">
-        <button onclick="toggleCorrespondences()" id="corr-toggle-btn" style="background:#2196f3;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:14px;display:flex;align-items:center;gap:8px;margin:0 auto;">
+        <button onclick="toggleCorrespondences()" id="corr-toggle-btn" style="background:#3A5672;color:#EAEFF5;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px;display:flex;align-items:center;gap:8px;margin:0 auto;">
             <span id="corr-arrow" style="display:inline-block;transition:transform 0.3s;">▶</span>
             Show all 58 position correspondences
         </button>
@@ -1241,27 +1213,27 @@ In the High-Performance Computing (HPC) analysis, mutations were tested across <
 </div>
 
 <div class="placeholder-section">
-    <h2>Mutation Analysis & Visualizations</h2>
+    <h2>Comprehensive Mutation Analysis & Visualizations</h2>
     <p>The complete mutation dataset was converted from JavaScript to JSON format and analyzed using RStudio/R to produce visualizations of the results.</p>
     
     <div style="text-align: center; margin: 30px 0;">
-        <img src="images/Heatmap1.png" alt="Mutation heatmap showing ΔΔG values for all mutations" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #1f3b73; margin-bottom: 15px;">
+        <img src="images/heatmap_actual.png" alt="Comprehensive mutation heatmap showing ΔΔG values for all mutations" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #1f3b73; margin-bottom: 15px;">
         <p><strong>Mutation Heatmap:</strong> Displays all 1,102 mutations across 58 positions with colour coding for binding free energy changes (ΔΔG). Blue regions indicate stabilizing mutations (negative ΔΔG), while red regions show destabilizing effects (positive ΔΔG).</p>
     </div>
 
     <div class="img-row" style="margin: 30px 0;">
         <div style="width: 48%;">
-            <img src="Pos_Var1.png" alt="Position variability analysis" style="width: 100%; border-radius: 8px; border: 1px solid #1f3b73;">
+            <img src="images/Positional_Variability.png" alt="Position variability analysis" style="width: 100%; border-radius: 8px; border: 1px solid #1f3b73;">
             <p style="margin-top: 10px; font-size: 0.9em;"><strong>Position Sensitivity Analysis:</strong> Shows which protein positions are most sensitive to mutations. Higher bars indicate positions where different amino acid substitutions cause highly variable effects, while lower bars represent mutation-tolerant positions.</p>
         </div>
         <div style="width: 48%;">
-            <img src="Mut_Effect1.png" alt="Amino acid substitution effects" style="width: 100%; border-radius: 8px; border: 1px solid #1f3b73;">
+            <img src="images/Mutation_Effects.png" alt="Amino acid substitution effects" style="width: 100%; border-radius: 8px; border: 1px solid #1f3b73;">
             <p style="margin-top: 10px; font-size: 0.9em;"><strong>Sequence Profile:</strong> The red line shows the average mutation effect at each position. The grey ribbon shows the range. Blue dots mark the most stabilizing mutation possible at each position.</p>
         </div>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-        <img src="Stab_hot1.png" alt="Stabilization hotspots" style="max-width: 80%; height: auto; border-radius: 8px; border: 1px solid #1f3b73; margin-bottom: 15px;">
+        <img src="images/Stabilization_Hotspot.png" alt="Stabilization hotspots" style="max-width: 80%; height: auto; border-radius: 8px; border: 1px solid #1f3b73; margin-bottom: 15px;">
         <p><strong>Experimental Target Hotspots:</strong> Identifies positions with multiple stabilizing mutations (ΔΔG &lt; −0.5 kcal/mol).</p>
     </div>
 </div>
@@ -1283,7 +1255,7 @@ In the High-Performance Computing (HPC) analysis, mutations were tested across <
 <!-- AlphaFold structure video gallery -->
 <div class="video-section">
     <h3>AlphaFold Structure Comparisons</h3>
-    <p style="opacity:0.85;font-size:14px;">Videos are loaded locally in your browser and never uploaded anywhere. Load each MP4 using the button on its card. The structures shown are the wild-type 2M32 and the top stabilizing mutants identified from the HPC scan.</p>
+    <p style="opacity:0.85;font-size:14px;">Spinning structure videos for the wild-type 2M32 and the top stabilizing mutants identified from the HPC scan.</p>
 
     <div class="structure-gallery" id="structure-gallery">
         <!-- cards injected by JS -->
@@ -1481,10 +1453,6 @@ Generate modified protein sequences for any mutation to test in AlphaFold or oth
                         <span>Remaining sequence (not analyzed)</span>
                     </div>
                 </div>
-
-                <div class="numbering-block" id="numbering-key">
-                    <!-- filled by JS -->
-                </div>
             </div>
         </div>
     </div>
@@ -1553,7 +1521,7 @@ function showPage(id) {
     document.getElementById(id).classList.add('active');
 }
 
-//  Amino acid data 
+// Amino acid data 
 const aminoAcidNames = {
     'G':'Glycine','A':'Alanine','V':'Valine','L':'Leucine','I':'Isoleucine',
     'M':'Methionine','F':'Phenylalanine','W':'Tryptophan','P':'Proline',
@@ -1570,7 +1538,7 @@ const ANALYZED_REGION_LENGTH = 58;
 // UniProt offset: PDB position 1 = UniProt position 168
 const UNIPROT_OFFSET = 167;
 
-// Annotated wild-type display
+//  Annotated wild-type display 
 function buildAnnotatedSequence() {
     const container = document.getElementById('annotated-wt-sequence');
     if (!container) return;
@@ -1603,10 +1571,11 @@ function buildAnnotatedSequence() {
         keyHtml += `PDB ${String(pdb).padStart(2)} = UniProt ${uni} (${aa})`;
         if (i < ANALYZED_REGION_LENGTH - 1) keyHtml += '\n';
     }
-    keyEl.textContent = keyHtml;
+    keyEl.innerHTML = keyHtml;
 }
 
-// Structure gallery 
+// Structure gallery
+// Order: wild-type first, then most stabilizing (bottom→top of your screenshot)
 const structureCards = [
     {
         id: 'wt',
@@ -1614,71 +1583,62 @@ const structureCards = [
         subtitle: 'Original structure',
         ddgLabel: 'Reference',
         ddgClass: 'wt',
-        desc: 'The unmodified Integrin Alpha-1 I-domain in complex with a collagen-like peptide (PDB 2M32).',
-        filename: '2m32.mp4'
+        desc: 'The unmodified Integrin Alpha-1 I-domain in complex with a collagen-like peptide (PDB 2M32). Used as the baseline for all ΔΔG calculations.',
+        filename: '40A5DDC254A3EBAB_camera-spin.mp4'
     },
     {
         id: 'd11v',
         label: 'D11V',
         subtitle: 'Asp → Val at position 11',
-        ddgLabel: 'ΔΔG = −6.279 kcal/mol',
+        ddgLabel: 'ΔΔG = −6.28 kcal/mol',
         ddgClass: 'stabilizing',
-        desc: 'Most stabilizing mutation identified.',
-        filename: 'd11v.mp4'
+        desc: 'UniProt position 178.',
+        filename: '316164BE2F364909_camera-spin.mp4'
     },
     {
         id: 'd11l',
         label: 'D11L',
         subtitle: 'Asp → Leu at position 11',
-        ddgLabel: 'ΔΔG = −5.960 kcal/mol',
+        ddgLabel: 'ΔΔG = −5.96 kcal/mol',
         ddgClass: 'stabilizing',
         desc: 'Leucine substitution at position 11.',
-        filename: 'd11l.mp4'
+        filename: '23F293135EE9D60E_camera-spin.mp4'
     },
     {
         id: 'd11m',
         label: 'D11M',
         subtitle: 'Asp → Met at position 11',
-        ddgLabel: 'ΔΔG = −5.768 kcal/mol',
+        ddgLabel: 'ΔΔG ≈ highly stabilizing',
         ddgClass: 'stabilizing',
         desc: 'Methionine substitution at position 11.',
-        filename: 'd11m.mp4'
-    },
-    {
-        id: 'd11i',
-        label: 'D11I',
-        subtitle: 'Asp → Ile at position 11',
-        ddgLabel: 'ΔΔG = −5.675 kcal/mol',
-        ddgClass: 'stabilizing',
-        desc: 'Isoleucine substitution at position 11.',
-        filename: 'd11i.mp4'
+        filename: '1560189C5A81CAB8_camera-spin.mp4'
     },
     {
         id: 'd11t',
         label: 'D11T',
         subtitle: 'Asp → Thr at position 11',
-        ddgLabel: 'ΔΔG = −5.442 kcal/mol',
+        ddgLabel: 'ΔΔG ≈ stabilizing',
         ddgClass: 'stabilizing',
         desc: 'Threonine substitution at position 11.',
-        filename: 'd11t.mp4'
+        filename: '453A6687092CDA40_camera-spin.mp4'
     },
     {
         id: 'g43m',
         label: 'G43M',
         subtitle: 'Gly → Met at position 43',
-        ddgLabel: 'ΔΔG = −4.300 kcal/mol',
+        ddgLabel: 'ΔΔG ≈ stabilizing',
         ddgClass: 'stabilizing',
         desc: 'Methionine substitution at glycine position 43 (UniProt 210).',
-        filename: 'g43m.mp4'
+        filename: '6738EED1445AC5D7_camera-spin.mp4'
     },
     {
         id: 'g43k',
         label: 'G43K',
         subtitle: 'Gly → Lys at position 43',
-        ddgLabel: 'ΔΔG = −3.935 kcal/mol',
+        ddgLabel: 'ΔΔG ≈ stabilizing',
         ddgClass: 'stabilizing',
         desc: 'Lysine substitution at glycine position 43 (UniProt 210).',
-        filename: 'g43k.mp4'
+        filename: '6A24F61BC22609F3_camera-spin.mp4'
     },
 ];
 
@@ -1689,54 +1649,35 @@ function buildStructureGallery() {
         <div class="struct-card" id="card-${c.id}">
             <div class="struct-card-header">
                 <div class="struct-card-title">${c.label}</div>
-                <div class="struct-card-subtitle" style="font-size:12px;opacity:0.7;margin-bottom:4px;">${c.subtitle}</div>
+                <div style="font-size:12px;opacity:0.7;margin-bottom:4px;">${c.subtitle}</div>
                 <div class="struct-card-ddg ${c.ddgClass}">${c.ddgLabel}</div>
             </div>
             <div class="struct-card-body">
-                <div class="struct-video-container" id="vc-${c.id}">
-                    <div class="struct-video-placeholder" id="ph-${c.id}">
-                        <span>⬡</span>
-                        <div>No video loaded</div>
-                    </div>
-                    <video id="vid-${c.id}" loop playsinline></video>
+                <div class="struct-video-container">
+                    <video src="${c.filename}" autoplay loop muted playsinline></video>
                 </div>
-                <input type="file" id="fi-${c.id}" accept="video/mp4,video/*" style="display:none;" onchange="loadStructureVideo('${c.id}', this)">
-                <button class="struct-load-btn" id="btn-${c.id}" onclick="document.getElementById('fi-${c.id}').click()">
-                    ▶ Load video
-                </button>
                 <div class="struct-card-desc">${c.desc}</div>
             </div>
         </div>
     `).join('');
 }
 
-function loadStructureVideo(id, input) {
-    const file = input.files[0];
-    if (!file) return;
-    const url = URL.createObjectURL(file);
-    const video = document.getElementById('vid-' + id);
-    const placeholder = document.getElementById('ph-' + id);
-    const btn = document.getElementById('btn-' + id);
-    video.src = url;
-    video.style.display = 'block';
-    placeholder.style.display = 'none';
-    btn.textContent = '✓ Loaded — click to change';
-    btn.classList.add('loaded');
-    video.play();
-}
-
-//  Correspondence accordion
+//  Correspondence accordion 
 function toggleCorrespondences() {
     const body = document.getElementById('corr-body');
     const arrow = document.getElementById('corr-arrow');
-    const btn = document.getElementById('corr-toggle-btn');
-    const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+    const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '' && body.style.maxHeight !== '0';
     if (isOpen) {
-        body.style.maxHeight = '0';
+        body.style.maxHeight = '0px';
         arrow.style.transform = 'rotate(0deg)';
-        btn.querySelector('span:last-child') && (btn.lastChild.textContent = ' Show all 58 position correspondences');
     } else {
-        body.style.maxHeight = body.scrollHeight + 'px';
+        // temporarily remove max-height constraint to measure true height
+        body.style.maxHeight = 'none';
+        const h = body.scrollHeight;
+        body.style.maxHeight = '0px';
+        // force reflow then animate
+        body.getBoundingClientRect();
+        body.style.maxHeight = h + 'px';
         arrow.style.transform = 'rotate(90deg)';
     }
 }
@@ -1744,17 +1685,14 @@ function toggleCorrespondences() {
 function buildCorrespondenceTable() {
     const el = document.getElementById('corr-table-content');
     if (!el) return;
-//    const notes = {11:'— most stabilizing hotspot', 13:'— most destabilizing (S→W)', 14:'— initial MutateX target', 17:'— initial MutateX target', 18:'— initial MutateX target'};
     let html = '';
     for (let i = 0; i < ANALYZED_REGION_LENGTH; i++) {
         const aa = wildTypeSequence[i];
         const pdb = i + 1;
         const uni = pdb + UNIPROT_OFFSET;
-        const note = notes[pdb] ? ` <em style="opacity:0.6;font-size:11px;">${notes[pdb]}</em>` : '';
-        html += `<div>PDB <strong>${String(pdb).padStart(2)}</strong> (${aa}) = UniProt ${uni}${note}</div>`;
+        html += `<div>PDB <strong>${String(pdb).padStart(2)}</strong> (${aa}) = UniProt ${uni}</div>`;
     }
     el.innerHTML = html;
-    // after content is built, set proper scroll height for accordion
     const body = document.getElementById('corr-body');
     if (body) body.style.maxHeight = '0px';
 }
@@ -1938,7 +1876,7 @@ function clearFilters() {
     applySorting();
 }
 
-//  Sequence Generator 
+// Sequence Generator
 function generateSequence() {
     const raw = document.getElementById('mutation-input-gen').value.trim().toUpperCase();
     const input = sanitizeInput(raw);
@@ -2013,7 +1951,7 @@ function fallbackCopy(text, finish) {
     document.body.removeChild(ta);
 }
 
-//  Initial Results Tables 
+//  Initial Results Tables
 const initialResultsData = {
     n14: [
         ['G','Glycine',-0.45996],['A','Alanine',-0.44081],['V','Valine',-0.59865],
@@ -2064,11 +2002,13 @@ function buildInitialResultsTables() {
 }
 
 
-buildAnnotatedSequence();
-buildStructureGallery();
-buildCorrespondenceTable();
-buildInitialResultsTables();
-showPage('home');
+document.addEventListener('DOMContentLoaded', function() {
+    buildAnnotatedSequence();
+    buildStructureGallery();
+    buildCorrespondenceTable();
+    buildInitialResultsTables();
+    showPage('home');
+});
 </script>
 </body>
 </html>
