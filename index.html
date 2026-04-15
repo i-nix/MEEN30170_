@@ -54,9 +54,9 @@ strong, b { font-weight: 400; }
 .navbar a:hover { opacity: 0.5; background-color: transparent; }
 
 .container {
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 90px 50px 60px 50px;
+    padding: 90px 60px 60px 60px;
 }
 
 .page { display: none; }
@@ -636,7 +636,7 @@ function buildAnnotatedSequence() {
     container.innerHTML = html;
 }
 
-// Structure gallery 
+// Structure gallery - using your renamed files
 const structureCards = [
     { id:'wt',   label:'2M32 Wild-Type', subtitle:'Original structure',          ddgLabel:'Reference',              ddgClass:'wt',         desc:'The unmodified Integrin Alpha-1 I-domain in complex with a collagen-like peptide (PDB 2M32). Used as the baseline for all ΔΔG calculations.', filename:'2m32.mp4' },
     { id:'d11v', label:'D11V',           subtitle:'Asp → Val at position 11',    ddgLabel:'ΔΔG = −6.279 kcal/mol', ddgClass:'stabilizing', desc:'Most stabilizing mutation identified.',                                filename:'d11v.mp4' },
