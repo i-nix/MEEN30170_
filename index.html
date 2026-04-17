@@ -969,14 +969,13 @@ function buildStructureGallery() {
             <div class="struct-card-body">
                 <div class="struct-video-container">
                     <video 
+                        src="${c.filename}"
                         autoplay 
                         loop 
                         muted 
                         playsinline
                         preload="auto"
                         style="width:100%;height:100%;object-fit:cover;display:block;">
-                        <source src="${c.filename}" type="video/mp4">
-                        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#7E97B0;font-size:14px;">Structure Visualization</div>
                     </video>
                 </div>
                 <div class="struct-card-desc">${c.desc}</div>
