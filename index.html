@@ -946,14 +946,14 @@ function buildAnnotatedSequence() {
 
 // Structure gallery - using placeholder structure cards since video files aren't available
 const structureCards = [
-    { id:'wt',   label:'2M32 Wild-Type', subtitle:'Original structure',          ddgLabel:'Reference',              ddgClass:'wt',         desc:'The unmodified Integrin Alpha-1 I-domain in complex with a collagen-like peptide (PDB 2M32). Used as the baseline for all ΔΔG calculations.', filename:'https://github.com/i-nix/MEEN30170_/raw/main/2m32.mp4' },
-    { id:'d11v', label:'D11V',           subtitle:'Asp → Val at position 11',    ddgLabel:'ΔΔG = −6.279 kcal/mol', ddgClass:'stabilizing', desc:'Most stabilizing mutation identified.',                                filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11v.mp4' },
-    { id:'d11l', label:'D11L',           subtitle:'Asp → Leu at position 11',    ddgLabel:'ΔΔG = −5.960 kcal/mol', ddgClass:'stabilizing', desc:'Leucine substitution at position 11.',                                  filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11l.mp4' },
-    { id:'d11m', label:'D11M',           subtitle:'Asp → Met at position 11',    ddgLabel:'ΔΔG = −5.768 kcal/mol', ddgClass:'stabilizing', desc:'Methionine substitution at position 11.',                               filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11m.mp4' },
-    { id:'d11i', label:'D11I',           subtitle:'Asp → Ile at position 11',    ddgLabel:'ΔΔG = −5.675 kcal/mol', ddgClass:'stabilizing', desc:'Isoleucine substitution at position 11.',                               filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11i.mp4' },
-    { id:'d11t', label:'D11T',           subtitle:'Asp → Thr at position 11',    ddgLabel:'ΔΔG = −5.442 kcal/mol', ddgClass:'stabilizing', desc:'Threonine substitution at position 11.',                                filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11t.mp4' },
-    { id:'g43m', label:'G43M',           subtitle:'Gly → Met at position 43',    ddgLabel:'ΔΔG = −4.300 kcal/mol', ddgClass:'stabilizing', desc:'Methionine substitution at glycine position 43 (UniProt 210).',         filename:'https://github.com/i-nix/MEEN30170_/raw/main/g43m.mp4' },
-    { id:'g43k', label:'G43K',           subtitle:'Gly → Lys at position 43',    ddgLabel:'ΔΔG = −3.935 kcal/mol', ddgClass:'stabilizing', desc:'Lysine substitution at glycine position 43 (UniProt 210).',             filename:'https://github.com/i-nix/MEEN30170_/raw/main/g43k.mp4' },
+    { id:'wt',   label:'2M32 Wild-Type', subtitle:'Original structure',          ddgLabel:'Reference',              ddgClass:'wt',         desc:'', filename:'https://github.com/i-nix/MEEN30170_/raw/main/2m32.mp4' },
+    { id:'d11v', label:'D11V',           subtitle:'Asp → Val at position 11',    ddgLabel:'ΔΔG = −6.279 kcal/mol', ddgClass:'stabilizing', desc:'',                                filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11v.mp4' },
+    { id:'d11l', label:'D11L',           subtitle:'Asp → Leu at position 11',    ddgLabel:'ΔΔG = −5.960 kcal/mol', ddgClass:'stabilizing', desc:'',                                  filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11l.mp4' },
+    { id:'d11m', label:'D11M',           subtitle:'Asp → Met at position 11',    ddgLabel:'ΔΔG = −5.768 kcal/mol', ddgClass:'stabilizing', desc:'',                               filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11m.mp4' },
+    { id:'d11i', label:'D11I',           subtitle:'Asp → Ile at position 11',    ddgLabel:'ΔΔG = −5.675 kcal/mol', ddgClass:'stabilizing', desc:'',                               filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11i.mp4' },
+    { id:'d11t', label:'D11T',           subtitle:'Asp → Thr at position 11',    ddgLabel:'ΔΔG = −5.442 kcal/mol', ddgClass:'stabilizing', desc:'',                                filename:'https://github.com/i-nix/MEEN30170_/raw/main/d11t.mp4' },
+    { id:'g43m', label:'G43M',           subtitle:'Gly → Met at position 43',    ddgLabel:'ΔΔG = −4.300 kcal/mol', ddgClass:'stabilizing', desc:'',         filename:'https://github.com/i-nix/MEEN30170_/raw/main/g43m.mp4' },
+    { id:'g43k', label:'G43K',           subtitle:'Gly → Lys at position 43',    ddgLabel:'ΔΔG = −3.935 kcal/mol', ddgClass:'stabilizing', desc:'',             filename:'https://github.com/i-nix/MEEN30170_/raw/main/g43k.mp4' },
 ];
 
 function buildStructureGallery() {
