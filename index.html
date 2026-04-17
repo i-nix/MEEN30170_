@@ -30,13 +30,34 @@ strong, b { font-weight: 400; }
     width: 100%;
     background-color: #EAEFF5;
     border-bottom: 1px solid #C2D0DE;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
     z-index: 1000;
 }
 
-.navbar a:first-child { margin-right: auto; }
+.navbar-container {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    /* Enable horizontal scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but maintain functionality */
+.navbar-container::-webkit-scrollbar {
+    height: 3px;
+}
+.navbar-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.navbar-container::-webkit-scrollbar-thumb {
+    background: rgba(58, 86, 114, 0.3);
+    border-radius: 2px;
+}
+.navbar-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(58, 86, 114, 0.5);
+}
 
 .navbar a {
     color: #3A5672;
@@ -48,15 +69,105 @@ strong, b { font-weight: 400; }
     cursor: pointer;
     letter-spacing: 0.2px;
     transition: opacity 0.2s ease;
+    flex-shrink: 0; /* Prevent nav items from shrinking */
 }
 
+.navbar a:first-child { margin-right: auto; }
 .navbar a:not(:first-child) { margin-left: 9px; }
 .navbar a:hover { opacity: 0.5; background-color: transparent; }
+
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+    .navbar-container {
+        padding: 0 5px;
+    }
+    
+    .navbar a {
+        font-size: 10px;
+        padding: 8px 8px;
+        min-width: fit-content;
+    }
+    
+    .navbar a:not(:first-child) { 
+        margin-left: 5px; 
+    }
+    
+    /* Add padding to the last item so it's not cut off */
+    .navbar a:last-child {
+        padding-right: 15px;
+    }
+}
+
+/* Alternative: Hamburger menu for very small screens */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 18px;
+        color: #3A5672;
+        z-index: 1001;
+    }
+    
+    .navbar-container {
+        flex-direction: column;
+        align-items: stretch;
+        max-height: 45px;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0;
+    }
+    
+    .navbar-container.expanded {
+        max-height: 350px; /* Enough for all menu items */
+    }
+    
+    .navbar a {
+        display: block;
+        text-align: center;
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(194, 208, 222, 0.3);
+        font-size: 12px;
+        margin: 0;
+    }
+    
+    .navbar a:first-child {
+        margin-right: 0;
+        background: rgba(58, 86, 114, 0.1);
+        font-weight: 500;
+    }
+    
+    .navbar a:last-child {
+        border-bottom: none;
+        padding-right: 20px;
+    }
+}
 
 .container {
     max-width: 100%;
     margin: 0 auto;
     padding: 90px 60px 60px 60px;
+}
+
+/* Mobile container adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 100px 20px 60px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 120px 15px 60px 15px;
+    }
 }
 
 .page { display: none; }
@@ -74,6 +185,13 @@ h1 { margin-top: 20px; font-size: 1.6em; }
 h2 { margin-top: 10px; font-size: 1.2em; }
 h3 { font-size: 1em; }
 
+/* Mobile typography adjustments */
+@media (max-width: 768px) {
+    h1 { font-size: 1.4em; }
+    h2 { font-size: 1.1em; }
+    h3 { font-size: 0.95em; }
+}
+
 p { text-align: center; line-height: 1.7; margin-bottom: 14px; color: #C2D0DE; }
 
 code, pre {
@@ -89,11 +207,24 @@ code, pre {
     border: 1px solid #1e3248;
 }
 
+@media (max-width: 768px) {
+    code, pre {
+        font-size: 11px;
+        padding: 8px;
+    }
+}
+
 .section { margin-bottom: 60px; }
 
 .img-large { width: 85%; display: block; margin: 25px auto; border-radius: 10px; }
 .img-row { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
 .img-row img { width: 45%; border-radius: 8px; }
+
+/* Mobile image adjustments */
+@media (max-width: 768px) {
+    .img-large { width: 95%; }
+    .img-row img { width: 100%; margin-bottom: 15px; }
+}
 
 details { margin-top: 15px; background-color: #111e2e; padding: 10px; border-radius: 8px; }
 summary { cursor: pointer; color: #EAEFF5; }
@@ -102,6 +233,19 @@ a { color: #C2D0DE; }
 /* Explorer */
 .explorer-container { background-color: #111e2e; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #1e3248; }
 .top-controls-bar { display: flex; justify-content: space-between; align-items: center; background: #1a2d42; padding: 15px 20px; border-radius: 8px; margin-bottom: 15px; flex-wrap: wrap; gap: 15px; }
+
+/* Mobile explorer adjustments */
+@media (max-width: 768px) {
+    .explorer-container { padding: 10px; margin: 10px 0; }
+    .top-controls-bar { 
+        flex-direction: column; 
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px;
+    }
+    .sort-controls { justify-content: center; }
+}
+
 .results-info { font-size: 16px; color: #EAEFF5; }
 .sort-controls { display: flex; align-items: center; gap: 10px; }
 .sort-controls label { color: #C2D0DE; }
@@ -111,6 +255,16 @@ a { color: #C2D0DE; }
 .filters-section { background: #0f1c2b; border-radius: 8px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s ease; }
 .filters-section.collapsed { max-height: 0; padding: 0; margin-bottom: 0; }
 .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; padding: 20px; }
+
+/* Mobile controls adjustments */
+@media (max-width: 768px) {
+    .controls { 
+        grid-template-columns: 1fr; 
+        gap: 10px; 
+        padding: 15px;
+    }
+}
+
 .filter-group { display: flex; flex-direction: column; }
 .filter-group label { margin-bottom: 5px; color: #C2D0DE; font-size: 14px; }
 .filter-group select, .filter-group input { padding: 8px; border: 1px solid #3A5672; border-radius: 4px; background-color: #0A1520; color: #EAEFF5; font-size: 13px; }
@@ -128,6 +282,18 @@ a { color: #C2D0DE; }
 .results { margin-top: 20px; }
 .mutation-item { padding: 12px; margin: 8px 0; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; transition: transform 0.1s; }
 .mutation-item:hover { transform: translateX(5px); }
+
+/* Mobile mutation items */
+@media (max-width: 768px) {
+    .mutation-item { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 8px;
+        transform: none;
+    }
+    .mutation-item:hover { transform: none; }
+}
+
 .stabilizing   { background-color: #0f1e30; border-left: 4px solid #7E97B0; }
 .destabilizing { background-color: #1e1218; border-left: 4px solid #8a5060; }
 .neutral       { background-color: #151f2b; border-left: 4px solid #3A5672; }
@@ -144,6 +310,13 @@ a { color: #C2D0DE; }
 .generator-info { background: #111e2e; padding: 25px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #1e3248; }
 .generator-info h2 { color: #EAEFF5; text-align: center; margin-bottom: 25px; }
 .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+
+/* Mobile generator adjustments */
+@media (max-width: 768px) {
+    .generator-info { padding: 15px; margin-bottom: 20px; }
+    .info-grid { grid-template-columns: 1fr; gap: 15px; }
+}
+
 .info-item { background: #1a2d42; padding: 20px; border-radius: 8px; border: 1px solid #1e3248; }
 .info-item h3 { color: #EAEFF5; margin-bottom: 10px; text-align: left; font-size: 1.1em; }
 .info-item p, .info-item ul { text-align: left; line-height: 1.6; margin-bottom: 10px; color: #C2D0DE; }
@@ -153,7 +326,22 @@ a { color: #C2D0DE; }
 .input-section { text-align: center; margin-bottom: 30px; }
 .input-section h2 { color: #EAEFF5; margin-bottom: 20px; }
 .mutation-input-container { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+
+/* Mobile input adjustments */
+@media (max-width: 768px) {
+    .generator-tool { padding: 20px; margin-bottom: 20px; }
+    .mutation-input-container { 
+        flex-direction: column; 
+        gap: 10px; 
+    }
+}
+
 #mutation-input-gen { padding: 12px 16px; border: 1px solid #3A5672; border-radius: 6px; background-color: #0A1520; color: #EAEFF5; font-size: 16px; width: 250px; text-align: center; transition: border-color 0.3s; }
+
+@media (max-width: 768px) {
+    #mutation-input-gen { width: 100%; max-width: 300px; }
+}
+
 #mutation-input-gen:focus { outline: none; border-color: #7E97B0; }
 .generate-btn { background: #3A5672; color: #EAEFF5; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; }
 .generate-btn:hover { background: #4a6a87; }
@@ -165,6 +353,14 @@ a { color: #C2D0DE; }
 .sequence-display { text-align: center; }
 .mutation-details-gen { background: #0A1520; padding: 15px; border-radius: 6px; margin-bottom: 20px; color: #C2D0DE; text-align: left; }
 .sequence-text { background: #0A1520; padding: 20px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 14px; word-break: break-all; line-height: 1.6; color: #C2D0DE; margin: 15px 0; border: 1px solid #1e3248; }
+
+@media (max-width: 768px) {
+    .sequence-text { 
+        font-size: 12px; 
+        padding: 15px; 
+    }
+}
+
 .sequence-actions { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
 .copy-btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s; background: #3A5672; color: #EAEFF5; }
 .copy-btn:hover { background: #4a6a87; }
@@ -173,14 +369,33 @@ a { color: #C2D0DE; }
 .wild-type-sequence { text-align: center; }
 .wild-type-sequence p { color: #C2D0DE; margin-bottom: 15px; }
 .seq-annotated { font-family: 'Courier New', monospace; font-size: 13px; line-height: 2; word-break: break-all; text-align: left; padding: 15px; }
+
+@media (max-width: 768px) {
+    .seq-annotated { font-size: 11px; line-height: 1.8; }
+}
+
 .seq-analyzed { background-color: #3A5672; color: #EAEFF5; border-radius: 3px; padding: 1px 2px; cursor: default; }
 .seq-legend { display: flex; gap: 20px; justify-content: center; margin-top: 15px; font-size: 13px; flex-wrap: wrap; }
+
+@media (max-width: 768px) {
+    .seq-legend { gap: 10px; font-size: 12px; }
+}
+
 .seq-legend-item { display: flex; align-items: center; gap: 6px; color: #C2D0DE; }
 .seq-legend-swatch { display: inline-block; width: 16px; height: 16px; border-radius: 3px; background: #3A5672; }
 .seq-legend-swatch-wt { background: #111e2e; border: 1px solid #3A5672; }
 
 /* Pagination */
 .pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding: 20px; background: #1a2d42; border-radius: 8px; }
+
+@media (max-width: 768px) {
+    .pagination { 
+        flex-direction: column; 
+        gap: 10px; 
+        padding: 15px;
+    }
+}
+
 .pagination button { background: #3A5672; color: #EAEFF5; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
 .pagination button:hover:not(:disabled) { background: #4a6a87; }
 .pagination button:disabled { background: #1e3248; color: #7E97B0; cursor: not-allowed; }
@@ -188,6 +403,11 @@ a { color: #C2D0DE; }
 
 /* Misc panels */
 .placeholder-section { background-color: #111e2e; padding: 30px; border-radius: 10px; border: 1px solid #1e3248; text-align: center; margin: 20px 0; color: #C2D0DE; }
+
+@media (max-width: 768px) {
+    .placeholder-section { padding: 20px; margin: 15px 0; }
+}
+
 .important-note { background: #111e2e; padding: 25px; border-radius: 10px; margin: 30px 0; border: 1px solid #3A5672; }
 .important-note h2 { color: #EAEFF5; margin-bottom: 15px; }
 .numbering-examples { background: #0A1520; padding: 15px; border-radius: 6px; margin: 15px 0; font-family: 'Courier New', monospace; color: #C2D0DE; }
@@ -196,6 +416,11 @@ a { color: #C2D0DE; }
 .numbering-clarification h2 { color: #EAEFF5; text-align: center; margin-bottom: 15px; }
 .numbering-table { background: #1a2d42; padding: 20px; border-radius: 8px; margin-top: 15px; color: #C2D0DE; }
 .findings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+
+@media (max-width: 768px) {
+    .findings-grid { grid-template-columns: 1fr; gap: 15px; }
+}
+
 .finding-item { background: #1a2d42; padding: 20px; border-radius: 8px; border: 1px solid #1e3248; text-align: left; color: #C2D0DE; }
 .finding-item h3 { color: #EAEFF5; margin-bottom: 10px; font-size: 1.1em; }
 .conclusions-content { text-align: center; margin: 20px 0; color: #C2D0DE; }
@@ -204,6 +429,11 @@ a { color: #C2D0DE; }
 .video-section { background: #111e2e; padding: 25px; border-radius: 10px; margin: 20px 0; border: 1px solid #1e3248; text-align: center; }
 .video-section h3 { color: #EAEFF5; margin-bottom: 15px; }
 .structure-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 25px; text-align: left; }
+
+@media (max-width: 768px) {
+    .structure-gallery { grid-template-columns: 1fr; gap: 15px; }
+}
+
 .struct-card { background: #1a2d42; border-radius: 10px; border: 1px solid #2a4060; overflow: hidden; transition: transform 0.15s; }
 .struct-card:hover { transform: translateY(-2px); }
 .struct-card-header { padding: 14px 16px 10px; border-bottom: 1px solid #1e3248; }
@@ -217,6 +447,11 @@ a { color: #C2D0DE; }
 
 /* Initial results tables */
 .results-tables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 30px; }
+
+@media (max-width: 768px) {
+    .results-tables-grid { grid-template-columns: 1fr; gap: 15px; }
+}
+
 .result-table-card { background: #111e2e; border-radius: 10px; border: 1px solid #1e3248; overflow: hidden; }
 .result-table-card-header { background: #1a2d42; padding: 14px 18px; border-bottom: 1px solid #1e3248; }
 .result-table-card-header .pos-code { font-size: 1.15em; color: #EAEFF5; letter-spacing: 0.5px; }
@@ -228,6 +463,14 @@ a { color: #C2D0DE; }
 .result-table tbody tr:hover { background: #0f1c2b; }
 .result-table td { padding: 7px 14px; color: #C2D0DE; vertical-align: middle; }
 .result-table td:last-child { text-align: right; font-family: 'Courier New', monospace; font-size: 12px; }
+
+@media (max-width: 768px) {
+    .result-table { font-size: 11px; }
+    .result-table thead th { padding: 6px 10px; font-size: 11px; }
+    .result-table td { padding: 6px 10px; }
+    .result-table td:last-child { font-size: 11px; }
+}
+
 .ddg-pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-family: 'Courier New', monospace; font-size: 11px; }
 .ddg-pill.neg { background: #1a2d42; color: #7E97B0; }
 .ddg-pill.pos { background: #2a1820; color: #9a6070; }
@@ -235,8 +478,27 @@ a { color: #C2D0DE; }
 .aa-symbol { display: inline-block; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; background: #1e3248; color: #EAEFF5; font-family: 'Courier New', monospace; font-size: 12px; margin-right: 6px; }
 .result-table-summary { padding: 10px 14px; background: #0f1c2b; border-top: 1px solid #1e3248; font-size: 11px; color: #7E97B0; display: flex; justify-content: space-between; }
 
+@media (max-width: 768px) {
+    .result-table-summary { 
+        flex-direction: column; 
+        gap: 5px; 
+        text-align: center;
+        font-size: 10px;
+    }
+}
+
 /* Footer */
 .footer { position: static; width: 100%; background-color: #060e18; border-top: 1px solid #1e3248; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-top: 60px; }
+
+@media (max-width: 768px) {
+    .footer { 
+        flex-direction: column; 
+        gap: 10px; 
+        text-align: center;
+        padding: 20px;
+    }
+}
+
 .footer-left { color: #7E97B0; }
 .footer-right { display: flex; gap: 20px; }
 .footer-right a { color: #7E97B0; text-decoration: none; transition: color 0.2s; cursor: pointer; }
@@ -245,6 +507,15 @@ a { color: #C2D0DE; }
 /* Modal */
 .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.75); }
 .modal-content { background-color: #111e2e; margin: 5% auto; padding: 30px; border-radius: 10px; width: 80%; max-width: 600px; max-height: 80%; overflow-y: auto; border: 1px solid #1e3248; color: #C2D0DE; }
+
+@media (max-width: 768px) {
+    .modal-content { 
+        width: 95%; 
+        margin: 10% auto;
+        padding: 20px;
+    }
+}
+
 .close { color: #7E97B0; float: right; font-size: 28px; cursor: pointer; }
 .close:hover { color: #EAEFF5; }
 
@@ -253,13 +524,18 @@ a { color: #C2D0DE; }
 <body>
 
 <div class="navbar">
-    <a onclick="showPage('home')">Home</a>
-    <a onclick="showPage('selection')">Selecting Initial Mutation Sites</a>
-    <a onclick="showPage('workflow')">MutateX Workflow</a>
-    <a onclick="showPage('initial')">Initial Results</a>
-    <a onclick="showPage('hpc')">HPC Analysis & Visualization</a>
-    <a onclick="showPage('explorer')">Browse Mutations</a>
-    <a onclick="showPage('sequence-generator')">Sequence Generator</a>
+    <!-- Hamburger menu for mobile -->
+    <div class="hamburger" style="display: none;" onclick="toggleMobileNav()">☰</div>
+    
+    <div class="navbar-container" id="navbar-container">
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('selection')">Selecting Initial Mutation Sites</a>
+        <a onclick="showPage('workflow')">MutateX Workflow</a>
+        <a onclick="showPage('initial')">Initial Results</a>
+        <a onclick="showPage('hpc')">HPC Analysis & Visualization</a>
+        <a onclick="showPage('explorer')">Browse Mutations</a>
+        <a onclick="showPage('sequence-generator')">Sequence Generator</a>
+    </div>
 </div>
 
 <div class="container">
@@ -596,13 +872,45 @@ done</pre></div>
     </div>
 </div>
 
-<script src="mutation_data.js"></script>
 <script>
 function sanitizeInput(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
 function openModal(id) { document.getElementById(id).style.display = 'block'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 window.onclick = e => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; }
-function showPage(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+function showPage(id) { 
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
+    document.getElementById(id).classList.add('active'); 
+    // Close mobile menu when page changes
+    if (window.innerWidth <= 480) {
+        const container = document.getElementById('navbar-container');
+        if (container) container.classList.remove('expanded');
+    }
+}
+
+// Mobile navigation toggle
+function toggleMobileNav() {
+    const container = document.getElementById('navbar-container');
+    if (container) {
+        container.classList.toggle('expanded');
+    }
+}
+
+// Show/hide hamburger menu based on screen size
+function checkMobileNav() {
+    const hamburger = document.querySelector('.hamburger');
+    if (window.innerWidth <= 480) {
+        hamburger.style.display = 'block';
+    } else {
+        hamburger.style.display = 'none';
+        // Ensure navbar is expanded on larger screens
+        const container = document.getElementById('navbar-container');
+        if (container) container.classList.remove('expanded');
+    }
+}
+
+// Check on load and resize
+window.addEventListener('load', checkMobileNav);
+window.addEventListener('resize', checkMobileNav);
 
 const aminoAcidNames = {
     'G':'Glycine','A':'Alanine','V':'Valine','L':'Leucine','I':'Isoleucine',
@@ -636,16 +944,16 @@ function buildAnnotatedSequence() {
     container.innerHTML = html;
 }
 
-// Structure gallery - using your renamed files
+// Structure gallery - using placeholder structure cards since video files aren't available
 const structureCards = [
-    { id:'wt',   label:'2M32 Wild-Type', subtitle:'Original structure',          ddgLabel:'Reference',              ddgClass:'wt',         desc:'The unmodified Integrin Alpha-1 I-domain in complex with a collagen-like peptide (PDB 2M32). Used as the baseline for all ΔΔG calculations.', filename:'2m32.mp4' },
-    { id:'d11v', label:'D11V',           subtitle:'Asp → Val at position 11',    ddgLabel:'ΔΔG = −6.279 kcal/mol', ddgClass:'stabilizing', desc:'Most stabilizing mutation identified.',                                filename:'d11v.mp4' },
-    { id:'d11l', label:'D11L',           subtitle:'Asp → Leu at position 11',    ddgLabel:'ΔΔG = −5.960 kcal/mol', ddgClass:'stabilizing', desc:'Leucine substitution at position 11.',                                  filename:'d11l.mp4' },
-    { id:'d11m', label:'D11M',           subtitle:'Asp → Met at position 11',    ddgLabel:'ΔΔG = −5.768 kcal/mol', ddgClass:'stabilizing', desc:'Methionine substitution at position 11.',                               filename:'d11m.mp4' },
-    { id:'d11i', label:'D11I',           subtitle:'Asp → Ile at position 11',    ddgLabel:'ΔΔG = −5.675 kcal/mol', ddgClass:'stabilizing', desc:'Isoleucine substitution at position 11.',                               filename:'d11i.mp4' },
-    { id:'d11t', label:'D11T',           subtitle:'Asp → Thr at position 11',    ddgLabel:'ΔΔG = −5.442 kcal/mol', ddgClass:'stabilizing', desc:'Threonine substitution at position 11.',                                filename:'d11t.mp4' },
-    { id:'g43m', label:'G43M',           subtitle:'Gly → Met at position 43',    ddgLabel:'ΔΔG = −4.300 kcal/mol', ddgClass:'stabilizing', desc:'Methionine substitution at glycine position 43 (UniProt 210).',         filename:'g43m.mp4' },
-    { id:'g43k', label:'G43K',           subtitle:'Gly → Lys at position 43',    ddgLabel:'ΔΔG = −3.935 kcal/mol', ddgClass:'stabilizing', desc:'Lysine substitution at glycine position 43 (UniProt 210).',             filename:'g43k.mp4' },
+    { id:'wt',   label:'2M32 Wild-Type', subtitle:'Original structure',          ddgLabel:'Reference',              ddgClass:'wt',         desc:'The unmodified Integrin Alpha-1 I-domain in complex with a collagen-like peptide (PDB 2M32). Used as the baseline for all ΔΔG calculations.', filename:'placeholder.png' },
+    { id:'d11v', label:'D11V',           subtitle:'Asp → Val at position 11',    ddgLabel:'ΔΔG = −6.279 kcal/mol', ddgClass:'stabilizing', desc:'Most stabilizing mutation identified.',                                filename:'placeholder.png' },
+    { id:'d11l', label:'D11L',           subtitle:'Asp → Leu at position 11',    ddgLabel:'ΔΔG = −5.960 kcal/mol', ddgClass:'stabilizing', desc:'Leucine substitution at position 11.',                                  filename:'placeholder.png' },
+    { id:'d11m', label:'D11M',           subtitle:'Asp → Met at position 11',    ddgLabel:'ΔΔG = −5.768 kcal/mol', ddgClass:'stabilizing', desc:'Methionine substitution at position 11.',                               filename:'placeholder.png' },
+    { id:'d11i', label:'D11I',           subtitle:'Asp → Ile at position 11',    ddgLabel:'ΔΔG = −5.675 kcal/mol', ddgClass:'stabilizing', desc:'Isoleucine substitution at position 11.',                               filename:'placeholder.png' },
+    { id:'d11t', label:'D11T',           subtitle:'Asp → Thr at position 11',    ddgLabel:'ΔΔG = −5.442 kcal/mol', ddgClass:'stabilizing', desc:'Threonine substitution at position 11.',                                filename:'placeholder.png' },
+    { id:'g43m', label:'G43M',           subtitle:'Gly → Met at position 43',    ddgLabel:'ΔΔG = −4.300 kcal/mol', ddgClass:'stabilizing', desc:'Methionine substitution at glycine position 43 (UniProt 210).',         filename:'placeholder.png' },
+    { id:'g43k', label:'G43K',           subtitle:'Gly → Lys at position 43',    ddgLabel:'ΔΔG = −3.935 kcal/mol', ddgClass:'stabilizing', desc:'Lysine substitution at glycine position 43 (UniProt 210).',             filename:'placeholder.png' },
 ];
 
 function buildStructureGallery() {
@@ -660,7 +968,7 @@ function buildStructureGallery() {
             </div>
             <div class="struct-card-body">
                 <div class="struct-video-container">
-                    <video src="${c.filename}" autoplay loop muted playsinline></video>
+                    <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#7E97B0;font-size:14px;">Structure Visualization</div>
                 </div>
                 <div class="struct-card-desc">${c.desc}</div>
             </div>
@@ -700,39 +1008,60 @@ function buildCorrespondenceTable() {
     if (body) body.style.maxHeight = '0px';
 }
 
-// Explorer
-let allMutations = [], filteredMutations = [], currentPage = 1;
+// Explorer - using sample data since mutation_data.js isn't available
+let allMutations = [
+    { position:11, wild_type:'D', target:'V', ddg:-6.27949, mutation_name:'D11V' },
+    { position:11, wild_type:'D', target:'L', ddg:-5.96024, mutation_name:'D11L' },
+    { position:13, wild_type:'S', target:'W', ddg:44.55960, mutation_name:'S13W' },
+    { position:14, wild_type:'N', target:'F', ddg:-1.01273, mutation_name:'N14F' }
+];
+
+let filteredMutations = [], currentPage = 1;
 const mutationsPerPage = 30;
 let filtersCollapsed = true;
 
-if (typeof mutationData !== 'undefined') {
-    initializeExplorer(mutationData);
-} else {
-    initializeExplorer([
-        { position:11, wild_type:'D', target:'V', ddg:-6.27949, mutation_name:'D11V' },
-        { position:11, wild_type:'D', target:'L', ddg:-5.96024, mutation_name:'D11L' },
-        { position:13, wild_type:'S', target:'W', ddg:44.55960, mutation_name:'S13W' }
-    ]);
-}
-
-function initializeExplorer(mutations) {
+function initializeExplorer(mutations = allMutations) {
     allMutations = mutations;
     filteredMutations = [...allMutations];
     document.getElementById('filters-section').classList.add('collapsed');
+    
     const wildTypes = [...new Set(mutations.map(m => m.wild_type))].sort();
     const allAAs = ['G','A','V','L','I','M','F','W','P','S','T','C','Y','N','Q','D','E','K','R','H'];
+    
     const posEl = document.getElementById('position-filter');
-    for (let i = 1; i <= 58; i++) { const o = document.createElement('option'); o.value = i; o.textContent = `PDB Position ${i} (UniProt ${i+UNIPROT_OFFSET})`; posEl.appendChild(o); }
+    for (let i = 1; i <= 58; i++) { 
+        const o = document.createElement('option'); 
+        o.value = i; 
+        o.textContent = `PDB Position ${i} (UniProt ${i+UNIPROT_OFFSET})`; 
+        posEl.appendChild(o); 
+    }
+    
     const wtEl = document.getElementById('wildtype-filter');
-    wildTypes.forEach(wt => { const o = document.createElement('option'); o.value = wt; o.textContent = `${aminoAcidNames[wt]||wt} (${wt})`; wtEl.appendChild(o); });
+    wildTypes.forEach(wt => { 
+        const o = document.createElement('option'); 
+        o.value = wt; 
+        o.textContent = `${aminoAcidNames[wt]||wt} (${wt})`; 
+        wtEl.appendChild(o); 
+    });
+    
     const tgEl = document.getElementById('target-filter');
-    allAAs.forEach(aa => { const o = document.createElement('option'); o.value = aa; o.textContent = `${aminoAcidNames[aa]||aa} (${aa})`; tgEl.appendChild(o); });
-    ['position-filter','wildtype-filter','target-filter','ddg-filter'].forEach(id => document.getElementById(id).addEventListener('change', applyFilters));
+    allAAs.forEach(aa => { 
+        const o = document.createElement('option'); 
+        o.value = aa; 
+        o.textContent = `${aminoAcidNames[aa]||aa} (${aa})`; 
+        tgEl.appendChild(o); 
+    });
+    
+    ['position-filter','wildtype-filter','target-filter','ddg-filter'].forEach(id => 
+        document.getElementById(id).addEventListener('change', applyFilters));
     document.getElementById('range-min').addEventListener('input', updateDualRange);
     document.getElementById('range-max').addEventListener('input', updateDualRange);
     document.getElementById('range-min').addEventListener('change', applyFilters);
     document.getElementById('range-max').addEventListener('change', applyFilters);
-    updateSummary(); updateDualRange(); applySorting();
+    
+    updateSummary(); 
+    updateDualRange(); 
+    applySorting();
 }
 
 function toggleFilters() {
@@ -766,6 +1095,7 @@ function applyFilters() {
     const ddgF = document.getElementById('ddg-filter').value;
     const rMin = parseFloat(document.getElementById('range-min').value);
     const rMax = parseFloat(document.getElementById('range-max').value);
+    
     filteredMutations = allMutations.filter(m => {
         if (pos && m.position != pos) return false;
         if (wt && m.wild_type !== wt) return false;
@@ -778,7 +1108,8 @@ function applyFilters() {
         if (ddgF === 'neutral' && Math.abs(m.ddg) >= 1) return false;
         return true;
     });
-    currentPage = 1; applySorting();
+    currentPage = 1; 
+    applySorting();
 }
 
 function applySorting() {
@@ -792,7 +1123,12 @@ function applySorting() {
 function displayMutations() {
     const container = document.getElementById('mutation-list');
     document.getElementById('result-count').textContent = filteredMutations.length;
-    if (!filteredMutations.length) { container.innerHTML = '<p style="text-align:center;padding:20px;">No mutations match the current filters.</p>'; updatePagination(); return; }
+    if (!filteredMutations.length) { 
+        container.innerHTML = '<p style="text-align:center;padding:20px;">No mutations match the current filters.</p>'; 
+        updatePagination(); 
+        return; 
+    }
+    
     const start = (currentPage - 1) * mutationsPerPage;
     container.innerHTML = filteredMutations.slice(start, start + mutationsPerPage).map(m => {
         const cls = m.ddg < 0 ? 'stabilizing' : m.ddg > 0 ? 'destabilizing' : 'neutral';
@@ -818,7 +1154,9 @@ function clearFilters() {
     document.getElementById('range-max').value = 50;
     document.getElementById('sort-select').value = 'stabilizing';
     updateDualRange();
-    filteredMutations = [...allMutations]; currentPage = 1; applySorting();
+    filteredMutations = [...allMutations]; 
+    currentPage = 1; 
+    applySorting();
 }
 
 function generateSequence() {
@@ -886,6 +1224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     buildStructureGallery();
     buildCorrespondenceTable();
     buildInitialResultsTables();
+    initializeExplorer();
     showPage('home');
 });
 </script>
