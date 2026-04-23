@@ -428,10 +428,10 @@ a { color: #C2D0DE; }
 /* Structure gallery */
 .structure-section { background: #111e2e; padding: 25px; border-radius: 10px; margin: 20px 0; border: 1px solid #1e3248; text-align: center; }
 .structure-section h3 { color: #EAEFF5; margin-bottom: 15px; }
-.structure-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 25px; text-align: left; }
+.structure-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 25px; text-align: left; }
 
 @media (max-width: 768px) {
-    .structure-gallery { grid-template-columns: 1fr; gap: 15px; }
+    .structure-gallery { grid-template-columns: repeat(2, 1fr); gap: 15px; }
 }
 
 .struct-card { background: #1a2d42; border-radius: 10px; border: 1px solid #2a4060; overflow: hidden; transition: transform 0.15s; }
